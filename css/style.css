@@ -7,35 +7,66 @@ body {
   background-repeat: no-repeat;
 }
 
+header nav {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  background: rgba(0, 0, 0, 0.5);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+}
+
+nav a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
 body::before {
   content: "";
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.4);
   z-index: -1;
+  background-attachment: fixed;
 }
 
-body.home { background-image: url('../images/Sky_unfiltered.JPG'); }
-body.about { background-image: url('../images/Sky_on_the_boards.jpg'); }
-body.music { background-image: url('../images/The_Other_Side_cover.jpg'); }
-body.gallery { background-image: url('../images/I_can_feel_your_vibe.png'); }
-body.contact { background-image: url('../images/Crew2.JPG'); }
+body.home { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../images/Sky_unfiltered.JPG'); }
+body.about { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../images/Sky_on_the_boards.jpg'); }
+body.music { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../images/The_Other_Side_cover.jpg'); }
+body.gallery { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../images/I_can_feel_your_vibe.png'); }
+body.contact { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../images/Crew2.JPG'); }
 
 header {
   text-align: center;
   padding: 2rem;
 }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  margin: 0 1rem;
-  font-weight: bold;
+.hero-text {
+  text-align: center;
+  margin-top: 10vh;
 }
 
-nav a:hover {
-  text-decoration: underline;
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .image-gallery {
@@ -47,17 +78,38 @@ nav a:hover {
 }
 
 .gallery-item {
+  position: relative;
   width: 200px;
   overflow: hidden;
   transition: transform 0.3s;
+  cursor: pointer;
 }
 
 .gallery-item img {
   width: 100%;
   display: block;
-  transition: transform 0.3s;
+  transition: transform 0.5s ease;
 }
 
 .gallery-item:hover img {
   transform: scale(1.2);
+}
+
+.gallery-item::after {
+  content: attr(data-caption);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.5rem;
+  text-align: center;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover::after {
+  opacity: 1;
 }
