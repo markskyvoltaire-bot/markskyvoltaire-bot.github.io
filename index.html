@@ -19,8 +19,20 @@
       text-decoration: none;
       transition: 0.2s;
     }
-    a:hover {
-      opacity: 0.9;
+    a:hover { opacity: 0.9; }
+
+    /* ANIMATED GRADIENT HEADINGS */
+    h2, .hero h1 {
+      background: linear-gradient(90deg, #d4af37, #f1f1f1, #d4af37);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientMove 5s ease infinite;
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     /* HERO */
@@ -29,7 +41,8 @@
       text-align: center;
       background: #0a0a0d;
       opacity: 0;
-      animation: fadeIn 1s forwards;
+      transform: translateY(20px);
+      animation: slideUp 1s forwards;
     }
     .hero img {
       width: 180px;
@@ -38,24 +51,14 @@
       border: 3px solid #d4af37;
       margin-bottom: 20px;
       object-fit: cover;
-      transition: transform 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
     .hero img:hover {
       transform: scale(1.05);
+      box-shadow: 0 0 25px #d4af37;
     }
-    .hero h1 {
-      font-size: 3rem;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-      color: #d4af37;
-    }
-    .hero p {
-      font-size: 1.2rem;
-      max-width: 650px;
-      margin: 10px auto 0;
-      line-height: 1.6;
-      opacity: 0.9;
-    }
+    .hero h1 { font-size: 3rem; letter-spacing: 2px; margin-bottom: 10px; }
+    .hero p { font-size: 1.4rem; font-weight: bold; opacity: 0.9; }
 
     /* SECTIONS */
     .section {
@@ -65,20 +68,9 @@
       border-bottom: 1px solid #333;
       opacity: 0;
       transform: translateY(20px);
-      animation: slideUp 1s forwards;
-      animation-delay: 0.5s;
+      transition: opacity 1s ease, transform 1s ease;
     }
-    .section:nth-child(3) { animation-delay: 0.7s; }
-    .section:nth-child(4) { animation-delay: 0.9s; }
-    .section:nth-child(5) { animation-delay: 1.1s; }
-    .section:nth-child(6) { animation-delay: 1.3s; }
-
-    .section h2 {
-      font-size: 2rem;
-      color: #d4af37;
-      padding-bottom: 8px;
-      margin-bottom: 25px;
-    }
+    .visible { opacity: 1; transform: translateY(0); }
 
     /* LINKS & BUTTONS */
     .links a {
@@ -108,50 +100,72 @@
       gap: 15px;
       justify-content: center;
     }
-    .gallery img {
+    .gallery-item {
+      position: relative;
       width: 160px;
       height: 160px;
+      overflow: hidden;
       border-radius: 12px;
-      object-fit: cover;
       border: 2px solid #d4af37;
-      transition: transform 0.3s, opacity 0.5s;
+      transition: transform 0.3s, box-shadow 0.3s, opacity 0.5s;
       opacity: 0;
-      animation: fadeIn 1s forwards;
     }
-    .gallery img:nth-child(1) { animation-delay: 0.5s; }
-    .gallery img:nth-child(2) { animation-delay: 0.7s; }
-    .gallery img:nth-child(3) { animation-delay: 0.9s; }
-    .gallery img:nth-child(4) { animation-delay: 1.1s; }
-    .gallery img:nth-child(5) { animation-delay: 1.3s; }
-    .gallery img:hover {
-      transform: scale(1.05);
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease, filter 0.4s ease;
     }
+    .gallery-item:hover img {
+      transform: scale(1.1);
+      filter: brightness(1.1);
+    }
+    .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.7);
+      color: #d4af37;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: opacity 0.3s, transform 0.3s;
+      padding: 8px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    .gallery-item:hover .overlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* MUSIC EMBEDS */
+    .music-embed {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+    .music-embed iframe {
+      border: none;
+      border-radius: 12px;
+      width: 300px;
+      height: 80px;
+      transition: transform 0.3s;
+    }
+    .music-embed iframe:hover { transform: scale(1.05); }
 
     /* FOOTER */
-    .footer {
-      text-align: center;
-      padding: 50px 20px;
-      font-size: 0.9rem;
-      opacity: 0.5;
-    }
+    .footer { text-align: center; padding: 50px 20px; font-size: 0.9rem; opacity: 0.5; }
 
     /* ANIMATIONS */
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-    @keyframes slideUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
 
     /* RESPONSIVE */
     @media (max-width: 600px) {
-      .hero img, .gallery img {
-        width: 120px;
-        height: 120px;
-      }
-      .hero h1 {
-        font-size: 2.2rem;
-      }
+      .hero img, .gallery-item { width: 120px; height: 120px; }
+      .hero h1 { font-size: 2.2rem; }
+      .music-embed iframe { width: 100%; height: 80px; }
     }
   </style>
 </head>
@@ -161,19 +175,26 @@
   <div class="hero">
     <img src="Sky on the boards.jpg" alt="Mark Sky Voltaire">
     <h1>MARK SKY VOLTAIRE</h1>
-    <p>Emcee. Storyteller. Chef. Genealogist.<br>
-       A blend of culture, history, and raw artistry.</p>
+    <p>Artist</p>
   </div>
 
   <!-- PHOTO GALLERY -->
   <div class="section">
     <h2>Gallery</h2>
     <div class="gallery">
-      <img src="Sky u street.jpg" alt="Photo 1">
-      <img src="Sky unfiltered.JPG" alt="Photo 2">
-      <img src="The Other Side cover.jpg" alt="Photo 3">
-      <img src="hunk Sky.jpg" alt="Photo 4">
-      <img src="Sky on the boards.jpg" alt="Photo 5">
+      <!-- 12 images -->
+      <div class="gallery-item"><img src="Sky u street.jpg" alt="Photo 1"><div class="overlay">Caption 1</div></div>
+      <div class="gallery-item"><img src="Sky unfiltered.JPG" alt="Photo 2"><div class="overlay">Caption 2</div></div>
+      <div class="gallery-item"><img src="The Other Side cover.jpg" alt="Photo 3"><div class="overlay">Caption 3</div></div>
+      <div class="gallery-item"><img src="hunk Sky.jpg" alt="Photo 4"><div class="overlay">Caption 4</div></div>
+      <div class="gallery-item"><img src="Sky on the boards.jpg" alt="Photo 5"><div class="overlay">Caption 5</div></div>
+      <div class="gallery-item"><img src="Sky wishing.JPG" alt="Photo 6"><div class="overlay">Caption 6</div></div>
+      <div class="gallery-item"><img src="Crew withlight.JPG" alt="Photo 7"><div class="overlay">Caption 7</div></div>
+      <div class="gallery-item"><img src="Crew2.JPG" alt="Photo 8"><div class="overlay">Caption 8</div></div>
+      <div class="gallery-item"><img src="Crew1.JPG" alt="Photo 9"><div class="overlay">Caption 9</div></div>
+      <div class="gallery-item"><img src="old north.JPG" alt="Photo 10"><div class="overlay">Caption 10</div></div>
+      <div class="gallery-item"><img src="sky graf.jpg" alt="Photo 11"><div class="overlay">Caption 11</div></div>
+      <div class="gallery-item"><img src="I can feel your vibe.png" alt="Photo 12"><div class="overlay">Caption 12</div></div>
     </div>
   </div>
 
@@ -181,24 +202,27 @@
   <div class="section">
     <h2>About</h2>
     <p>
-      Sky is a Washington DC-based emcee with Haitian and French roots,
-      blending lived experience, ancestry, and lyrical precision into something
-      unique. He started with <strong>NorthStar International</strong> and has worked with artists
+      Sky is a Washington DC-based artist with Haitian and French roots,
+      blending lived experience, ancestry, and lyrical precision into something unique.  
+      He started with <strong>NorthStar International</strong> and has worked with artists
       from <strong>Sleepwalker</strong> (Shamans of Sound, Krononauts, etc),
-      <strong>Haezl</strong>, and <strong>Jahson the Scientist</strong>.
-      A former chef, genealogist, and lifelong student of culture,
-      he brings depth and intentionality into every verse, every flow, every sound.
+      <strong>Haezl</strong>, and <strong>Jahson the Scientist</strong>.  
+      A former emcee, chef, and genealogist, Sky brings depth and intentionality into every verse, flow, and sound.
     </p>
   </div>
 
   <!-- MUSIC -->
   <div class="section">
     <h2>Music</h2>
-    <div class="links">
-      <a href="https://soundcloud.com/mark-sky-voltaire" target="_blank" class="btn">SoundCloud</a>
-      <a href="https://www.youtube.com/@markskyvoltaire" target="_blank" class="btn">YouTube</a>
-      <a href="#" class="btn">Spotify</a>
-      <a href="#" class="btn">Apple Music</a>
+    <div class="music-embed">
+      <iframe width="100%" height="80" scrolling="no" frameborder="no"
+        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/mark-sky-voltaire&color=%23d4af37&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false">
+      </iframe>
+      <iframe width="100%" height="80"
+        src="https://www.youtube.com/embed?listType=user_uploads&list=markskyvoltaire" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+      </iframe>
     </div>
   </div>
 
@@ -226,6 +250,18 @@
   <div class="footer">
     © 2025 Mark Sky Voltaire — All Rights Reserved.
   </div>
+
+  <script>
+    // Scroll-triggered fade-in for sections and gallery items
+    const faders = document.querySelectorAll('.section, .gallery-item');
+    const options = { threshold: 0.2 };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){ entry.target.classList.add('visible'); }
+      });
+    }, options);
+    faders.forEach(fader => observer.observe(fader));
+  </script>
 
 </body>
 </html>
