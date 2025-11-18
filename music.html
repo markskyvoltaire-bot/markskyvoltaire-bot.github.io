@@ -20,7 +20,7 @@
 </header>
 
 <main>
-  <section class="music-links">
+  <section class="music-links fade-in">
     <ul>
       <li><a href="https://soundcloud.com/mark-sky-voltaire" target="_blank">SoundCloud</a></li>
       <li><a href="https://www.youtube.com/@markskyvoltaire" target="_blank">YouTube</a></li>
@@ -28,6 +28,14 @@
     </ul>
   </section>
 </main>
+
+<script>
+const faders = document.querySelectorAll('.fade-in');
+const appearOnScroll = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('show'); });
+}, { threshold: 0.1 });
+faders.forEach(fader => appearOnScroll.observe(fader));
+</script>
 
 </body>
 </html>
