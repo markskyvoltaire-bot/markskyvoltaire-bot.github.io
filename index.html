@@ -5,23 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mark Sky Voltaire</title>
   <style>
-    /* BODY & GENERAL */
     body {
       margin: 0;
       font-family: Verdana, Geneva, Tahoma, sans-serif;
       background: linear-gradient(135deg, #0a0a0d 0%, #1a1a1f 100%);
       color: #f1f1f1;
       scroll-behavior: smooth;
+      perspective: 1000px; /* For 3D effect */
     }
 
-    a {
-      color: #d4af37;
-      text-decoration: none;
-      transition: 0.2s;
-    }
+    a { color: #d4af37; text-decoration: none; transition: 0.2s; }
     a:hover { opacity: 0.9; }
 
-    /* ANIMATED GRADIENT HEADINGS */
     h2, .hero h1 {
       background: linear-gradient(90deg, #d4af37, #f1f1f1, #d4af37);
       background-size: 200% 200%;
@@ -35,7 +30,6 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* HERO */
     .hero {
       padding: 80px 20px 40px;
       text-align: center;
@@ -60,7 +54,6 @@
     .hero h1 { font-size: 3rem; letter-spacing: 2px; margin-bottom: 10px; }
     .hero p { font-size: 1.4rem; font-weight: bold; opacity: 0.9; }
 
-    /* SECTIONS */
     .section {
       padding: 50px 25px;
       max-width: 1000px;
@@ -72,12 +65,7 @@
     }
     .visible { opacity: 1; transform: translateY(0); }
 
-    /* LINKS & BUTTONS */
-    .links a {
-      display: block;
-      padding: 12px 0;
-      font-size: 1.1rem;
-    }
+    .links a { display: block; padding: 12px 0; font-size: 1.1rem; }
     .btn {
       display: inline-block;
       padding: 12px 24px;
@@ -88,12 +76,8 @@
       font-size: 1rem;
       transition: 0.2s;
     }
-    .btn:hover {
-      background: #d4af37;
-      color: #000;
-    }
+    .btn:hover { background: #d4af37; color: #000; }
 
-    /* GALLERY */
     .gallery {
       display: flex;
       flex-wrap: wrap;
@@ -107,7 +91,7 @@
       overflow: hidden;
       border-radius: 12px;
       border: 2px solid #d4af37;
-      transition: transform 0.3s, box-shadow 0.3s, opacity 0.5s;
+      transition: transform 0.4s, box-shadow 0.4s;
       opacity: 0;
     }
     .gallery-item img {
@@ -116,9 +100,10 @@
       object-fit: cover;
       transition: transform 0.4s ease, filter 0.4s ease;
     }
-    .gallery-item:hover img {
-      transform: scale(1.1);
-      filter: brightness(1.1);
+    .gallery-item:hover {
+      transform: scale(1.2) rotateY(10deg) rotateX(5deg);
+      box-shadow: 0 20px 40px rgba(212, 175, 55, 0.5);
+      z-index: 10;
     }
     .overlay {
       position: absolute;
@@ -139,7 +124,6 @@
       transform: translateY(0);
     }
 
-    /* MUSIC EMBEDS */
     .music-embed {
       display: flex;
       flex-wrap: wrap;
@@ -155,13 +139,10 @@
     }
     .music-embed iframe:hover { transform: scale(1.05); }
 
-    /* FOOTER */
     .footer { text-align: center; padding: 50px 20px; font-size: 0.9rem; opacity: 0.5; }
 
-    /* ANIMATIONS */
     @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
 
-    /* RESPONSIVE */
     @media (max-width: 600px) {
       .hero img, .gallery-item { width: 120px; height: 120px; }
       .hero h1 { font-size: 2.2rem; }
@@ -173,21 +154,20 @@
 
   <!-- HERO -->
   <div class="hero">
-    <img src="Sky on the boards.jpg" alt="Mark Sky Voltaire">
+    <img src="Sky unfiltered.JPG" alt="Mark Sky Voltaire">
     <h1>MARK SKY VOLTAIRE</h1>
     <p>Artist</p>
   </div>
 
-  <!-- PHOTO GALLERY -->
+  <!-- GALLERY -->
   <div class="section">
     <h2>Gallery</h2>
     <div class="gallery">
-      <!-- 12 images -->
-      <div class="gallery-item"><img src="Sky u street.jpg" alt="Photo 1"><div class="overlay">Caption 1</div></div>
-      <div class="gallery-item"><img src="Sky unfiltered.JPG" alt="Photo 2"><div class="overlay">Caption 2</div></div>
-      <div class="gallery-item"><img src="The Other Side cover.jpg" alt="Photo 3"><div class="overlay">Caption 3</div></div>
-      <div class="gallery-item"><img src="hunk Sky.jpg" alt="Photo 4"><div class="overlay">Caption 4</div></div>
-      <div class="gallery-item"><img src="Sky on the boards.jpg" alt="Photo 5"><div class="overlay">Caption 5</div></div>
+      <div class="gallery-item"><img src="Sky on the boards.jpg" alt="Photo 1"><div class="overlay">Caption 1</div></div>
+      <div class="gallery-item"><img src="Sky u street.jpg" alt="Photo 2"><div class="overlay">Caption 2</div></div>
+      <div class="gallery-item"><img src="Sky unfiltered.JPG" alt="Photo 3"><div class="overlay">Caption 3</div></div>
+      <div class="gallery-item"><img src="The Other Side cover.jpg" alt="Photo 4"><div class="overlay">Caption 4</div></div>
+      <div class="gallery-item"><img src="hunk Sky.jpg" alt="Photo 5"><div class="overlay">Caption 5</div></div>
       <div class="gallery-item"><img src="Sky wishing.JPG" alt="Photo 6"><div class="overlay">Caption 6</div></div>
       <div class="gallery-item"><img src="Crew withlight.JPG" alt="Photo 7"><div class="overlay">Caption 7</div></div>
       <div class="gallery-item"><img src="Crew2.JPG" alt="Photo 8"><div class="overlay">Caption 8</div></div>
@@ -246,20 +226,18 @@
     </p>
   </div>
 
-  <!-- FOOTER -->
   <div class="footer">
     © 2025 Mark Sky Voltaire — All Rights Reserved.
   </div>
 
   <script>
-    // Scroll-triggered fade-in for sections and gallery items
+    // Scroll-triggered fade-in
     const faders = document.querySelectorAll('.section, .gallery-item');
-    const options = { threshold: 0.2 };
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if(entry.isIntersecting){ entry.target.classList.add('visible'); }
       });
-    }, options);
+    }, { threshold: 0.2 });
     faders.forEach(fader => observer.observe(fader));
   </script>
 
