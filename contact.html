@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact - Mark Sky Voltaire</title>
+<title>Contact | Mark Sky Voltaire</title>
 <link rel="stylesheet" href="css/style.css">
+<script defer src="js/script.js"></script>
 </head>
 <body class="contact">
-
 <header>
-  <h1>Contact / Booking</h1>
+  <h1>Contact</h1>
   <nav>
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
@@ -19,25 +19,14 @@
   </nav>
 </header>
 
-<main>
-  <section class="contact-info fade-in">
-    <p>Email for booking: <a href="mailto:markskyvoltaire@gmail.com">markskyvoltaire@gmail.com</a></p>
-    <p>Follow me on social media:</p>
-    <ul>
-      <li><a href="https://soundcloud.com/mark-sky-voltaire" target="_blank">SoundCloud</a></li>
-      <li><a href="https://www.youtube.com/@markskyvoltaire" target="_blank">YouTube</a></li>
-      <li><a href="https://www.instagram.com/mark_sky_voltaire/" target="_blank">Instagram</a></li>
-    </ul>
-  </section>
+<main class="fade-in">
+  <p>For booking or inquiries, email me at <a href="mailto:markskyvoltaire@gmail.com">markskyvoltaire@gmail.com</a></p>
+  <p>Follow me on social media:</p>
+  <ul>
+    <li><a href="https://soundcloud.com/mark-sky-voltaire" target="_blank">SoundCloud</a></li>
+    <li><a href="https://www.youtube.com/@markskyvoltaire" target="_blank">YouTube</a></li>
+    <li><a href="https://www.instagram.com/mark_sky_voltaire/" target="_blank">Instagram</a></li>
+  </ul>
 </main>
-
-<script>
-const faders = document.querySelectorAll('.fade-in');
-const appearOnScroll = new IntersectionObserver((entries, obs) => {
-  entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('show'); });
-}, { threshold: 0.1 });
-faders.forEach(fader => appearOnScroll.observe(fader));
-</script>
-
 </body>
 </html>
