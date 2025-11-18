@@ -1,4 +1,4 @@
-/* General Body */
+/* General */
 body {
   margin: 0;
   font-family: Verdana, sans-serif;
@@ -35,23 +35,16 @@ nav a:hover {
   transform: scale(1.1);
 }
 
-/* Hero & Backgrounds */
-body.home { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../images/Sky_unfiltered.JPG'); }
-body.about { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../images/Sky_on_the_boards.jpg'); }
-body.music { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../images/The_Other_Side_cover.jpg'); }
-body.gallery { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../images/I_can_feel_your_vibe.png'); }
-body.contact { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../images/Crew2.JPG'); }
-
-header { text-align: center; padding: 2rem; }
-.hero-text { text-align: center; margin-top: 10vh; }
-
 /* Fade-in animations */
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
-.fade-in.show { opacity: 1; transform: translateY(0); }
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* Gallery */
 .image-gallery {
@@ -92,18 +85,4 @@ header { text-align: center; padding: 2rem; }
   background: rgba(0,0,0,0.6);
   color: white;
   font-size: 0.9rem;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.gallery-item:hover::after { opacity: 1; }
-
-/* Responsive */
-@media (max-width: 768px) {
-  .image-gallery { gap: 0.5rem; }
-  .gallery-item { width: 45%; }
-  nav { flex-wrap: wrap; gap: 1rem; }
-}
-@media (max-width: 480px) {
-  .gallery-item { width: 90%; }
-}
+  opacity:
