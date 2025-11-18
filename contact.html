@@ -20,7 +20,7 @@
 </header>
 
 <main>
-  <section class="contact-info">
+  <section class="contact-info fade-in">
     <p>Email for booking: <a href="mailto:markskyvoltaire@gmail.com">markskyvoltaire@gmail.com</a></p>
     <p>Follow me on social media:</p>
     <ul>
@@ -30,6 +30,14 @@
     </ul>
   </section>
 </main>
+
+<script>
+const faders = document.querySelectorAll('.fade-in');
+const appearOnScroll = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('show'); });
+}, { threshold: 0.1 });
+faders.forEach(fader => appearOnScroll.observe(fader));
+</script>
 
 </body>
 </html>
