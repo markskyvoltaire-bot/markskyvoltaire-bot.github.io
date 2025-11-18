@@ -20,7 +20,7 @@
 </header>
 
 <main>
-  <section class="bio">
+  <section class="bio fade-in">
     <p>A long time ago in a galaxy far, far away I was born in the enchanting city of Paris, where my mother and father began our family's journey. My early years were a whirlwind of cultures and experiences. We moved from Paris to Haiti when I was just a baby, then to Chicago when I was five so my dad could study at the University of Chicago. By the time I was seven or eight, we had settled in Washington, D.C., where I lived until I was 18. After that, I spent a couple of years in London and New York, getting into as much trouble as I could ...and learning how to freestyle from Brooklyn's illest emcees.</p>
 
     <p>My passion for writing started early. At 11, I began writing stories, and by 14, those stories had transformed into lyrics. The real turning point came when I met one of my best friends, Golden, at 19. Together, we formed Northstar International, met SleepWalker, Donyel, and Telly and we've been making music ever since.</p>
@@ -38,6 +38,14 @@
     <p>Check out a track with Haezl: <a href="https://www.youtube.com/watch?v=SzVb79Q6KEA" target="_blank">Listen here</a></p>
   </section>
 </main>
+
+<script>
+const faders = document.querySelectorAll('.fade-in');
+const appearOnScroll = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('show'); });
+}, { threshold: 0.1 });
+faders.forEach(fader => appearOnScroll.observe(fader));
+</script>
 
 </body>
 </html>
