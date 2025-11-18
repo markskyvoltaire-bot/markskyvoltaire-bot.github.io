@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About - Mark Sky Voltaire</title>
+<title>About | Mark Sky Voltaire</title>
 <link rel="stylesheet" href="css/style.css">
+<script defer src="js/script.js"></script>
 </head>
 <body class="about">
-
 <header>
-  <h1>About Me</h1>
+  <h1>About</h1>
   <nav>
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
@@ -20,32 +20,28 @@
 </header>
 
 <main>
-  <section class="bio fade-in">
-    <p>A long time ago in a galaxy far, far away I was born in the enchanting city of Paris, where my mother and father began our family's journey. My early years were a whirlwind of cultures and experiences. We moved from Paris to Haiti when I was just a baby, then to Chicago when I was five so my dad could study at the University of Chicago. By the time I was seven or eight, we had settled in Washington, D.C., where I lived until I was 18. After that, I spent a couple of years in London and New York, getting into as much trouble as I could ...and learning how to freestyle from Brooklyn's illest emcees.</p>
-
-    <p>My passion for writing started early. At 11, I began writing stories, and by 14, those stories had transformed into lyrics. The real turning point came when I met one of my best friends, Golden, at 19. Together, we formed Northstar International, met SleepWalker, Donyel, and Telly and we've been making music ever since.</p>
-
-    <p>The journey hasn't been easy. I've faced the loss of friends, seen people deported or imprisoned, and dealt with the challenges of balancing personal life with my musical ambitions. Members have come and gone, but through it all, I've grown.</p>
-
-    <p>When it comes to creating music, I don't have a strict routine. Inspiration can strike at any time, and I dive into my work with passion and persistence.</p>
-
-    <h3>Collaborators:</h3>
-    <ul>
-      <li>Haezl – <a href="https://www.youtube.com/@HAEZL" target="_blank">YouTube</a></li>
-      <li>Jahson the Scientist – <a href="https://www.youtube.com/@JahsonTheScienstist27" target="_blank">YouTube</a>, <a href="https://jahsonthescientist.com/" target="_blank">Website</a>, <a href="https://www.instagram.com/jahson_the_scientist/" target="_blank">Instagram</a></li>
-    </ul>
-
-    <p>Check out a track with Haezl: <a href="https://www.youtube.com/watch?v=SzVb79Q6KEA" target="_blank">Listen here</a></p>
+  <section class="fade-in">
+    <p>
+      A long time ago in a galaxy far, far away I was born in the enchanting city of Paris, where my mother and father began our family's journey. My early years were a whirlwind of cultures and experiences. We moved from Paris to Haiti when I was just a baby, then to Chicago when I was five so my dad could study at the University of Chicago. By the time I was seven or eight, we had settled in Washington, D.C., where I lived until I was 18. After that, I spent a couple of years in London and New York, getting into as much trouble as I could ...and learning how to freestyle from Brooklyn's illest emcees.
+    </p>
+    <p>
+      My passion for writing started early. At 11, I began writing stories, and by 14, those stories had transformed into lyrics. The real turning point came when I met one of my best friends, Golden, at 19. Together, we formed Northstar International, met SleepWalker, Donyel, and Telly and we've been making music ever since.
+    </p>
+    <p>
+      The journey hasn't been easy. I've faced the loss of friends, seen people deported or imprisoned, and dealt with the challenges of balancing personal life with my musical ambitions. Members have come and gone, but through it all, I've grown. 
+    </p>
+    <p>
+      When it comes to creating music, I don't have a strict routine. Inspiration can strike at any time, and I dive into my work with passion and persistence.
+    </p>
+    <p>
+      Collaborators: <br>
+      <a href="https://www.youtube.com/@HAEZL" target="_blank">Haezl</a> | 
+      <a href="https://www.youtube.com/watch?v=SzVb79Q6KEA" target="_blank">Haezl song link</a> | 
+      <a href="https://www.youtube.com/@JahsonTheScienstist27" target="_blank">Jahson the Scientist</a> | 
+      <a href="https://jahsonthescientist.com/" target="_blank">Website</a> | 
+      <a href="https://www.instagram.com/jahson_the_scientist/" target="_blank">Instagram</a>
+    </p>
   </section>
 </main>
-
-<script>
-const faders = document.querySelectorAll('.fade-in');
-const appearOnScroll = new IntersectionObserver((entries, obs) => {
-  entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('show'); });
-}, { threshold: 0.1 });
-faders.forEach(fader => appearOnScroll.observe(fader));
-</script>
-
 </body>
 </html>
