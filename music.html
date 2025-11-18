@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Music - Mark Sky Voltaire</title>
+<title>Music | Mark Sky Voltaire</title>
 <link rel="stylesheet" href="css/style.css">
+<script defer src="js/script.js"></script>
 </head>
 <body class="music">
-
 <header>
   <h1>Music</h1>
   <nav>
@@ -19,23 +19,13 @@
   </nav>
 </header>
 
-<main>
-  <section class="music-links fade-in">
-    <ul>
-      <li><a href="https://soundcloud.com/mark-sky-voltaire" target="_blank">SoundCloud</a></li>
-      <li><a href="https://www.youtube.com/@markskyvoltaire" target="_blank">YouTube</a></li>
-      <li><a href="https://www.instagram.com/mark_sky_voltaire/" target="_blank">Instagram</a></li>
-    </ul>
-  </section>
+<main class="fade-in">
+  <p>Check out my music on:</p>
+  <ul>
+    <li><a href="https://soundcloud.com/mark-sky-voltaire" target="_blank">SoundCloud</a></li>
+    <li><a href="https://www.youtube.com/@markskyvoltaire" target="_blank">YouTube</a></li>
+    <li><a href="https://www.instagram.com/mark_sky_voltaire/" target="_blank">Instagram</a></li>
+  </ul>
 </main>
-
-<script>
-const faders = document.querySelectorAll('.fade-in');
-const appearOnScroll = new IntersectionObserver((entries, obs) => {
-  entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('show'); });
-}, { threshold: 0.1 });
-faders.forEach(fader => appearOnScroll.observe(fader));
-</script>
-
 </body>
 </html>
