@@ -20,20 +20,28 @@
 </header>
 
 <main>
-  <section class="image-gallery">
-    <div class="gallery-item"><img src="images/Sky_on_the_boards.jpg" alt="Sky on the boards"></div>
-    <div class="gallery-item"><img src="images/The_Other_Side_cover.jpg" alt="The Other Side cover"></div>
-    <div class="gallery-item"><img src="images/I_can_feel_your_vibe.png" alt="I can feel your vibe"></div>
-    <div class="gallery-item"><img src="images/Sky_unfiltered.JPG" alt="Sky unfiltered"></div>
-    <div class="gallery-item"><img src="images/Crew2.JPG" alt="Crew2"></div>
-    <div class="gallery-item"><img src="images/Sky_wishing.JPG" alt="Sky wishing"></div>
-    <div class="gallery-item"><img src="images/Crew_withlight.JPG" alt="Crew with light"></div>
-    <div class="gallery-item"><img src="images/Crew2_new.JPG" alt="Crew2 new"></div>
-    <div class="gallery-item"><img src="images/Crew1.JPG" alt="Crew1"></div>
-    <div class="gallery-item"><img src="images/old_north.JPG" alt="Old North"></div>
-    <div class="gallery-item"><img src="images/sky_graf.jpg" alt="Sky graf"></div>
+  <section class="image-gallery fade-in">
+    <div class="gallery-item" data-caption="Sky on the boards"><img src="images/Sky_on_the_boards.jpg" alt="Sky on the boards"></div>
+    <div class="gallery-item" data-caption="The Other Side cover"><img src="images/The_Other_Side_cover.jpg" alt="The Other Side cover"></div>
+    <div class="gallery-item" data-caption="I can feel your vibe"><img src="images/I_can_feel_your_vibe.png" alt="I can feel your vibe"></div>
+    <div class="gallery-item" data-caption="Sky unfiltered"><img src="images/Sky_unfiltered.JPG" alt="Sky unfiltered"></div>
+    <div class="gallery-item" data-caption="Crew2"><img src="images/Crew2.JPG" alt="Crew2"></div>
+    <div class="gallery-item" data-caption="Sky wishing"><img src="images/Sky_wishing.JPG" alt="Sky wishing"></div>
+    <div class="gallery-item" data-caption="Crew with light"><img src="images/Crew_withlight.JPG" alt="Crew with light"></div>
+    <div class="gallery-item" data-caption="Crew2 new"><img src="images/Crew2_new.JPG" alt="Crew2 new"></div>
+    <div class="gallery-item" data-caption="Crew1"><img src="images/Crew1.JPG" alt="Crew1"></div>
+    <div class="gallery-item" data-caption="Old North"><img src="images/old_north.JPG" alt="Old North"></div>
+    <div class="gallery-item" data-caption="Sky graf"><img src="images/sky_graf.jpg" alt="Sky graf"></div>
   </section>
 </main>
+
+<script>
+const faders = document.querySelectorAll('.fade-in');
+const appearOnScroll = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('show'); });
+}, { threshold: 0.1 });
+faders.forEach(fader => appearOnScroll.observe(fader));
+</script>
 
 </body>
 </html>
