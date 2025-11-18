@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mark Sky Voltaire</title>
 <link rel="stylesheet" href="css/style.css">
+<script defer src="js/script.js"></script>
 </head>
 <body class="home">
-
 <header>
   <h1>Mark Sky Voltaire</h1>
   <p>Artist | Inspired by roots, powered by experience</p>
@@ -26,14 +26,5 @@
     <p>Discover my music, my story, and my vibe.</p>
   </section>
 </main>
-
-<script>
-const faders = document.querySelectorAll('.fade-in');
-const appearOnScroll = new IntersectionObserver((entries, obs) => {
-  entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('show'); });
-}, { threshold: 0.1 });
-faders.forEach(fader => appearOnScroll.observe(fader));
-</script>
-
 </body>
 </html>
