@@ -1,158 +1,28 @@
-/* ===========================
-   GLOBAL / GENERAL
-   =========================== */
-body {
-  margin: 0;
-  font-family: Verdana, sans-serif;
-  color: white;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  overflow-x: hidden;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Sky Voltaire | Artist</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
 
-/* ===========================
-   VIDEO BACKGROUND (HOME PAGE)
-   =========================== */
-#bg-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -2;  /* Behind everything */
-}
+    <!-- VIDEO BACKGROUND -->
+    <video autoplay loop muted playsinline id="bg-video">
+        <source src="assets/background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 
-/* Dark overlay over video */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.55);
-  z-index: -1;
-}
+    <!-- DARK OVERLAY -->
+    <div class="overlay"></div>
 
-/* HERO TEXT ON TOP OF VIDEO */
-.hero-text {
-  position: relative;
-  z-index: 10;
-  text-align: center;
-  top: 40vh; /* Moves text down the page */
-  color: white;
-}
+    <!-- HERO TEXT -->
+    <div class="hero-text">
+        <h1>Mark Sky Voltaire</h1>
+        <p>Artist</p>
+        <a href="about.html" class="btn">Enter my World</a>
+    </div>
 
-.hero-text h1 {
-  font-size: 3rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-.hero-text .btn {
-  display: inline-block;
-  padding: 0.7rem 1.2rem;
-  margin-top: 1rem;
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 5px;
-  transition: all 0.3s ease;
-}
-
-.hero-text .btn:hover {
-  background: rgba(255, 255, 255, 0.4);
-  transform: scale(1.1);
-}
-
-/* ===========================
-   NAVIGATION
-   =========================== */
-header nav {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  padding: 1rem 0;
-  background: rgba(0, 0, 0, 0.5);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  transition: all 0.3s ease;
-}
-
-nav a:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.1);
-}
-
-/* ===========================
-   FADE-IN ANIMATION
-   =========================== */
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-.fade-in.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ===========================
-   GALLERY PAGE
-   =========================== */
-.image-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  padding: 2rem;
-}
-
-.gallery-item {
-  position: relative;
-  width: 200px;
-  overflow: hidden;
-  transition: transform 0.3s;
-  cursor: pointer;
-  perspective: 800px;
-}
-
-.gallery-item img {
-  width: 100%;
-  display: block;
-  transition: transform 0.5s ease;
-}
-
-.gallery-item:hover img {
-  transform: scale(1.2) rotateY(10deg) rotateX(5deg);
-}
-
-.gallery-item::after {
-  content: attr(data-caption);
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 0.5rem;
-  text-align: center;
-  background: rgba(0,0,0,0.6);
-  color: white;
-  font-size: 0.9rem;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.gallery-item:hover::after {
-  opacity: 1;
-}
+</body>
+</html>
