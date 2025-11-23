@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merch | Mark Sky Voltaire</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ===================== */
+        /* Merch-specific styles */
+        /* ===================== */
+        body.merch-bg {
+            background-image: url('https://i.imgur.com/I24NUzg.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: white;
+        }
+
+        .merch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 2rem auto;
+        }
+
+        .merch-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.4s ease;
+        }
+
+        .merch-item img {
+            width: 100%;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .merch-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .merch-item::after {
+            content: "BUY NOW";
+            position: absolute;
+            inset: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .merch-item:hover::after {
+            opacity: 1;
+        }
+
+        .merch-item p {
+            margin-top: 0.5rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Intro paragraph styling */
+        .merch-intro {
+            max-width: 800px;
+            margin: 1rem auto 2rem;
+            padding: 1rem 20px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body class="merch-bg">
+
+    <!-- Dark overlay -->
+    <div class="overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="world-nav fade-in">
+        <a href="index.html">Home</a>
+        <a href="music.html">Music</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="mythology.html">Mythology</a>
+        <a href="merch.html" class="active">Merch</a>
+        <a href="history-genealogy.html">History & Genealogy</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-world fade-in" style="text-align: center; padding-top: 120px; z-index: 2;">
+        <h1>Merch Coming Soon</h1>
+        <p>Exclusive gear, apparel, and collectibles from the world of Mark Sky Voltaire</p>
+        <a href="index.html" class="btn">Back to Home</a>
+    </section>
+
+    <!-- Merch Intro -->
+    <div class="merch-intro fade-in">
+        Each piece of merch tells a story — from the beats and rhythms of my music to the mythology and visuals that define my universe. 
+        Every shirt, hoodie, or poster is designed to be part of the experience, a way for you to carry a fragment of this world with you.
+        Stay tuned for pre-orders and exclusive drops!
+    </div>
+
+    <!-- Merch Grid Section -->
+    <section class="section merch-section fade-in" style="padding: 60px 20px; text-align: center;">
+        <h2>Preview & Pre-Order</h2>
+        <p>Click any item to see details or pre-order when available</p>
+        <div class="merch-grid">
+
+            <a href="#" class="merch-item" target="_blank">
+                <img src="https://via.placeholder.com/250x250?text=T-Shirt+1" alt="T-Shirt 1">
+                <p>T-Shirt 1</p>
+            </a>
+
+            <a href="#" class="merch-item" target="_blank">
+                <img src="https://via.placeholder.com/250x250?text=Hoodie+1" alt="Hoodie 1">
+                <p>Hoodie 1</p>
+            </a>
+
+            <a href="#" class="merch-item" target="_blank">
+                <img src="https://via.placeholder.com/250x250?text=Hat+1" alt="Hat 1">
+                <p>Hat 1</p>
+            </a>
+
+            <a href="#" class="merch-item" target="_blank">
+                <img src="https://via.placeholder.com/250x250?text=Poster+1" alt="Poster 1">
+                <p>Poster 1</p>
+            </a>
+
+        </div>
+        <p style="margin-top: 2rem;">More items coming soon. Stay tuned!</p>
+    </section>
+
+    <!-- Fade-in on scroll -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const faders = document.querySelectorAll(".fade-in");
+            const observerOptions = { threshold: 0.3, rootMargin: "0px 0px -50px 0px" };
+            const appearOnScroll = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add("show");
+                    observer.unobserve(entry.target);
+                });
+            }, observerOptions);
+            faders.forEach(fader => appearOnScroll.observe(fader));
+        });
+    </script>
+
+</body>
+</html>
