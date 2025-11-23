@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mythology | Mark Sky Voltaire</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- TEMP STYLE – move to style.css later if you want -->
+    <style>
+        .mythology-bg {
+            background-image: url('https://i.imgur.com/M6FKg5S.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+        }
+
+        /* Optional: darker text contrast fix */
+        .about-wrapper, .hero-text {
+            color: #f1f1f1;
+            text-shadow: 0 0 8px rgba(0,0,0,0.7);
+        }
+    </style>
+</head>
+<body class="mythology-bg">
+
+    <!-- Dark Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="world-nav fade-in">
+        <a href="index.html">Home</a>
+        <a href="music.html">Music</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="about.html">About</a>
+        <a href="mythology.html" class="active">Mythology</a>
+        <a href="merch.html">Merch</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-text fade-in">
+        <h1 class="glitch-type" data-text="Roots & Echoes">Roots & Echoes</h1>
+        <p style="margin-top: 1rem; font-size: 1.3rem;">
+            A living archive of ancestors, symbols, visions, and stories.<br>
+            Where family history meets myth, memory, and imagination.
+        </p>
+        <a href="#content" class="btn">Enter the Myth</a>
+    </section>
+
+    <!-- Content Area -->
+    <section id="content" class="about-wrapper fade-in">
+        <h2>The Myth is the Map</h2>
+        <p>
+            This page will grow into a collection of stories — some proven, some remembered,
+            some whispered. It is not just genealogy. It is memory work. A compass.
+        </p>
+
+        <ul style="text-align: left; margin-top: 1rem; line-height: 1.6;">
+            <li>Ancestor Profiles (documented + uncertain)</li>
+            <li>Symbols & Names</li>
+            <li>Dreams & Visions</li>
+            <li>Creole + French fragments</li>
+            <li>Family myths vs. historical record</li>
+            <li>A timeline that bends</li>
+        </ul>
+
+        <p style="margin-top: 1.5rem; font-style: italic;">
+            *This isn’t the past. It’s the beginning.*
+        </p>
+    </section>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
