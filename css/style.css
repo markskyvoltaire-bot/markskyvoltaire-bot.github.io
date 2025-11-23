@@ -19,7 +19,8 @@ body {
    HOME PAGE BACKGROUND
    =========================== */
 .home-bg {
-    background-image: url('../assets/background/bghome.png');
+    /* Use absolute URL for custom domain to avoid CNAME redirect issues */
+    background-image: url('https://markskyvoltaire.com/assets/background/bghome.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
