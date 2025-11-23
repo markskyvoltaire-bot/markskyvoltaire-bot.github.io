@@ -38,7 +38,11 @@ body {
 .gallery-bg   { background-image: url('https://i.imgur.com/eVcCh9U.png'); }
 .contact-bg   { background-image: url('https://i.imgur.com/hM5H2cJ.png'); }
 .merch-bg     { background-image: url('https://i.imgur.com/dxT8OGs.png'); }
-.mythology-bg { background-image: url('https://i.imgur.com/tucgBbf.jpeg'); }
+
+/* 🔥 UPDATED: REAL BACKGROUND FOR MYTHOLOGY */
+.mythology-bg { 
+    background-image: url('https://i.imgur.com/M6FKg5S.png'); 
+}
 
 /* ===========================
    DARK OVERLAY
@@ -181,10 +185,10 @@ body {
 }
 
 /* ===========================
-   LIGHTBOX (FIXED)
+   LIGHTBOX
 =========================== */
 #lightbox-overlay {
-    display: none;     /* NOW ONLY THIS — fixed */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -205,7 +209,7 @@ body {
 }
 
 /* ===========================
-   ABOUT SECTION
+   ABOUT SECTION (and MYTHOLOGY)
 =========================== */
 .about-wrapper {
     position: relative;
@@ -218,6 +222,19 @@ body {
     border-radius: 20px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.6);
     text-align: center;
+    animation: fadeIn 1.2s ease;
+}
+
+/* 🔥 Make mythology text easier to read */
+.mythology-bg .about-wrapper,
+.mythology-bg .hero-text {
+    color: #f1f1f1;
+    text-shadow: 0 0 8px rgba(0,0,0,0.7);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .about-image {
