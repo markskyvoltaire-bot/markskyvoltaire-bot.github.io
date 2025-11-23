@@ -212,15 +212,23 @@ body {
     position: relative;
 }
 
-/* Lightbox Overlay */
+/* ===========================
+   LIGHTBOX OVERLAY
+=========================== */
 #lightbox-overlay {
+    display: none; /* hidden by default */
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: rgba(0,0,0,0.9);
-    display: none;
     justify-content: center;
     align-items: center;
-    z-index: 999;
+    z-index: 1000;
+    cursor: zoom-out;
+    overflow: hidden;
+    display: flex;
 }
 
 #lightbox-overlay img {
@@ -229,10 +237,6 @@ body {
     border-radius: 15px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.7);
     transition: transform 0.3s ease;
-}
-
-#lightbox-overlay:active {
-    cursor: zoom-out;
 }
 
 /* ===========================
