@@ -39,6 +39,29 @@
         </div>
     </section>
 
-    <script src="js/script.js"></script>
+    <!-- Lightbox Overlay -->
+    <div id="lightbox-overlay">
+        <img src="" alt="Enlarged Image">
+    </div>
+
+    <script>
+    // Lightbox functionality
+    const galleryImages = document.querySelectorAll('.gallery-grid img');
+    const lightboxOverlay = document.getElementById('lightbox-overlay');
+    const lightboxImg = lightboxOverlay.querySelector('img');
+
+    galleryImages.forEach(img => {
+        img.addEventListener('click', () => {
+            lightboxImg.src = img.src;
+            lightboxOverlay.style.display = 'flex';
+        });
+    });
+
+    lightboxOverlay.addEventListener('click', () => {
+        lightboxOverlay.style.display = 'none';
+        lightboxImg.src = '';
+    });
+    </script>
+
 </body>
 </html>
