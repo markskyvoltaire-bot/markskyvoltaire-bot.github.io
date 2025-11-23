@@ -19,7 +19,7 @@ body {
    HOME PAGE BACKGROUND
    =========================== */
 .home-bg {
-    background-image: url('../assets/Skywishing.jpg'); /* local image in assets folder */
+    background-image: url('https://i.imgur.com/DvE7RQV.png'); /* direct Imgur link */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
