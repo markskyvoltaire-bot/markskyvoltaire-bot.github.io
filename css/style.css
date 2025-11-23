@@ -19,7 +19,7 @@ body {
 /* ===========================
    BACKGROUND IMAGES
 =========================== */
-.home-bg, .world-bg, .about-bg, .music-bg, .gallery-bg, .contact-bg {
+.home-bg, .world-bg, .about-bg, .music-bg, .gallery-bg, .contact-bg, .mythology-bg, .merch-bg {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -28,12 +28,14 @@ body {
     position: relative;
 }
 
-.home-bg    { background-image: url('https://i.imgur.com/DvE7RQV.png'); }
-.world-bg   { background-image: url('https://i.imgur.com/kiIqDp2.png'); }
-.about-bg   { background-image: url('https://i.imgur.com/awySCK4.png'); }
-.music-bg   { background-image: url('https://i.imgur.com/DvE7RQV.png'); }
-.gallery-bg { background-image: url('https://i.imgur.com/eVcCh9U.png'); }
-.contact-bg { background-image: url('https://i.imgur.com/hM5H2cJ.png'); }
+.home-bg      { background-image: url('https://i.imgur.com/DvE7RQV.png'); }
+.world-bg     { background-image: url('https://i.imgur.com/kiIqDp2.png'); }
+.about-bg     { background-image: url('https://i.imgur.com/awySCK4.png'); }
+.music-bg     { background-image: url('https://i.imgur.com/DvE7RQV.png'); }
+.gallery-bg   { background-image: url('https://i.imgur.com/eVcCh9U.png'); }
+.contact-bg   { background-image: url('https://i.imgur.com/hM5H2cJ.png'); }
+.merch-bg     { background-image: url('https://i.imgur.com/dxT8OGs.png'); }
+.mythology-bg { background-image: url('https://i.imgur.com/tucgBbf.jpeg'); }
 
 /* ===========================
    DARK OVERLAY
@@ -125,10 +127,7 @@ body {
 }
 
 /* Typewriter & Glitch Keyframes */
-@keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
-}
+@keyframes typing { from { width: 0; } to { width: 100%; } }
 @keyframes blink { 50% { border-color: transparent; } }
 @keyframes glitchTop {
     0% { clip-path: inset(0 0 60% 0); transform: translate(-3px, -3px); }
@@ -137,6 +136,28 @@ body {
 @keyframes glitchBottom {
     0% { clip-path: inset(40% 0 0 0); transform: translate(3px, -3px); }
     100% { clip-path: inset(60% 0 0 0); transform: translate(-3px, 3px); }
+}
+
+/* ===========================
+   BUTTONS
+=========================== */
+.btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 10px 25px;
+    border: 2px solid white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 30px;
+    text-transform: uppercase;
+    transition: 0.3s;
+    position: relative;
+    z-index: 2;
+}
+
+.btn:hover {
+    background: rgba(255,255,255,0.9);
+    color: black;
 }
 
 /* ===========================
