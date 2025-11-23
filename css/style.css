@@ -22,7 +22,7 @@ body {
 /* ===========================
    BACKGROUND IMAGES
 =========================== */
-.home-bg, .world-bg, .about-bg, .music-bg, .gallery-bg, .contact-bg, .mythology-bg, .merch-bg {
+.home-bg, .world-bg, .about-bg, .music-bg, .gallery-bg, .contact-bg, .mythology-bg, .merch-bg, .history-bg {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -42,6 +42,11 @@ body {
 /* 🔥 UPDATED: REAL BACKGROUND FOR MYTHOLOGY */
 .mythology-bg { 
     background-image: url('https://i.imgur.com/M6FKg5S.png'); 
+}
+
+/* 🔥 NEW: BACKGROUND FOR HISTORY & GENEALOGY */
+.history-bg {
+    background-image: url('https://i.imgur.com/7NFnyMU.png');
 }
 
 /* ===========================
@@ -209,7 +214,7 @@ body {
 }
 
 /* ===========================
-   ABOUT SECTION (and MYTHOLOGY)
+   ABOUT SECTION (and MYTHOLOGY/HISTORY)
 =========================== */
 .about-wrapper {
     position: relative;
@@ -225,9 +230,11 @@ body {
     animation: fadeIn 1.2s ease;
 }
 
-/* 🔥 Make mythology text easier to read */
+/* 🔥 Improve readability for Mythology & History backgrounds */
 .mythology-bg .about-wrapper,
-.mythology-bg .hero-text {
+.mythology-bg .hero-text,
+.history-bg .about-wrapper,
+.history-bg .hero-text {
     color: #f1f1f1;
     text-shadow: 0 0 8px rgba(0,0,0,0.7);
 }
