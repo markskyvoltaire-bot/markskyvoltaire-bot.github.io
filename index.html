@@ -11,15 +11,15 @@
     <!-- Dark overlay -->
     <div class="overlay"></div>
 
-    <!-- Hero Text -->
-    <div class="hero-text">
+    <!-- Hero Section -->
+    <div class="hero-text fade-in">
         <h1>Mark Sky Voltaire</h1>
-        <p>Artist & Storyteller</p>
-        <a href="about.html" class="btn">Enter My World</a>
+        <p>Artist</p>
+        <a href="enter.html" class="btn">Enter My World</a>
     </div>
 
     <!-- Embedded YouTube Video -->
-    <div class="video-container">
+    <div class="video-container fade-in">
         <iframe 
             src="https://www.youtube.com/embed/SzVb79Q6KEA?si=bus-IBfXyVmKA5U4" 
             title="YouTube video player" 
@@ -28,6 +28,30 @@
             allowfullscreen>
         </iframe>
     </div>
+
+    <!-- Fade-in on scroll script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const faders = document.querySelectorAll(".fade-in");
+
+            const appearOptions = {
+                threshold: 0.3,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add("show");
+                    observer.unobserve(entry.target);
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+        });
+    </script>
 
 </body>
 </html>
