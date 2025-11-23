@@ -309,6 +309,26 @@ body {
 }
 
 /* ===========================
+   ABOUT / INSTAGRAM EMBED (RESPONSIVE)
+=========================== */
+.about-wrapper .instagram-container {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 2rem auto;
+    padding-bottom: 56.25%; /* 16:9 ratio default */
+}
+
+.about-wrapper .instagram-container iframe,
+.about-wrapper .instagram-container blockquote.instagram-media {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* ===========================
    MOBILE
 =========================== */
 @media(max-width:768px) {
