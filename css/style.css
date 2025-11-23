@@ -56,8 +56,9 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.3); /* lighter overlay for brighter feel */
+    background: rgba(0, 0, 0, 0.3);
     z-index: 1;
+    pointer-events: none; /* allows clicks to pass through */
 }
 
 /* ===========================
@@ -84,7 +85,7 @@ body {
 }
 
 /* ===========================
-   BUTTON
+   BUTTONS
    =========================== */
 .btn {
     display: inline-block;
@@ -107,13 +108,44 @@ body {
 }
 
 /* ===========================
+   FLOATING NAVIGATION
+   =========================== */
+.world-nav {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    z-index: 10;
+    background: rgba(0,0,0,0.5);
+    padding: 10px 20px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+.world-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.world-nav a:hover {
+    background: rgba(255,255,255,0.85);
+    color: #000;
+}
+
+/* ===========================
    VIDEO / MUSIC SECTION
    =========================== */
 .video-container, .music-container {
     position: relative;
     width: 80%;
     max-width: 800px;
-    margin: 3rem auto; /* more spacing for flow */
+    margin: 3rem auto;
     z-index: 2;
 }
 
@@ -132,19 +164,19 @@ body {
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px; /* slightly larger for cinematic flow */
+    gap: 25px;
     width: 90%;
     max-width: 1200px;
     margin: 3rem auto;
 }
 
-/* Image hover effect */
 .gallery-grid img {
     width: 100%;
     height: auto;
     border-radius: 15px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .gallery-grid img:hover {
     transform: scale(1.05);
     box-shadow: 0 10px 20px rgba(0,0,0,0.5);
@@ -157,7 +189,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem; /* slightly more breathing room */
+    gap: 2rem;
     margin-top: 3rem;
 }
 
@@ -190,6 +222,7 @@ body {
     transform: translateY(50px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
+
 .fade-in.show {
     opacity: 1;
     transform: translateY(0);
@@ -206,4 +239,6 @@ body {
     .about-image { width: 180px; }
     .about-section p { padding: 0 10px; }
     .gallery-grid { gap: 15px; }
+    .world-nav { flex-direction: column; top: 10px; left: 50%; transform: translateX(-50%); padding: 8px 15px; gap: 10px; }
+    .world-nav a { padding: 0.4rem 0.8rem; }
 }
