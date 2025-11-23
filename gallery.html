@@ -6,19 +6,29 @@
     <title>Gallery | Mark Sky Voltaire</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body class="gallery-bg">
 
+    <!-- Dark Overlay -->
     <div class="overlay"></div>
 
+    <!-- Navigation -->
     <nav class="world-nav fade-in">
         <a href="index.html">Home</a>
         <a href="music.html">Music</a>
-        <a href="gallery.html">Gallery</a>
+        <a href="gallery.html" class="active">Gallery</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
     </nav>
 
-    <section id="gallery" class="hero-world fade-in">
+    <!-- Section Title -->
+    <section class="hero-world fade-in" style="text-align: center; padding-top: 120px; z-index: 2;">
+        <h1>Gallery</h1>
+        <p>Click any image to enlarge</p>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="fade-in" style="position: relative; z-index: 2;">
         <div class="gallery-grid">
             <img src="https://i.imgur.com/rYRkE1Y.jpeg" alt="Gallery Image 1">
             <img src="https://i.imgur.com/kHRW4Jb.jpeg" alt="Gallery Image 2">
@@ -26,7 +36,6 @@
             <img src="https://i.imgur.com/ykdzxfG.jpeg" alt="Gallery Image 4">
             <img src="https://i.imgur.com/Q4LJGJo.jpeg" alt="Gallery Image 5">
             <img src="https://i.imgur.com/THB03ca.jpeg" alt="Gallery Image 6">
-            <!-- New Images -->
             <img src="https://i.imgur.com/e695MoS.jpeg" alt="Gallery Image 7">
             <img src="https://i.imgur.com/5YxblAK.jpeg" alt="Gallery Image 8">
             <img src="https://i.imgur.com/aBEH3Q9.png" alt="Gallery Image 9">
@@ -39,28 +48,28 @@
         </div>
     </section>
 
-    <!-- Lightbox Overlay -->
+    <!-- Lightbox (Image Pop-up) -->
     <div id="lightbox-overlay">
         <img src="" alt="Enlarged Image">
     </div>
 
+    <!-- Lightbox Script -->
     <script>
-    // Lightbox functionality
-    const galleryImages = document.querySelectorAll('.gallery-grid img');
-    const lightboxOverlay = document.getElementById('lightbox-overlay');
-    const lightboxImg = lightboxOverlay.querySelector('img');
+        const galleryImages = document.querySelectorAll('.gallery-grid img');
+        const lightboxOverlay = document.getElementById('lightbox-overlay');
+        const lightboxImg = lightboxOverlay.querySelector('img');
 
-    galleryImages.forEach(img => {
-        img.addEventListener('click', () => {
-            lightboxImg.src = img.src;
-            lightboxOverlay.style.display = 'flex';
+        galleryImages.forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightboxOverlay.style.display = 'flex';
+            });
         });
-    });
 
-    lightboxOverlay.addEventListener('click', () => {
-        lightboxOverlay.style.display = 'none';
-        lightboxImg.src = '';
-    });
+        lightboxOverlay.addEventListener('click', () => {
+            lightboxOverlay.style.display = 'none';
+            lightboxImg.src = '';
+        });
     </script>
 
 </body>
