@@ -38,16 +38,8 @@ body {
 .gallery-bg   { background-image: url('https://i.imgur.com/eVcCh9U.png'); }
 .contact-bg   { background-image: url('https://i.imgur.com/hM5H2cJ.png'); }
 .merch-bg     { background-image: url('https://i.imgur.com/dxT8OGs.png'); }
-
-/* 🔥 UPDATED: REAL BACKGROUND FOR MYTHOLOGY */
-.mythology-bg { 
-    background-image: url('https://i.imgur.com/M6FKg5S.png'); 
-}
-
-/* 🔥 NEW: BACKGROUND FOR HISTORY & GENEALOGY */
-.history-bg {
-    background-image: url('https://i.imgur.com/7NFnyMU.png');
-}
+.mythology-bg { background-image: url('https://i.imgur.com/M6FKg5S.png'); }
+.history-bg   { background-image: url('https://i.imgur.com/7NFnyMU.png'); }
 
 /* ===========================
    DARK OVERLAY
@@ -69,12 +61,14 @@ body {
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    gap: 15px;
+    gap: 12px;
     z-index: 10;
     background: rgba(0,0,0,0.55);
     padding: 10px 20px;
     border-radius: 50px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .world-nav a {
@@ -84,6 +78,7 @@ body {
     border-radius: 20px;
     font-weight: bold;
     transition: 0.3s;
+    white-space: nowrap; /* prevents wrapping on longer names */
 }
 
 .world-nav a:hover,
@@ -214,7 +209,7 @@ body {
 }
 
 /* ===========================
-   ABOUT SECTION (and MYTHOLOGY/HISTORY)
+   ABOUT / MYTHOLOGY / HISTORY
 =========================== */
 .about-wrapper {
     position: relative;
@@ -230,7 +225,6 @@ body {
     animation: fadeIn 1.2s ease;
 }
 
-/* 🔥 Improve readability for Mythology & History backgrounds */
 .mythology-bg .about-wrapper,
 .mythology-bg .hero-text,
 .history-bg .about-wrapper,
