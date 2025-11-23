@@ -201,11 +201,38 @@ body {
 .gallery-grid img {
     width: 100%;
     border-radius: 15px;
-    transition: 0.3s;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, z-index 0.4s ease;
+    cursor: pointer;
 }
+
 .gallery-grid img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    transform: scale(1.15) translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    z-index: 5;
+    position: relative;
+}
+
+/* Lightbox Overlay */
+#lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+#lightbox-overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+    transition: transform 0.3s ease;
+}
+
+#lightbox-overlay:active {
+    cursor: zoom-out;
 }
 
 /* ===========================
@@ -289,19 +316,4 @@ body {
         padding: 8px 15px;
         top: 10px;
     }
-}
-
-/* ===========================
-   GALLERY IMAGE HOVER POP
-=========================== */
-.gallery-grid img {
-    transition: transform 0.4s ease, box-shadow 0.4s ease, z-index 0.4s ease;
-    cursor: pointer;
-}
-
-.gallery-grid img:hover {
-    transform: scale(1.15) translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-    z-index: 5;
-    position: relative;
 }
