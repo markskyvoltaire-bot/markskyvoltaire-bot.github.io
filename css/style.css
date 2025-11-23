@@ -81,7 +81,7 @@ body {
 /* ===========================
    HERO SECTION
 =========================== */
-.hero-world, .hero-text {
+.hero-text {
     position: relative;
     z-index: 2;
     padding: 140px 20px 60px;
@@ -124,27 +124,23 @@ body {
     color: #00f7ff;
 }
 
+/* Typewriter & Glitch Keyframes */
 @keyframes typing {
     from { width: 0; }
     to { width: 100%; }
 }
-
-@keyframes blink {
-    50% { border-color: transparent; }
-}
-
+@keyframes blink { 50% { border-color: transparent; } }
 @keyframes glitchTop {
     0% { clip-path: inset(0 0 60% 0); transform: translate(-3px, -3px); }
     100% { clip-path: inset(0 0 40% 0); transform: translate(3px, 3px); }
 }
-
 @keyframes glitchBottom {
     0% { clip-path: inset(40% 0 0 0); transform: translate(3px, -3px); }
     100% { clip-path: inset(60% 0 0 0); transform: translate(-3px, 3px); }
 }
 
 /* ===========================
-   VIDEO / MUSIC – 16:9 CONTAINER
+   VIDEO / MUSIC CONTAINER
 =========================== */
 .music-container {
     position: relative;
@@ -181,7 +177,6 @@ body {
     border-radius: 15px;
     transition: 0.3s;
 }
-
 .gallery-grid img:hover {
     transform: scale(1.05);
     box-shadow: 0 10px 20px rgba(0,0,0,0.5);
@@ -230,10 +225,7 @@ body {
     height: 40px;
     transition: transform 0.3s ease;
 }
-
-.social-icon:hover {
-    transform: scale(1.2);
-}
+.social-icon:hover { transform: scale(1.2); }
 
 /* ===========================
    CONTACT SECTION
@@ -245,14 +237,13 @@ body {
 }
 
 /* ===========================
-   FADE-IN
+   FADE-IN ANIMATION
 =========================== */
 .fade-in {
     opacity: 0;
     transform: translateY(50px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
-
 .fade-in.show {
     opacity: 1;
     transform: translateY(0);
@@ -262,17 +253,12 @@ body {
    MOBILE
 =========================== */
 @media(max-width:768px) {
-    .hero-world h1,
-    .hero-text h1 { font-size: 2.2rem; }
-
     .about-image { width: 180px; }
-
+    .glitch-type { font-size: 1.6rem; }
     .world-nav {
         flex-direction: column;
         gap: 10px;
         padding: 8px 15px;
         top: 10px;
     }
-
-    .glitch-type { font-size: 1.6rem; }
 }
