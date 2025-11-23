@@ -39,7 +39,7 @@ body {
 .contact-bg   { background-image: url('https://i.imgur.com/hM5H2cJ.png'); }
 .merch-bg     { background-image: url('https://i.imgur.com/dxT8OGs.png'); }
 .mythology-bg { background-image: url('https://i.imgur.com/M6FKg5S.png'); }
-.history-bg   { background-image: url('https://i.imgur.com/7NFnyMU.png'); }
+.history-bg   { background-image: url('https://i.imgur.com/I24NUzg.png'); }
 
 /* ===========================
    DARK OVERLAY
@@ -88,188 +88,69 @@ body {
 }
 
 /* ===========================
-   HERO SECTION
+   HERO / INTRO SECTIONS
 =========================== */
-.hero-text {
-    position: relative;
-    z-index: 2;
-    padding: 140px 20px 60px;
-    text-align: center;
-    text-shadow: 1px 1px 8px rgba(0,0,0,0.7);
-    width: 100%;
-}
-
-/* ===========================
-   GLITCH TYPEWRITER
-=========================== */
-.glitch-type {
-    font-size: 2.2rem;
-    font-family: 'Courier New', monospace;
-    color: white;
-    position: relative;
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 0.15em solid rgba(255,255,255,0.7);
-    animation: typing 3s steps(30, end), blink 0.7s step-end infinite;
-}
-
-.glitch-type::before,
-.glitch-type::after {
-    content: attr(data-text);
-    position: absolute;
-    left: 0;
-    width: 100%;
-    top: 0;
-    overflow: hidden;
-}
-
-.glitch-type::before { animation: glitchTop 1s infinite linear alternate-reverse; color: #ff005d; }
-.glitch-type::after { animation: glitchBottom 1.2s infinite linear alternate; color: #00f7ff; }
-
-@keyframes typing { from { width: 0; } to { width: 100%; } }
-@keyframes blink { 50% { border-color: transparent; } }
-@keyframes glitchTop {
-    0% { clip-path: inset(0 0 60% 0); transform: translate(-3px, -3px); }
-    100% { clip-path: inset(0 0 40% 0); transform: translate(3px, 3px); }
-}
-@keyframes glitchBottom {
-    0% { clip-path: inset(40% 0 0 0); transform: translate(3px, -3px); }
-    100% { clip-path: inset(60% 0 0 0); transform: translate(-3px, 3px); }
-}
-
-/* ===========================
-   BUTTONS
-=========================== */
-.btn {
-    display: inline-block;
-    margin-top: 1rem;
-    padding: 10px 25px;
-    border: 2px solid white;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 30px;
-    text-transform: uppercase;
-    transition: 0.3s;
-    position: relative;
-    z-index: 2;
-}
-.btn:hover {
-    background: rgba(255,255,255,0.9);
-    color: black;
-}
-
-/* ===========================
-   GALLERY GRID
-=========================== */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    width: 90%;
-    max-width: 1200px;
-    margin: 2rem auto;
-}
-
-.gallery-grid img {
-    width: 100%;
-    border-radius: 15px;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    cursor: pointer;
-}
-
-.gallery-grid img:hover {
-    transform: scale(1.15) translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-    position: relative;
-}
-
-/* ===========================
-   LIGHTBOX
-=========================== */
-#lightbox-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.9);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    cursor: zoom-out;
-}
-#lightbox-overlay img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 15px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.7);
-    transition: transform 0.3s ease;
-}
-
-/* ===========================
-   ABOUT / MYTHOLOGY / HISTORY
-=========================== */
-.about-wrapper {
-    position: relative;
-    z-index: 2;
-    max-width: 850px;
-    width: 90%;
-    margin: 3rem auto;
-    padding: 1.5rem;
+.ancestor-intro {
+    max-width: 900px;
+    margin: 140px auto 50px;
+    padding: 2rem 1.5rem;
     background: rgba(0,0,0,0.5);
     border-radius: 20px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-    text-align: center;
+    line-height: 1.7;
+    font-size: 1.1rem;
     animation: fadeIn 1.2s ease;
+    position: relative;
+    z-index: 2;
 }
 
-.mythology-bg .about-wrapper,
-.mythology-bg .hero-text,
-.history-bg .about-wrapper,
-.history-bg .hero-text {
-    color: #f1f1f1;
-    text-shadow: 0 0 8px rgba(0,0,0,0.7);
+.ancestor-intro h1 {
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+.ancestor-intro h2 {
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: normal;
+    margin-bottom: 1.5rem;
 }
-
-.about-image {
-    width: 280px;
-    max-width: 100%;
-    border-radius: 50%;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-}
-
-.about-wrapper p { margin-top: 1rem; line-height: 1.6; font-size: 1.1rem; }
 
 /* ===========================
-   SOCIAL ICONS
+   DIVIDER
 =========================== */
-.social-links {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 1.5rem;
+.divider {
+    border: 0;
+    border-top: 2px solid rgba(255,255,255,0.3);
+    margin: 3rem 0;
 }
-
-.social-icon { width: 40px; height: 40px; transition: transform 0.3s ease; }
-.social-icon:hover { transform: scale(1.2); }
 
 /* ===========================
    FAMILY TREE STYLING
 =========================== */
+.family-section {
+    max-width: 900px;
+    margin: 0 auto 3rem;
+    padding: 1.5rem;
+    background: rgba(0,0,0,0.5);
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+    line-height: 1.7;
+    font-size: 1.1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.family-section h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
 .family-tree {
     text-align: left;
     display: inline-block;
-    margin: 2rem auto 0;
-    line-height: 1.8;
-    font-size: 1.1rem;
+    margin: 1rem auto 0;
 }
 
 .family-tree ul {
@@ -294,12 +175,54 @@ body {
     background: rgba(255,255,255,0.5);
 }
 
+/* Highlight Drouaire line */
+.drouaire-line .family-tree li {
+    border-left: 2px solid rgba(0,200,255,0.6);
+}
+
+.drouaire-line .family-tree li::before {
+    background: rgba(0,200,255,0.6);
+}
+
+/* Mystery notes */
+.mystery-note {
+    font-style: italic;
+    color: #c1eaff;
+    margin-top: 1rem;
+}
+
+/* Outro / Contact */
+.outro-text {
+    max-width: 900px;
+    margin: 2rem auto 5rem;
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+/* ===========================
+   FADE-IN ANIMATION
+=========================== */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease-out;
+}
+
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 /* ===========================
    MOBILE FIXES
 =========================== */
 @media(max-width:768px) {
-    .about-image { width: 180px; }
-    .glitch-type { font-size: 1.6rem; }
+    .ancestor-intro, .family-section, .outro-text {
+        margin: 100px 1rem 2rem;
+        padding: 1.2rem;
+    }
+
     .world-nav {
         flex-direction: column;
         gap: 10px;
