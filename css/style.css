@@ -17,25 +17,9 @@ body {
 }
 
 /* ===========================
-   HOME PAGE BACKGROUND
+   BACKGROUNDS
    =========================== */
-.home-bg {
-    background-image: url('https://i.imgur.com/DvE7RQV.png');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-/* ===========================
-   WORLD / ENTER PAGE BACKGROUND
-   =========================== */
-.world-bg {
-    background-image: url('https://i.imgur.com/kiIqDp2.png');
+.home-bg, .world-bg {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -46,6 +30,9 @@ body {
     min-height: 100vh;
     position: relative;
 }
+
+.home-bg { background-image: url('https://i.imgur.com/DvE7RQV.png'); }
+.world-bg { background-image: url('https://i.imgur.com/kiIqDp2.png'); }
 
 /* ===========================
    DARK OVERLAY
@@ -62,13 +49,44 @@ body {
 }
 
 /* ===========================
+   FLOATING NAVIGATION
+   =========================== */
+.world-nav {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    z-index: 10;
+    background: rgba(0,0,0,0.5);
+    padding: 10px 20px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+.world-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.world-nav a:hover {
+    background: rgba(255,255,255,0.85);
+    color: #000;
+}
+
+/* ===========================
    HERO SECTION
    =========================== */
 .hero-text, .hero-world {
     position: relative;
     z-index: 2;
     text-align: center;
-    padding: 120px 20px 100px 20px;
+    padding: 120px 20px 80px 20px;
     color: #fff;
     text-shadow: 1px 1px 8px rgba(0,0,0,0.7);
 }
@@ -108,13 +126,13 @@ body {
 }
 
 /* ===========================
-   VIDEO / MUSIC SECTION
+   MUSIC / VIDEO SECTION
    =========================== */
 .video-container, .music-container {
     position: relative;
-    width: 80%;
+    width: 90%;
     max-width: 800px;
-    margin: 3rem auto;
+    margin: 2rem auto;
     z-index: 2;
 }
 
@@ -125,6 +143,7 @@ body {
     display: block;
     position: relative;
     z-index: 2;
+    border-radius: 15px;
 }
 
 /* ===========================
@@ -132,17 +151,18 @@ body {
    =========================== */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
     width: 90%;
     max-width: 1200px;
-    margin: 3rem auto;
+    margin: 2rem auto;
 }
 
 .gallery-grid img {
     width: 100%;
     height: auto;
     border-radius: 15px;
+    display: block;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -158,8 +178,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
-    margin-top: 3rem;
+    gap: 1.5rem;
+    margin: 3rem auto;
     padding: 0 15px;
 }
 
@@ -177,7 +197,7 @@ body {
 }
 
 /* ===========================
-   SOCIAL ICONS UNDER ABOUT
+   SOCIAL ICONS
    =========================== */
 .social-links {
     display: flex;
@@ -198,8 +218,12 @@ body {
 }
 
 /* ===========================
-   CONTACT / SOCIALS
+   CONTACT SECTION
    =========================== */
+.contact-section {
+    margin-bottom: 2rem;
+}
+
 .contact-section p {
     margin: 0.5rem 0;
     text-align: center;
@@ -229,5 +253,7 @@ body {
     .video-container iframe, .music-container iframe { height: 250px; }
     .about-image { width: 180px; }
     .about-section p { padding: 0 10px; }
-    .gallery-grid { gap: 15px; }
+    .gallery-grid { gap: 15px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+    .world-nav { flex-direction: column; top: 10px; left: 50%; transform: translateX(-50%); padding: 8px 15px; gap: 10px; }
+    .world-nav a { padding: 0.4rem 0.8rem; }
 }
