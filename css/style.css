@@ -268,6 +268,39 @@ body {
 .social-icon:hover { transform: scale(1.2); }
 
 /* ===========================
+   FAMILY TREE STYLING
+=========================== */
+.family-tree {
+    text-align: left;
+    display: inline-block;
+    margin: 2rem auto 0;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.family-tree ul {
+    list-style-type: none;
+    margin-left: 20px;
+    padding-left: 15px;
+    border-left: 2px solid rgba(255,255,255,0.5);
+}
+
+.family-tree li {
+    margin: 10px 0;
+    position: relative;
+}
+
+.family-tree li::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: -15px;
+    width: 10px;
+    height: 2px;
+    background: rgba(255,255,255,0.5);
+}
+
+/* ===========================
    MOBILE FIXES
 =========================== */
 @media(max-width:768px) {
