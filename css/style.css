@@ -1,20 +1,37 @@
-/* FULL PAGE BACKGROUND */
+/* ===========================
+   GLOBAL / BODY
+   =========================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Verdana, sans-serif;
+    color: white;
+    overflow-x: hidden;
+    height: 100vh;
+    width: 100%;
+}
+
+/* ===========================
+   HOME PAGE BACKGROUND
+   =========================== */
 .home-bg {
-    background-image: url('../assets/background/Collage-background-3.png');
+    background-image: url('../assets/background/bghome.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    height: 100vh;
-    width: 100%;
-    margin: 0;
-    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
 }
 
-/* DARK FADE OVERLAY */
+/* ===========================
+   DARK OVERLAY
+   =========================== */
 .overlay {
     position: absolute;
     top: 0;
@@ -25,7 +42,9 @@
     z-index: 1;
 }
 
-/* HERO TEXT */
+/* ===========================
+   HERO TEXT
+   =========================== */
 .hero-text {
     position: relative;
     z-index: 2;
@@ -44,6 +63,9 @@
     margin-bottom: 1.5rem;
 }
 
+/* ===========================
+   BUTTON
+   =========================== */
 .btn {
     display: inline-block;
     padding: 0.8rem 1.5rem;
@@ -60,7 +82,11 @@
     transform: scale(1.05);
 }
 
-/* MOBILE */
+/* ===========================
+   MOBILE RESPONSIVE
+   =========================== */
 @media(max-width:768px){
     .hero-text h1 { font-size: 2.2rem; }
+    .hero-text p { font-size: 1rem; }
+    .btn { padding: 0.6rem 1.2rem; }
 }
