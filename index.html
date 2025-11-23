@@ -5,69 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mark Sky Voltaire | Artist</title>
     <link rel="stylesheet" href="css/style.css">
-    <style>
-        /* ===========================
-           GLITCH TYPEWRITER
-        ============================ */
-        .glitch-type {
-            font-size: 2.5rem;
-            font-family: 'Courier New', monospace;
-            color: white;
-            position: relative;
-            display: inline-block;
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
-            overflow: hidden;
-            border-right: 0.15em solid rgba(255,255,255,0.7);
-            white-space: nowrap;
-            width: 0;
-        }
-
-        .glitch-type::before,
-        .glitch-type::after {
-            content: attr(data-text);
-            position: absolute;
-            left: 0;
-            width: 100%;
-            top: 0;
-            overflow: hidden;
-        }
-
-        .glitch-type::before {
-            animation: glitchTop 1s infinite linear alternate-reverse;
-            color: #ff005d;
-        }
-
-        .glitch-type::after {
-            animation: glitchBottom 1.2s infinite linear alternate;
-            color: #00f7ff;
-        }
-
-        /* Typewriter animations */
-        @keyframes typing { from { width: 0 } to { width: 100% } }
-        @keyframes blink { 50% { border-color: transparent } }
-
-        /* Glitch animations */
-        @keyframes glitchTop {
-            0% { clip-path: inset(0 0 60% 0); transform: translate(-3px, -3px); }
-            100% { clip-path: inset(0 0 40% 0); transform: translate(3px, 3px); }
-        }
-        @keyframes glitchBottom {
-            0% { clip-path: inset(40% 0 0 0); transform: translate(3px, -3px); }
-            100% { clip-path: inset(60% 0 0 0); transform: translate(-3px, 3px); }
-        }
-
-        /* HERO TEXT CONTAINER */
-        .hero-text {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            padding: 150px 20px 60px;
-        }
-
-        .hero-text .btn {
-            margin-top: 30px;
-        }
-    </style>
 </head>
 <body class="home-bg">
 
@@ -76,14 +13,12 @@
 
     <!-- Hero Section -->
     <div class="hero-text fade-in">
-        <h1 class="glitch-type" id="glitchText" data-text="Enter the Frequency..."></h1>
         <a href="enter.html" class="btn">Enter My World</a>
     </div>
 
-    <!-- Fade-in & Typewriter Script -->
+    <!-- Fade-in Script -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Fade-in on scroll
             const faders = document.querySelectorAll(".fade-in");
             const appearOptions = { threshold: 0.3, rootMargin: "0px 0px -50px 0px" };
             const appearOnScroll = new IntersectionObserver((entries, observer) => {
@@ -94,31 +29,6 @@
                 });
             }, appearOptions);
             faders.forEach(fader => appearOnScroll.observe(fader));
-
-            // Typewriter + cycling phrases
-            const phrases = [
-                "Enter the Frequency...",
-                "Fragments of Memory...",
-                "Rhythm in the Shadows...",
-                "Feel the Vibe..."
-            ];
-            const glitch = document.getElementById("glitchText");
-            let index = 0;
-
-            function typePhrase(text) {
-                glitch.style.width = "0";
-                glitch.setAttribute("data-text", text);
-                glitch.textContent = text;
-                glitch.style.animation = `typing 3s steps(${text.length}, end) forwards, blink .6s step-end infinite`;
-            }
-
-            function cyclePhrases() {
-                typePhrase(phrases[index]);
-                index = (index + 1) % phrases.length;
-                setTimeout(cyclePhrases, 4000);
-            }
-
-            cyclePhrases();
         });
     </script>
 
