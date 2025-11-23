@@ -68,3 +68,133 @@ body {
     z-index: 2;
     text-align: center;
     padding: 100px 20px 60px 20px;
+}
+
+.hero-text h1, .hero-world h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+}
+
+.hero-text p, .hero-world p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+/* ===========================
+   BUTTON
+   =========================== */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: white;
+    color: black;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: 0.3s ease;
+    z-index: 2;
+    position: relative;
+}
+
+.btn:hover {
+    background: #f1f1f1;
+    transform: scale(1.05);
+}
+
+/* ===========================
+   VIDEO / MUSIC SECTION
+   =========================== */
+.video-container, .music-container {
+    position: relative;
+    width: 80%;
+    max-width: 800px;
+    margin: 2rem auto;
+    z-index: 2;
+}
+
+.video-container iframe, .music-container iframe {
+    width: 100%;
+    height: 450px;
+    border: none;
+    display: block;
+}
+
+/* ===========================
+   GALLERY SECTION
+   =========================== */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 2rem;
+}
+
+.gallery-grid img {
+    width: 100%;
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+/* ===========================
+   ABOUT SECTION
+   =========================== */
+.about-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.about-image {
+    width: 250px;
+    border-radius: 50%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.about-section p {
+    max-width: 800px;
+    text-align: center;
+    line-height: 1.6;
+    margin-top: 1rem;
+}
+
+/* ===========================
+   CONTACT / SOCIALS
+   =========================== */
+.contact-section p {
+    margin: 0.5rem 0;
+    text-align: center;
+}
+
+/* ===========================
+   FADE-IN ANIMATION
+   =========================== */
+.fade-in {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+@media(max-width:768px) {
+    .hero-text h1, .hero-world h1 { font-size: 2.2rem; }
+    .hero-text p, .hero-world p { font-size: 1rem; }
+    .btn { padding: 0.6rem 1.2rem; }
+    .video-container iframe, .music-container iframe { height: 250px; }
+    .gallery-grid { gap: 15px; }
+    .about-image { width: 180px; }
+    .about-section p { padding: 0 10px; }
+}
