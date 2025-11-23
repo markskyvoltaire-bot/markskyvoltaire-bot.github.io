@@ -1,98 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About | Mark Sky Voltaire</title>
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-        /* Wrapper and hero section */
-        .about-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            margin: 2rem auto;
-            padding: 0 15px;
-            max-width: 900px;
-            text-align: left;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-image {
-            width: 280px;
-            border-radius: 50%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transition: transform 0.2s ease-out;
-            will-change: transform;
-            z-index: 10;
-            position: relative;
-        }
-
-        /* Floating paragraph layers */
-        .sky-message {
-            position: relative;
-            width: 100%;
-        }
-
-        .sky-message p {
-            background: rgba(0, 0, 0, 0.6);
-            border-left: 5px solid #fff;
-            padding: 20px 25px;
-            border-radius: 10px;
-            line-height: 1.6;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 1s ease-out;
-            margin-bottom: 15px;
-            position: relative;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-        }
-
-        .sky-message p.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .sky-message p:first-child { font-weight: bold; font-size: 1.2rem; }
-        .sky-message p:last-child { text-align: right; font-style: italic; margin-top: 15px; }
-
-        /* Layered depth variations */
-        .sky-message p:nth-child(1) { z-index: 5; scale:1; }
-        .sky-message p:nth-child(2) { z-index: 4; scale:0.98; }
-        .sky-message p:nth-child(3) { z-index: 3; scale:0.96; }
-        .sky-message p:nth-child(4) { z-index: 2; scale:0.94; }
-        .sky-message p:nth-child(5) { z-index: 1; scale:0.92; }
-
-        /* Parallax background layers */
-        .parallax-layer {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 200%;
-            height: 100%;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-            pointer-events: none;
-        }
-
-        .layer1 { background-image: url('https://i.imgur.com/awySCK4.png'); z-index: 0; opacity: 0.2; }
-        .layer2 { background-image: url('https://i.imgur.com/awySCK4.png'); z-index: 0; opacity: 0.15; transform: scale(1.05); }
-        .layer3 { background-image: url('https://i.imgur.com/awySCK4.png'); z-index: 0; opacity: 0.1; transform: scale(1.1); }
-
-        @media(max-width:768px) {
-            .about-image { width: 180px; }
-            .sky-message p { padding: 15px; }
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 <body class="about-bg">
 
+    <!-- Overlay -->
     <div class="overlay"></div>
 
+    <!-- Navigation -->
     <nav class="world-nav fade-in">
         <a href="index.html">Home</a>
         <a href="music.html">Music</a>
@@ -101,66 +20,38 @@
         <a href="contact.html">Contact</a>
     </nav>
 
+    <!-- Parallax Layers -->
+    <div class="parallax-layer layer-back"></div>
+    <div class="parallax-layer layer-front"></div>
+
+    <!-- MAIN CONTENT -->
     <section id="about" class="hero-world fade-in">
         <h1>About Me</h1>
         <p>My Journey, Music, and Stories</p>
 
         <div class="about-wrapper">
-            <!-- Parallax background layers -->
-            <div class="parallax-layer layer1"></div>
-            <div class="parallax-layer layer2"></div>
-            <div class="parallax-layer layer3"></div>
+            <img class="about-image" src="https://i.imgur.com/Ws4e47I.jpeg" alt="Mark Sky Voltaire" />
 
-            <img class="about-image parallax" src="https://i.imgur.com/Ws4e47I.jpeg" alt="Mark Sky Voltaire">
+            <p>
+                What’s good everyone!!! I’m so excited to be starting this adventure with you!  
+                I’m Mark Sky Voltaire, and I'm ecstatic to be sharing this journey with you!  
+                This isn't just a notebook or some doodles; it's a piece of my soul, a glimpse into the universe of my creativity and my history.
+            </p>
 
-            <div class="sky-message">
-                <p>What’s good everyone!!! I’m so excited to be starting this adventure with you!</p>
-                <p>I’m Mark Sky Voltaire, and I'm ecstatic to be sharing this journey with you! This isn't just a notebook or some doodles; it's a piece of my soul, a glimpse into the universe of my creativity and my history. In these pages, you'll find random thoughts, some of my dreams, and the beats that drive my passion.</p>
-                <p>As you flip through, you'll discover lyrics that have shaped my music, pictures of me and the crew, sketches that have sparked my imagination, and reflections that have guided my path. This is more than a collection of words and drawings; it's a testament to the power of art and the magic of music.</p>
-                <p>Thank you for being a part of this adventure. Your support means the world to me, and I hope these pages inspire you as much as they've inspired me.</p>
-                <p>Love,<br>Sky</p>
-            </div>
+            <p>
+                In these pages, you'll find random thoughts, some of my dreams, and the beats that drive my passion. As you flip through, you'll discover lyrics that have shaped my music, pictures of me and the crew, sketches that have sparked my imagination, and reflections that have guided my path.
+            </p>
+
+            <p>
+                This is more than a collection of words and drawings; it's a testament to the power of art and the magic of music. Thank you for being a part of this adventure. Your support means the world to me, and I hope these pages inspire you as much as they've inspired me.
+            </p>
+
+            <p style="font-weight: bold; font-size: 1.2rem; text-align: right;">
+                Love,<br>Sky
+            </p>
         </div>
     </section>
 
-    <script>
-        // Fade-in paragraph animation
-        const paragraphs = document.querySelectorAll('.sky-message p');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    paragraphs.forEach((p, index) => {
-                        setTimeout(() => p.classList.add('show'), index * 400);
-                    });
-                    observer.disconnect();
-                }
-            });
-        }, { threshold: 0.1 });
-        paragraphs.forEach(p => observer.observe(p));
-
-        // Parallax scroll effect
-        const parallaxEl = document.querySelector('.about-image');
-        const layers = document.querySelectorAll('.parallax-layer');
-        window.addEventListener('scroll', () => {
-            const scrollPos = window.scrollY;
-
-            // Image parallax
-            parallaxEl.style.transform = `translateY(${scrollPos * 0.15}px)`;
-
-            // Paragraphs floating
-            paragraphs.forEach((p, index) => {
-                const offsetY = 50 - scrollPos * 0.08 - index * 10;
-                const offsetX = Math.sin(scrollPos * 0.002 + index) * 15;
-                const rotation = Math.sin(scrollPos * 0.002 + index) * 2;
-                const scale = 1 - index * 0.02;
-                p.style.transform = `translate(${offsetX}px, ${offsetY}px) rotate(${rotation}deg) scale(${scale})`;
-            });
-
-            // Background layers parallax
-            layers.forEach((layer, index) => {
-                layer.style.transform = `translateX(-50%) translateY(${scrollPos * (0.02 + index * 0.01)}px)`;
-            });
-        });
-    </script>
+    <script src="js/script.js"></script>
 </body>
 </html>
