@@ -86,7 +86,7 @@ body {
     position: relative;
     z-index: 2;
     text-align: center;
-    padding: 120px 20px 80px 20px;
+    padding: 120px 20px 40px 20px; /* reduced bottom padding */
     color: #fff;
     text-shadow: 1px 1px 8px rgba(0,0,0,0.7);
 }
@@ -99,7 +99,7 @@ body {
 
 .hero-text p, .hero-world p {
     font-size: 1.2rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 /* ===========================
@@ -123,27 +123,6 @@ body {
     background: #f1f1f1;
     transform: scale(1.05);
     box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-}
-
-/* ===========================
-   MUSIC / VIDEO SECTION
-   =========================== */
-.video-container, .music-container {
-    position: relative;
-    width: 90%;
-    max-width: 800px;
-    margin: 2rem auto;
-    z-index: 2;
-}
-
-.video-container iframe, .music-container iframe {
-    width: 100%;
-    height: 450px;
-    border: none;
-    display: block;
-    position: relative;
-    z-index: 2;
-    border-radius: 15px;
 }
 
 /* ===========================
@@ -179,7 +158,7 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
-    margin: 3rem auto;
+    margin: 2rem auto;
     padding: 0 15px;
 }
 
@@ -244,13 +223,19 @@ body {
 }
 
 /* ===========================
+   SPACING ADJUSTMENTS AFTER VIDEO REMOVAL
+   =========================== */
+.explore-music {
+    margin-top: 1.5rem; /* pulls button closer to hero text */
+}
+
+/* ===========================
    RESPONSIVE
    =========================== */
 @media(max-width:768px) {
     .hero-text h1, .hero-world h1 { font-size: 2.2rem; }
     .hero-text p, .hero-world p { font-size: 1rem; }
     .btn { padding: 0.8rem 1.5rem; font-size: 1rem; }
-    .video-container iframe, .music-container iframe { height: 250px; }
     .about-image { width: 180px; }
     .about-section p { padding: 0 10px; }
     .gallery-grid { gap: 15px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
