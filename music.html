@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Music | Mark Sky Voltaire</title>
-<link rel="stylesheet" href="css/style.css">
-<script defer src="js/script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music | Mark Sky Voltaire</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="music">
-<header>
-  <h1>Music</h1>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="music.html">Music</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
+<body class="music-bg">
 
-<main class="fade-in">
-  <p>Check out my music on:</p>
-  <ul>
-    <li><a href="https://soundcloud.com/mark-sky-voltaire" target="_blank">SoundCloud</a></li>
-    <li><a href="https://www.youtube.com/@markskyvoltaire" target="_blank">YouTube</a></li>
-    <li><a href="https://www.instagram.com/mark_sky_voltaire/" target="_blank">Instagram</a></li>
-  </ul>
-</main>
+    <div class="overlay"></div>
+
+    <nav class="world-nav fade-in">
+        <a href="index.html">Home</a>
+        <a href="music.html">Music</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <section id="music" class="hero-world fade-in">
+        <h1>My Music</h1>
+        <p>Listen to the latest tracks</p>
+        <div class="music-container">
+            <iframe 
+                src="https://www.youtube.com/embed/SzVb79Q6KEA?si=bus-IBfXyVmKA5U4" 
+                title="YouTube video player" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </section>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
