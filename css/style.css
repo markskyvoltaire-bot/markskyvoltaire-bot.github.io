@@ -1,5 +1,5 @@
 /* ===========================
-   GLOBAL / BODY
+   GLOBAL
    =========================== */
 * {
     box-sizing: border-box;
@@ -10,17 +10,16 @@
 body {
     font-family: Verdana, sans-serif;
     color: white;
-    overflow-x: hidden;
-    height: 100vh;
     width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 /* ===========================
    HOME PAGE BACKGROUND
    =========================== */
 .home-bg {
-    /* Use your local file in assets folder */
-    background-image: url('../assets/Skywishing.jpg');
+    background-image: url('../assets/Skywishing.jpg'); /* local image in assets folder */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -51,7 +50,6 @@ body {
     position: relative;
     z-index: 2;
     text-align: center;
-    color: white;
     margin-bottom: 2rem;
 }
 
@@ -100,6 +98,7 @@ body {
     width: 100%;
     height: 450px;
     border: none;
+    display: block;
 }
 
 /* ===========================
