@@ -6,58 +6,73 @@
     <title>Mark Sky Voltaire | Artist</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
-        /* TYPEWRITER EFFECT */
-        .typewriter {
-            font-size: 1.2rem;
-            font-weight: 300;
-            font-style: italic;
-            white-space: nowrap;
+        .glitch-type {
+            font-size: 2.2rem;
+            font-family: 'Courier New', monospace;
+            color: white;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
             overflow: hidden;
-            border-right: 2px solid rgba(255,255,255,0.7);
+            border-right: .15em solid rgba(255,255,255,0.7);
+            white-space: nowrap;
             width: 0;
-            animation: typing 4s steps(40, end) forwards, blink 0.8s step-end infinite;
-            margin: 0 auto;
         }
 
-        @keyframes typing {
-            from { width: 0; }
-            to   { width: 100%; }
+        .glitch-type::before,
+        .glitch-type::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            width: 100%;
+            top: 0;
+            overflow: hidden;
         }
 
-        @keyframes blink {
-            50% { border-color: transparent; }
+        .glitch-type::before {
+            animation: glitchTop 1s infinite linear alternate-reverse;
+            color: #ff005d;
+        }
+
+        .glitch-type::after {
+            animation: glitchBottom 1.2s infinite linear alternate;
+            color: #00f7ff;
+        }
+
+        /* Typewriter */
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink { 50% { border-color: transparent } }
+
+        /* Glitch */
+        @keyframes glitchTop {
+            0% { clip-path: inset(0 0 60% 0); transform: translate(-3px, -3px); }
+            100% { clip-path: inset(0 0 40% 0); transform: translate(3px, 3px); }
+        }
+        @keyframes glitchBottom {
+            0% { clip-path: inset(40% 0 0 0); transform: translate(3px, -3px); }
+            100% { clip-path: inset(60% 0 0 0); transform: translate(-3px, 3px); }
         }
     </style>
 </head>
-<body class="home-bg">
 
-    <!-- Overlay -->
+<body class="home-bg">
     <div class="overlay" style="background-color: rgba(0,0,0,0.3);"></div>
 
     <!-- Hero Section -->
     <div class="hero-text fade-in">
-        <h1>Mark Sky Voltaire</h1>
-        <p>Artist | Storyteller | Emcee</p>
-        <a href="enter.html" class="btn">Enter My World</a>
+        <div class="glitch-type" id="glitchText" data-text="Enter the Frequency..."></div>
+        <a href="enter.html" class="btn" style="margin-top:20px;">Enter My World</a>
     </div>
 
-    <!-- Typing Quote -->
-    <div class="quote-section fade-in" style="margin-top: 3rem; text-align: center;">
-        <p class="typewriter">
-            “Sometimes the past ain’t behind you — it’s calling your name.”
-        </p>
+    <!-- Explore Music Section -->
+    <div class="explore-music fade-in">
+        <a href="music.html" class="btn">Explore Music</a>
     </div>
 
-    <!-- Fade-in on scroll script -->
     <script>
+        // Fade-in on scroll
         document.addEventListener("DOMContentLoaded", function() {
             const faders = document.querySelectorAll(".fade-in");
-
-            const appearOptions = {
-                threshold: 0.3,
-                rootMargin: "0px 0px -50px 0px"
-            };
-
+            const appearOptions = { threshold: 0.3, rootMargin: "0px 0px -50px 0px" };
             const appearOnScroll = new IntersectionObserver(function(entries, observer) {
                 entries.forEach(entry => {
                     if (!entry.isIntersecting) return;
@@ -65,10 +80,32 @@
                     observer.unobserve(entry.target);
                 });
             }, appearOptions);
+            faders.forEach(fader => appearOnScroll.observe(fader));
 
-            faders.forEach(fader => {
-                appearOnScroll.observe(fader);
-            });
+            // Typewriter + cycling phrases
+            const phrases = [
+                "Enter the Frequency...",
+                "Fragments of Memory...",
+                "Rhythm in the Shadows...",
+                "Feel the Vibe..."
+            ];
+            const glitch = document.getElementById("glitchText");
+            let index = 0;
+
+            function typePhrase(text) {
+                glitch.style.width = "0";
+                glitch.setAttribute("data-text", text);
+                glitch.textContent = text;
+                glitch.style.animation = "typing 3s steps(" + text.length + ", end) forwards, blink .6s step-end infinite";
+            }
+
+            function cyclePhrases() {
+                typePhrase(phrases[index]);
+                index = (index + 1) % phrases.length;
+                setTimeout(cyclePhrases, 4000); // change every 4s
+            }
+
+            cyclePhrases();
         });
     </script>
 
