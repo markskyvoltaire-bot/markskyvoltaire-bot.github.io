@@ -5,10 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mark Sky Voltaire | Artist</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* TYPEWRITER EFFECT */
+        .typewriter {
+            font-size: 1.2rem;
+            font-weight: 300;
+            font-style: italic;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid rgba(255,255,255,0.7);
+            width: 0;
+            animation: typing 4s steps(40, end) forwards, blink 0.8s step-end infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to   { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+    </style>
 </head>
 <body class="home-bg">
 
-    <!-- Slightly lighter overlay for brightness -->
+    <!-- Overlay -->
     <div class="overlay" style="background-color: rgba(0,0,0,0.3);"></div>
 
     <!-- Hero Section -->
@@ -18,9 +41,11 @@
         <a href="enter.html" class="btn">Enter My World</a>
     </div>
 
-    <!-- Explore Music Section -->
-    <div class="explore-music fade-in">
-        <a href="music.html" class="btn">Explore Music</a>
+    <!-- Typing Quote -->
+    <div class="quote-section fade-in" style="margin-top: 3rem; text-align: center;">
+        <p class="typewriter">
+            “Sometimes the past ain’t behind you — it’s calling your name.”
+        </p>
     </div>
 
     <!-- Fade-in on scroll script -->
