@@ -32,7 +32,7 @@ body {
 }
 
 /* ===========================
-   WORLD PAGE BACKGROUND
+   WORLD / ENTER PAGE BACKGROUND
    =========================== */
 .world-bg {
     background-image: url('https://i.imgur.com/kiIqDp2.png');
@@ -58,7 +58,7 @@ body {
     height: 100%;
     background: rgba(0, 0, 0, 0.3);
     z-index: 1;
-    pointer-events: none; /* allows clicks to pass through */
+    pointer-events: none;
 }
 
 /* ===========================
@@ -105,37 +105,6 @@ body {
     background: #f1f1f1;
     transform: scale(1.05);
     box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-}
-
-/* ===========================
-   FLOATING NAVIGATION
-   =========================== */
-.world-nav {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 15px;
-    z-index: 10;
-    background: rgba(0,0,0,0.5);
-    padding: 10px 20px;
-    border-radius: 50px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-}
-
-.world-nav a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    transition: background 0.3s, color 0.3s;
-}
-
-.world-nav a:hover {
-    background: rgba(255,255,255,0.85);
-    color: #000;
 }
 
 /* ===========================
@@ -191,6 +160,7 @@ body {
     align-items: center;
     gap: 2rem;
     margin-top: 3rem;
+    padding: 0 15px;
 }
 
 .about-image {
@@ -204,6 +174,27 @@ body {
     text-align: center;
     line-height: 1.6;
     margin-top: 1rem;
+}
+
+/* ===========================
+   SOCIAL ICONS UNDER ABOUT
+   =========================== */
+.social-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 1.5rem;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
 }
 
 /* ===========================
@@ -239,6 +230,4 @@ body {
     .about-image { width: 180px; }
     .about-section p { padding: 0 10px; }
     .gallery-grid { gap: 15px; }
-    .world-nav { flex-direction: column; top: 10px; left: 50%; transform: translateX(-50%); padding: 8px 15px; gap: 10px; }
-    .world-nav a { padding: 0.4rem 0.8rem; }
 }
