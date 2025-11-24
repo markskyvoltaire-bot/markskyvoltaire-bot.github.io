@@ -15,12 +15,13 @@ html, body {
 
 body {
     font-family: Verdana, sans-serif;
-    color: white;
+    color: #fff;
     background-color: #000;
+    line-height: 1.6;
 }
 
 /* ===========================
-   BACKGROUND IMAGES
+   BACKGROUND SECTIONS
 =========================== */
 .home-bg, .world-bg, .about-bg, .music-bg, .gallery-bg, .contact-bg, .mythology-bg, .merch-bg, .history-bg {
     background-size: cover;
@@ -31,6 +32,7 @@ body {
     position: relative;
 }
 
+/* Background Images */
 .home-bg      { background-image: url('https://i.imgur.com/DvE7RQV.png'); }
 .world-bg     { background-image: url('https://i.imgur.com/kiIqDp2.png'); }
 .about-bg     { background-image: url('https://i.imgur.com/awySCK4.png'); }
@@ -42,12 +44,12 @@ body {
 .history-bg   { background-image: url('https://i.imgur.com/I24NUzg.png'); }
 
 /* ===========================
-   DARK OVERLAY
+   OVERLAY
 =========================== */
 .overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.35);
+    background: rgba(0, 0, 0, 0.35);
     z-index: 1;
     pointer-events: none;
 }
@@ -61,92 +63,66 @@ body {
     left: 50%;
     transform: translateX(-50%);
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 12px;
     z-index: 10;
     background: rgba(0,0,0,0.55);
     padding: 10px 20px;
     border-radius: 50px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-    flex-wrap: wrap;
-    justify-content: center;
 }
 
 .world-nav a {
-    color: white;
+    color: #fff;
     text-decoration: none;
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-weight: bold;
     transition: 0.3s;
-    white-space: nowrap; /* prevents wrapping on longer names */
+    white-space: nowrap;
 }
 
 .world-nav a:hover,
 .world-nav a.active {
     background: rgba(255,255,255,0.85);
-    color: black;
+    color: #000;
 }
 
 /* ===========================
    HERO / INTRO SECTIONS
 =========================== */
-.ancestor-intro {
+.hero-text,
+.ancestor-intro,
+.about-wrapper,
+.family-section {
+    position: relative;
+    z-index: 2;
     max-width: 900px;
     margin: 140px auto 50px;
     padding: 2rem 1.5rem;
     background: rgba(0,0,0,0.5);
     border-radius: 20px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-    line-height: 1.7;
-    font-size: 1.1rem;
     animation: fadeIn 1.2s ease;
-    position: relative;
-    z-index: 2;
 }
 
-.ancestor-intro h1 {
-    font-size: 2.2rem;
-    text-align: center;
-    margin-bottom: 0.5rem;
-}
-
-.ancestor-intro h2 {
-    font-size: 1.5rem;
-    text-align: center;
-    font-weight: normal;
-    margin-bottom: 1.5rem;
-}
-
-/* ===========================
-   DIVIDER
-=========================== */
-.divider {
-    border: 0;
-    border-top: 2px solid rgba(255,255,255,0.3);
-    margin: 3rem 0;
-}
-
-/* ===========================
-   FAMILY TREE STYLING
-=========================== */
-.family-section {
-    max-width: 900px;
-    margin: 0 auto 3rem;
-    padding: 1.5rem;
-    background: rgba(0,0,0,0.5);
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-    line-height: 1.7;
+.hero-text { text-align: center; text-shadow: 1px 1px 8px rgba(0,0,0,0.7); }
+.ancestor-intro h1 { font-size: 2.2rem; text-align: center; margin-bottom: 0.5rem; }
+.ancestor-intro h2 { font-size: 1.5rem; text-align: center; font-weight: normal; margin-bottom: 1.5rem; }
+.hero-text p,
+.ancestor-intro p,
+.about-wrapper p,
+.family-section p,
+.outro-text {
     font-size: 1.1rem;
-    position: relative;
-    z-index: 2;
+    line-height: 1.7;
+    margin-top: 1rem;
 }
 
-.family-section h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-}
-
+/* ===========================
+   FAMILY TREE
+=========================== */
 .family-tree {
     text-align: left;
     display: inline-block;
@@ -175,7 +151,7 @@ body {
     background: rgba(255,255,255,0.5);
 }
 
-/* Highlight Drouaire line */
+/* Drouaire Highlight */
 .drouaire-line .family-tree li {
     border-left: 2px solid rgba(0,200,255,0.6);
 }
@@ -184,7 +160,7 @@ body {
     background: rgba(0,200,255,0.6);
 }
 
-/* Mystery notes */
+/* Mystery Notes */
 .mystery-note {
     font-style: italic;
     color: #c1eaff;
@@ -197,7 +173,78 @@ body {
     margin: 2rem auto 5rem;
     text-align: center;
     font-size: 1.2rem;
-    line-height: 1.6;
+}
+
+/* ===========================
+   GALLERY GRID
+=========================== */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+}
+
+.gallery-grid img {
+    width: 100%;
+    border-radius: 15px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    cursor: pointer;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.15) translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    position: relative;
+}
+
+/* ===========================
+   LIGHTBOX
+=========================== */
+#lightbox-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: zoom-out;
+}
+
+#lightbox-overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+    transition: transform 0.3s ease;
+}
+
+/* ===========================
+   BUTTONS
+=========================== */
+.btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 10px 25px;
+    border: 2px solid #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 30px;
+    text-transform: uppercase;
+    transition: 0.3s;
+    position: relative;
+    z-index: 2;
+}
+
+.btn:hover {
+    background: rgba(255,255,255,0.9);
+    color: #000;
 }
 
 /* ===========================
@@ -214,11 +261,19 @@ body {
     transform: translateY(0);
 }
 
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 /* ===========================
-   MOBILE FIXES
+   MOBILE RESPONSIVE
 =========================== */
 @media(max-width:768px) {
-    .ancestor-intro, .family-section, .outro-text {
+    .ancestor-intro,
+    .about-wrapper,
+    .family-section,
+    .outro-text {
         margin: 100px 1rem 2rem;
         padding: 1.2rem;
     }
@@ -229,4 +284,7 @@ body {
         padding: 8px 15px;
         top: 10px;
     }
+
+    .hero-text, .ancestor-intro h1 { font-size: 1.6rem; }
+    .ancestor-intro h2 { font-size: 1.2rem; }
 }
