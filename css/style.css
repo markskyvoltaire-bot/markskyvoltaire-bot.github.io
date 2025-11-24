@@ -23,7 +23,8 @@ body {
 /* ===========================
    BACKGROUND SECTIONS
 =========================== */
-.home-bg, .world-bg, .about-bg, .music-bg, .gallery-bg, .contact-bg, .mythology-bg, .merch-bg, .history-bg {
+.home-bg, .world-bg, .about-bg, .music-bg, .gallery-bg, .contact-bg,
+.mythology-bg, .merch-bg, .history-bg {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -32,7 +33,6 @@ body {
     position: relative;
 }
 
-/* Background Images */
 .home-bg      { background-image: url('https://i.imgur.com/DvE7RQV.png'); }
 .world-bg     { background-image: url('https://i.imgur.com/kiIqDp2.png'); }
 .about-bg     { background-image: url('https://i.imgur.com/awySCK4.png'); }
@@ -44,14 +44,29 @@ body {
 .history-bg   { background-image: url('https://i.imgur.com/7NFnyMU.png'); }
 
 /* ===========================
-   OVERLAY
+   OVERLAY – FIXED & BEHIND CONTENT
 =========================== */
 .overlay {
     position: absolute;
     inset: 0;
     background: rgba(0,0,0,0.35);
-    z-index: 1;
+    z-index: 0 !important;       /* FIX: Overlay is now BEHIND content */
     pointer-events: none;
+}
+
+/* Ensure all main content stays above the overlay */
+.section,
+.hero-world,
+.about-wrapper,
+.about-section,
+.gallery-section,
+.mythology-section,
+.history-section,
+.merch-section,
+.music-section,
+.contact-section {
+    position: relative;
+    z-index: 2 !important;
 }
 
 /* ===========================
@@ -256,7 +271,6 @@ body {
     text-transform: uppercase;
     transition: 0.3s;
     position: relative;
-    z-index: 2;
 }
 
 .btn:hover {
