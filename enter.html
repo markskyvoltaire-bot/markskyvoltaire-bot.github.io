@@ -6,9 +6,38 @@
     <title>Mark Sky Voltaire | Enter My World</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
-        /* Inline fixes for gallery and sections */
-        .section { padding: 60px 20px; position: relative; z-index: 2; text-align: center; }
-        .music-container { margin: 2rem auto; max-width: 700px; }
+        /* ===========================
+           INLINE PAGE FIXES
+        ============================ */
+        /* Hero Section Centering */
+        .hero-world {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 90vh;
+            padding: 0 20px;
+            text-align: center;
+            z-index: 2;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 60px 20px;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Music Section */
+        .music-container {
+            margin: 2rem auto;
+            max-width: 700px;
+        }
+
+        /* Gallery Grid */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -17,17 +46,30 @@
             max-width: 1200px;
             margin: 2rem auto;
         }
+
         .gallery-grid img {
             width: 100%;
             display: block;
             border-radius: 15px;
             cursor: pointer;
             transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
         }
+
         .gallery-grid img:hover {
             transform: scale(1.1);
             box-shadow: 0 20px 40px rgba(0,0,0,0.6);
         }
+
+        /* Caption under gallery images */
+        .gallery-caption {
+            font-size: 0.9rem;
+            color: #c1eaff;
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        /* Lightbox */
         #lightbox-overlay {
             display: none;
             position: fixed;
@@ -39,11 +81,51 @@
             z-index: 1000;
             cursor: zoom-out;
         }
+
         #lightbox-overlay img {
             max-width: 90%;
             max-height: 90%;
             border-radius: 15px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Music Track Title */
+        .track-title {
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+            color: #c1eaff;
+        }
+
+        /* CTA Buttons */
+        .btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 12px 28px;
+            border: 2px solid #fff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 30px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn:hover {
+            background: rgba(255,255,255,0.9);
+            color: #000;
+            transform: scale(1.05);
+        }
+
+        /* Responsive Adjustments */
+        @media(max-width:768px) {
+            .hero-world { min-height: 70vh; }
+            .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
         }
     </style>
 </head>
@@ -71,8 +153,8 @@
         <a href="music.html" class="btn">Explore Music</a>
     </section>
 
-    <!-- Mythology Overview Section -->
-    <section id="mythology-overview" class="mythology-section fade-in">
+    <!-- Mythology Overview -->
+    <section id="mythology-overview" class="section mythology-section fade-in">
         <h2>Mythology & Universe</h2>
         <p>
             My world is a mix of history, memory, and mythology. Every track, every image, every story
@@ -87,7 +169,7 @@
     </section>
 
     <!-- Music Section -->
-    <section id="music" class="music-section fade-in">
+    <section id="music" class="section music-section fade-in">
         <h2>Latest Tracks</h2>
         <div class="music-container">
             <iframe 
@@ -98,24 +180,43 @@
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                 allowfullscreen>
             </iframe>
+            <div class="track-title">"Your Latest Track Name"</div>
         </div>
     </section>
 
     <!-- Gallery Section -->
-    <section id="gallery" class="gallery-section fade-in">
+    <section id="gallery" class="section gallery-section fade-in">
         <h2>Gallery</h2>
         <div class="gallery-grid">
-            <img src="https://i.imgur.com/rYRkE1Y.jpeg" alt="Gallery Image 1">
-            <img src="https://i.imgur.com/kHRW4Jb.jpeg" alt="Gallery Image 2">
-            <img src="https://i.imgur.com/CjLlY2F.jpeg" alt="Gallery Image 3">
-            <img src="https://i.imgur.com/ykdzxfG.jpeg" alt="Gallery Image 4">
-            <img src="https://i.imgur.com/Q4LJGJo.jpeg" alt="Gallery Image 5">
-            <img src="https://i.imgur.com/THB03ca.jpeg" alt="Gallery Image 6">
+            <div>
+                <img src="https://i.imgur.com/rYRkE1Y.jpeg" alt="Gallery Image 1">
+                <div class="gallery-caption">Caption 1</div>
+            </div>
+            <div>
+                <img src="https://i.imgur.com/kHRW4Jb.jpeg" alt="Gallery Image 2">
+                <div class="gallery-caption">Caption 2</div>
+            </div>
+            <div>
+                <img src="https://i.imgur.com/CjLlY2F.jpeg" alt="Gallery Image 3">
+                <div class="gallery-caption">Caption 3</div>
+            </div>
+            <div>
+                <img src="https://i.imgur.com/ykdzxfG.jpeg" alt="Gallery Image 4">
+                <div class="gallery-caption">Caption 4</div>
+            </div>
+            <div>
+                <img src="https://i.imgur.com/Q4LJGJo.jpeg" alt="Gallery Image 5">
+                <div class="gallery-caption">Caption 5</div>
+            </div>
+            <div>
+                <img src="https://i.imgur.com/THB03ca.jpeg" alt="Gallery Image 6">
+                <div class="gallery-caption">Caption 6</div>
+            </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about-section fade-in">
+    <section id="about" class="section about-section fade-in">
         <h2>About Me</h2>
         <div class="about-wrapper">
             <img class="about-image" src="https://i.imgur.com/Ws4e47I.jpeg" alt="Mark Sky Voltaire">
@@ -126,8 +227,6 @@
             <p>
                 Every project is part reality, part mythology — an echo of what was and what could be.
             </p>
-
-            <!-- Social Links -->
             <div class="social-links">
                 <a href="https://www.instagram.com/mark_sky_voltaire/" target="_blank">
                     <img src="https://i.imgur.com/BxxjjUy.png" alt="Instagram" class="social-icon">
@@ -143,18 +242,17 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact-section fade-in">
+    <section id="contact" class="section contact-section fade-in">
         <h2>Contact & Connect</h2>
         <p>Email: example@markskyvoltaire.com</p>
         <p>Or reach me via social links above!</p>
     </section>
 
-    <!-- Lightbox for Gallery -->
+    <!-- Lightbox -->
     <div id="lightbox-overlay">
         <img src="" alt="Enlarged Image">
     </div>
 
-    <!-- Scripts -->
     <script>
         // Fade-in on scroll
         document.addEventListener("DOMContentLoaded", function() {
