@@ -49,7 +49,7 @@ body {
 .overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.35);
+    background: rgba(0,0,0,0.35);
     z-index: 1;
     pointer-events: none;
 }
@@ -90,12 +90,13 @@ body {
 }
 
 /* ===========================
-   HERO / INTRO SECTIONS
+   HERO / INTRO / SECTION BOXES
 =========================== */
 .hero-text,
 .ancestor-intro,
 .about-wrapper,
-.family-section {
+.family-section,
+.outro-text {
     position: relative;
     z-index: 2;
     max-width: 900px;
@@ -110,6 +111,7 @@ body {
 .hero-text { text-align: center; text-shadow: 1px 1px 8px rgba(0,0,0,0.7); }
 .ancestor-intro h1 { font-size: 2.2rem; text-align: center; margin-bottom: 0.5rem; }
 .ancestor-intro h2 { font-size: 1.5rem; text-align: center; font-weight: normal; margin-bottom: 1.5rem; }
+
 .hero-text p,
 .ancestor-intro p,
 .about-wrapper p,
@@ -118,6 +120,15 @@ body {
     font-size: 1.1rem;
     line-height: 1.7;
     margin-top: 1rem;
+}
+
+/* ===========================
+   DIVIDER
+=========================== */
+.divider {
+    border: 0;
+    border-top: 2px solid rgba(255,255,255,0.3);
+    margin: 3rem 0;
 }
 
 /* ===========================
@@ -165,14 +176,6 @@ body {
     font-style: italic;
     color: #c1eaff;
     margin-top: 1rem;
-}
-
-/* Outro / Contact */
-.outro-text {
-    max-width: 900px;
-    margin: 2rem auto 5rem;
-    text-align: center;
-    font-size: 1.2rem;
 }
 
 /* ===========================
