@@ -5,11 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery | Mark Sky Voltaire</title>
     <link rel="stylesheet" href="css/style.css">
-</head>
+    <style>
+        /* Inline overrides to make gallery work if needed */
+        .gallery-section {
+            position: relative;
+            z-index: 2; /* Ensure above overlay */
+            padding-top: 120px;
+            text-align: center;
+        }
 
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            width: 90%;
+            max-width: 1200px;
+            margin: 2rem auto;
+            z-index: 2;
+            position: relative;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            display: block;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .gallery-grid img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        #lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            cursor: zoom-out;
+        }
+
+        #lightbox-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+        }
+    </style>
+</head>
 <body class="gallery-bg">
 
-    <!-- Dark Overlay -->
+    <!-- Overlay -->
     <div class="overlay"></div>
 
     <!-- Navigation -->
@@ -17,21 +70,16 @@
         <a href="index.html">Home</a>
         <a href="music.html">Music</a>
         <a href="gallery.html" class="active">Gallery</a>
-        <a href="about.html">About</a>
         <a href="mythology.html">Mythology</a>
         <a href="merch.html">Merch</a>
-        <a href="history.html">History & Genealogy</a>
+        <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
     </nav>
 
-    <!-- Section Title -->
-    <section class="hero-world fade-in" style="text-align: center; padding-top: 120px; z-index: 2;">
+    <!-- Gallery Section -->
+    <section class="gallery-section fade-in">
         <h1>Gallery</h1>
-        <p>Click any image to enlarge</p>
-    </section>
-
-    <!-- Gallery -->
-    <section id="gallery" class="fade-in" style="position: relative; z-index: 2;">
+        <p>Click an image to enlarge</p>
         <div class="gallery-grid">
             <img src="https://i.imgur.com/rYRkE1Y.jpeg" alt="Gallery Image 1">
             <img src="https://i.imgur.com/kHRW4Jb.jpeg" alt="Gallery Image 2">
@@ -51,13 +99,13 @@
         </div>
     </section>
 
-    <!-- Lightbox (Image Pop-up) -->
+    <!-- Lightbox -->
     <div id="lightbox-overlay">
         <img src="" alt="Enlarged Image">
     </div>
 
-    <!-- Lightbox Script -->
     <script>
+        // Lightbox functionality
         const galleryImages = document.querySelectorAll('.gallery-grid img');
         const lightboxOverlay = document.getElementById('lightbox-overlay');
         const lightboxImg = lightboxOverlay.querySelector('img');
@@ -72,6 +120,20 @@
         lightboxOverlay.addEventListener('click', () => {
             lightboxOverlay.style.display = 'none';
             lightboxImg.src = '';
+        });
+
+        // Fade-in scroll
+        document.addEventListener("DOMContentLoaded", function() {
+            const faders = document.querySelectorAll(".fade-in");
+            const observerOptions = { threshold: 0.3, rootMargin: "0px 0px -50px 0px" };
+            const appearOnScroll = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add("show");
+                    observer.unobserve(entry.target);
+                });
+            }, observerOptions);
+            faders.forEach(fader => appearOnScroll.observe(fader));
         });
     </script>
 
