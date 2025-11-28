@@ -148,9 +148,10 @@
         box-shadow: 0 20px 40px rgba(0,0,0,0.7);
     }
 
+    /* Buttons */
     .btn {
-        display: inline-block;
-        margin-top: 1rem;
+        display: block; /* force each button to its own line */
+        margin: 20px auto 0 auto; /* top spacing, centered horizontally */
         padding: 12px 28px;
         border: 2px solid #fff;
         text-decoration: none;
@@ -158,6 +159,7 @@
         border-radius: 30px;
         text-transform: uppercase;
         transition: all 0.3s ease;
+        text-align: center;
     }
     .btn:hover {
         background: rgba(255,255,255,0.9);
@@ -167,8 +169,8 @@
 
     /* Section-specific navigation buttons */
     .section-btn {
-        display: inline-block;
-        margin-top: 20px;
+        display: block;
+        margin: 30px auto 0 auto; /* space from section content */
     }
 
     /* Mailchimp embed fixes */
@@ -179,7 +181,7 @@
         border-radius: 20px;
         max-width: 500px;
         margin: 30px auto;
-        text-align: center; /* center subscribe button */
+        text-align: center;
     }
     #mc_embed_signup h2 { color: #c1eaff !important; }
     #mc_embed_signup label, #mc_embed_signup .asterisk { color: #fff !important; }
@@ -199,8 +201,8 @@
         text-transform: uppercase !important;
         cursor: pointer !important;
         transition: all .3s ease;
-        display: inline-block;
-        margin: 15px auto 0 auto; /* center button */
+        display: block !important;
+        margin: 15px auto 0 auto !important; /* center button */
     }
     #mc_embed_signup input.button:hover {
         background: rgba(255,255,255,0.9) !important;
@@ -263,13 +265,6 @@
 
 <!-- Audio Indicator -->
 <div id="audioIndicator" title="Toggle music">🔇</div>
-
-<!-- Background Audio -->
-<audio id="pageAudio" loop>
-    <source src="assets/Copy of i can feel your vibe.mp3" type="audio/mpeg">
-    <source src="assets/Copy of i can feel your vibe.ogg" type="audio/ogg">
-    Your browser does not support the audio element.
-</audio>
 
 <!-- Gallery Section -->
 <section id="gallery" class="section gallery-section fade-in">
