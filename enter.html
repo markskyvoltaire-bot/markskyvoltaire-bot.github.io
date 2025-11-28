@@ -29,16 +29,10 @@
 <section class="hero-world fade-in">
     <h1>Welcome to My World</h1>
     <p>Fragments, Frequencies & Storylines</p>
-    <a href="music.html" class="btn">Explore Music</a>
-</section>
-
-<section class="section explore-world-section fade-in">
-    <h2>Explore My World</h2>
-    <div class="explore-image-container">
-        <img src="https://i.imgur.com/6f38or4.png" alt="Explore My World">
+    <div class="hero-image-container">
+        <img src="https://i.imgur.com/6f38or4.png" alt="Welcome to My World">
     </div>
-    <p>Step into the fragments, frequencies, and storylines that shape my journey across cultures, time, and sound.</p>
-    <a href="gallery.html" class="btn">Explore Gallery</a>
+    <a href="music.html" class="btn">Explore Music</a>
 </section>
 
 <section class="section music-section fade-in">
@@ -140,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function() {
         updateIndicator();
     }
 
-    // Highlight current page in nav
+    // --- NEW: Highlight current page in nav ---
     const navLinks = document.querySelectorAll(".world-nav a");
     const currentPage = window.location.pathname.split("/").pop();
     navLinks.forEach(link => {
