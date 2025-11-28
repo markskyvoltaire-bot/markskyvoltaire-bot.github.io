@@ -32,6 +32,15 @@
     <a href="music.html" class="btn">Explore Music</a>
 </section>
 
+<section class="section explore-world-section fade-in">
+    <h2>Explore My World</h2>
+    <div class="explore-image-container">
+        <img src="https://i.imgur.com/6f38or4.png" alt="Explore My World">
+    </div>
+    <p>Step into the fragments, frequencies, and storylines that shape my journey across cultures, time, and sound.</p>
+    <a href="gallery.html" class="btn">Explore Gallery</a>
+</section>
+
 <section class="section music-section fade-in">
     <h2>Latest Tracks</h2>
     <div class="music-container">
@@ -131,9 +140,9 @@ document.addEventListener("DOMContentLoaded", function() {
         updateIndicator();
     }
 
-    // --- NEW: Highlight current page in nav ---
+    // Highlight current page in nav
     const navLinks = document.querySelectorAll(".world-nav a");
-    const currentPage = window.location.pathname.split("/").pop(); // get current filename
+    const currentPage = window.location.pathname.split("/").pop();
     navLinks.forEach(link => {
         if(link.getAttribute("href") === currentPage){
             link.classList.add("active");
