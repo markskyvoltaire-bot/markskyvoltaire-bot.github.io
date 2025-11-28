@@ -11,7 +11,7 @@ html, body {
     width: 100%;
     min-height: 100%;
     overflow-x: hidden;
-    overflow-y: auto;          /* allow full vertical scroll */
+    overflow-y: auto;
     scroll-behavior: smooth;
 }
 
@@ -23,41 +23,35 @@ body {
 }
 
 /* ===========================
-   BACKGROUND SECTIONS
+   BACKGROUND SECTIONS WITH OVERLAY
 =========================== */
 .home-bg, .world-bg, .about-bg, .music-bg, .gallery-bg, .contact-bg,
 .mythology-bg, .merch-bg, .history-bg {
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
     min-height: 100vh;
     width: 100%;
     position: relative;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    opacity: 0; /* initial fade-in */
+    animation: bgFadeIn 1.5s ease forwards;
 }
 
-/* Background images */
-.home-bg      { background-image: url('https://i.imgur.com/DvE7RQV.png'); }
-.world-bg     { background-image: url('https://i.imgur.com/kiIqDp2.png'); }
-.about-bg     { background-image: url('https://i.imgur.com/awySCK4.png'); }
-.music-bg     { background-image: url('https://i.imgur.com/1fpCXEN.png'); }
-.gallery-bg   { background-image: url('https://i.imgur.com/eVcCh9U.png'); }
-.contact-bg   { background-image: url('https://i.imgur.com/hM5H2cJ.png'); }
-.merch-bg     { background-image: url('https://i.imgur.com/dxT8OGs.png'); }
-.mythology-bg { background-image: url('https://i.imgur.com/M6FKg5S.png'); }
-.history-bg   { background-image: url('https://i.imgur.com/7NFnyMU.png'); }
+/* Apply dark overlay via linear-gradient to all backgrounds */
+.home-bg      { background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://i.imgur.com/DvE7RQV.png'); }
+.world-bg     { background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://i.imgur.com/kiIqDp2.png'); }
+.about-bg     { background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://i.imgur.com/awySCK4.png'); }
+.music-bg     { background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://i.imgur.com/1fpCXEN.png'); }
+.gallery-bg   { background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://i.imgur.com/eVcCh9U.png'); }
+.contact-bg   { background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://i.imgur.com/hM5H2cJ.png'); }
+.merch-bg     { background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://i.imgur.com/dxT8OGs.png'); }
+.mythology-bg { background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://i.imgur.com/M6FKg5S.png'); }
+.history-bg   { background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://i.imgur.com/7NFnyMU.png'); }
 
 /* ===========================
-   OVERLAY – BEHIND CONTENT
+   CONTENT STACKING
 =========================== */
-.overlay {
-    position: fixed;            /* fixed so scrolling works behind it */
-    inset: 0;
-    background: rgba(0,0,0,0.35);
-    z-index: 0;
-    pointer-events: none;       /* doesn’t block scroll or clicks */
-}
-
-/* Ensure main content sections render above overlay */
 .section,
 .hero-world,
 .hero-text,
@@ -150,6 +144,13 @@ body {
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===========================
+   BACKGROUND FADE-IN
+=========================== */
+@keyframes bgFadeIn {
+    to { opacity: 1; }
 }
 
 /* ===========================
@@ -306,6 +307,14 @@ body {
     .about-image { max-width: 140px; width: 40%; }
     .music-container iframe { height: 260px; }
     .world-nav { left: 50%; transform: translateX(-50%); padding: 8px 14px; }
+
+    /* Fix mobile background scroll */
+    .home-bg, .world-bg, .about-bg, .music-bg, .gallery-bg, 
+    .contact-bg, .mythology-bg, .merch-bg, .history-bg {
+        background-attachment: scroll;
+        background-size: cover;
+        background-position: center center;
+    }
 }
 
 @media (max-width: 520px) {
