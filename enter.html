@@ -37,6 +37,10 @@
         padding: 0 20px;
         text-align: center;
         z-index: 2;
+        background-image: url('https://i.imgur.com/mEe95Vo.png');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
     }
 
     .section {
@@ -47,6 +51,25 @@
         max-width: 1200px;
         margin: 0 auto;
         min-height: 70vh;
+    }
+
+    /* About Section Image */
+    .about-section img {
+        width: 240px;
+        max-width: 45%;
+        border-radius: 50%;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        display: block;
+        margin: 1rem auto;
+    }
+
+    /* History & Genealogy Image */
+    #history img {
+        max-width: 400px;
+        width: 90%;
+        border-radius: 15px;
+        margin: 1rem auto;
+        display: block;
     }
 
     .music-container { margin: 2rem auto; max-width: 700px; }
@@ -176,6 +199,20 @@
         transform: scale(1.05) !important;
     }
 
+    /* Mobile Adjustments */
+    @media (max-width: 768px) {
+        .hero-world { min-height: 70vh; padding: 0 15px; border-radius: 12px; }
+        .section { padding: 40px 15px; margin: 20px auto; border-radius: 12px; }
+        .about-section img { width: 180px; max-width: 60%; }
+        #history img { max-width: 300px; }
+        .music-container iframe { height: 300px; }
+    }
+    @media (max-width: 480px) {
+        .hero-world { min-height: 60vh; }
+        .about-section img { width: 140px; max-width: 70%; }
+        #history img { max-width: 250px; }
+        .music-container iframe { height: 220px; }
+    }
 </style>
 </head>
 <body class="world-bg">
@@ -254,6 +291,7 @@
 <!-- History & Genealogy Section -->
 <section id="history" class="section fade-in">
     <h2>History & Genealogy</h2>
+    <img src="assets/familytree1.png" alt="Family Tree">
     <p>I Was Never “From” One Place. People always want a place. Where are you from?<br>
        But my family doesn’t trace in straight lines. We web out — across Port-au-Prince, Paris, Guadeloupe, Brittany, and Naples.<br>
        We show up in Ellis Island logs. In faded French censuses.</p>
@@ -262,6 +300,7 @@
 <!-- About Section -->
 <section id="about" class="section about-section fade-in">
     <h2>About Me</h2>
+    <img src="assets/aboutphoto.png" alt="Mark Sky Voltaire">
     <p>Raised between Haiti, France, and Washington D.C., my music is fragments, frequencies, and storylines from the worlds I’ve been through...</p>
 </section>
 
