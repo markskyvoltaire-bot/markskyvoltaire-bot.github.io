@@ -10,96 +10,233 @@
 <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
 
 <style>
-    html, body { scroll-behavior: smooth; height: 100%; overflow-x: hidden; }
-    body { scroll-snap-type: y mandatory; }
+/* ===========================
+   Merge your CSS fixes
+=========================== */
+html, body {
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    font-family: Verdana, sans-serif;
+    color: #fff;
+    background-color: #000;
+    line-height: 1.6;
+}
 
-    .overlay {
-        position: fixed; top: 0; left: 0;
-        width: 100%; height: 100%;
-        background: rgba(0,0,0,0.4);
-        z-index: 1; pointer-events: none;
-    }
+.section,
+.hero-world,
+.about-section,
+.music-section,
+.gallery-section,
+.mythology-section,
+.history-section,
+.merch-section,
+.contact-section {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    margin: 90px auto 40px;
+    padding: 2rem 1.5rem;
+    background: rgba(0,0,0,0.55);
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+    animation: fadeIn 1s ease;
+}
 
-    section { scroll-snap-align: start; }
+.hero-world {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 70vh;
+    background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://i.imgur.com/6f38or4.png');
+    background-size: cover;
+    background-position: center;
+}
 
-    .hero-world, .section {
-        position: relative; z-index: 2;
-        margin: 0 auto; max-width: 1200px;
-        text-align: center; padding: 60px 20px; min-height: 70vh;
-    }
+.fade-in { opacity: 0; transform: translateY(20px); transition: all 0.9s ease-out; }
+.fade-in.show { opacity: 1; transform: translateY(0); }
 
-    .hero-world {
-        display: flex; flex-direction: column; justify-content: center; align-items: center;
-        min-height: 90vh; 
-        background-image: url('https://i.imgur.com/6f38or4.png');
-        background-size: cover; background-position: center; background-attachment: fixed; text-align: center;
-    }
+.world-nav {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    z-index: 1000;
+    background: rgba(0,0,0,0.65);
+    padding: 10px 20px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+.world-nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: 0.25s ease;
+}
+.world-nav a:hover,
+.world-nav a.active {
+    background: rgba(255,255,255,0.9);
+    color: #000;
+}
 
-    .about-section img { width: 240px; max-width: 45%; border-radius: 50%; box-shadow: 0 10px 30px rgba(0,0,0,0.6); margin: 1rem auto; display: block; }
-    #history img { max-width: 400px; width: 90%; border-radius: 15px; margin: 1rem auto; display: block; }
+.btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 10px 26px;
+    border: 2px solid #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 28px;
+    text-transform: uppercase;
+    transition: all 0.25s ease;
+}
+.btn:hover { background: rgba(255,255,255,0.9); color: #000; transform: translateY(-3px); }
 
-    .music-container { margin: 2rem auto; max-width: 700px; }
-    .track-title { font-size: 1.1rem; margin-top: 0.5rem; color: #c1eaff; }
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+}
+.gallery-grid img {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.gallery-grid img:hover {
+    transform: scale(1.12) translateY(-8px);
+    box-shadow: 0 18px 35px rgba(0,0,0,0.6);
+}
+.gallery-caption {
+    text-align: center;
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #c1eaff;
+}
 
-    #audioIndicator {
-        position: fixed; bottom: 20px; right: 20px;
-        width: 50px; height: 50px;
-        background: rgba(255,255,255,0.8);
-        border-radius: 50%; display: flex; justify-content: center; align-items: center;
-        cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 1000;
-        font-size: 22px; color: #000; user-select: none; transition: background 0.3s, color 0.3s;
-    }
-    #audioIndicator.playing { background: rgba(0,200,0,0.8); color: #fff; animation: pulse 1s infinite; }
-    @keyframes pulse { 0% { transform: scale(1); box-shadow: 0 0 8px rgba(0,200,0,0.6); } 50% { transform: scale(1.1); box-shadow: 0 0 20px rgba(0,200,0,0.9); } 100% { transform: scale(1); box-shadow: 0 0 8px rgba(0,200,0,0.6); } }
+#lightbox-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.92);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    cursor: zoom-out;
+    padding: 20px;
+}
+#lightbox-overlay img {
+    max-width: 96%;
+    max-height: 92%;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    transition: transform 0.25s ease;
+}
 
-    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; width: 90%; max-width: 1200px; margin: 2rem auto; }
-    .gallery-grid img { width: 100%; border-radius: 15px; cursor: pointer; transition: transform 0.4s ease, box-shadow 0.4s ease; display: block; }
-    .gallery-grid img:hover { transform: scale(1.1); box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
-    .gallery-caption { font-size: 0.9rem; color: #c1eaff; margin-top: 8px; text-align: center; }
+.music-container {
+    width: 90%;
+    max-width: 900px;
+    margin: 1.75rem auto;
+}
+.music-container iframe {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: 400px;
+    border: none;
+    border-radius: 12px;
+}
+.track-title { color: #c1eaff; margin-top: 0.5rem; font-weight: 600; }
 
-    #lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; z-index: 1000; cursor: zoom-out; }
-    #lightbox-overlay img { max-width: 90%; max-height: 90%; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.7); }
+#audioIndicator {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 1000;
+    font-size: 22px;
+    color: #000;
+    user-select: none;
+    transition: background 0.3s, color 0.3s;
+}
+#audioIndicator.playing {
+    background: rgba(0,200,0,0.8);
+    color: #fff;
+    animation: pulse 1s infinite;
+}
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 8px rgba(0,200,0,0.6); }
+    50% { transform: scale(1.1); box-shadow: 0 0 20px rgba(0,200,0,0.9); }
+    100% { transform: scale(1); box-shadow: 0 0 8px rgba(0,200,0,0.6); }
+}
 
-    .btn { display: block; margin: 20px auto 0 auto; padding: 12px 28px; border: 2px solid #fff; text-decoration: none; font-weight: bold; border-radius: 30px; text-transform: uppercase; text-align: center; transition: all 0.3s ease; }
-    .btn:hover { background: rgba(255,255,255,0.9); color: #000; transform: scale(1.05); }
-
-    @media (max-width: 768px) { .hero-world { min-height: 70vh; padding: 0 15px; border-radius: 12px; } .section { padding: 40px 15px; margin: 20px auto; border-radius: 12px; } .about-section img { width: 180px; max-width: 60%; } #history img { max-width: 300px; } .music-container iframe { height: 300px; } }
-    @media (max-width: 480px) { .hero-world { min-height: 60vh; } .about-section img { width: 140px; max-width: 70%; } #history img { max-width: 250px; } .music-container iframe { height: 220px; } }
+@media (max-width: 980px) {
+    .hero-world { min-height: 55vh; padding: 2rem 1rem; margin-top: 70px; }
+    .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+    .music-container iframe { height: 260px; }
+}
+@media (max-width: 520px) {
+    .hero-world { min-height: 48vh; margin-top: 62px; }
+    .section { margin: 90px 12px; padding: 1rem; }
+    .gallery-grid { gap: 12px; }
+}
 </style>
 </head>
 <body class="world-bg">
-
-<div class="overlay"></div>
 
 <nav class="world-nav fade-in">
     <a href="#hero" class="active">Home</a>
     <a href="#about">About</a>
     <a href="#music">Music</a>
     <a href="#gallery">Gallery</a>
-    <a href="mythology.html">Mythology</a>
+    <a href="#mythology">Mythology</a>
     <a href="#history">History & Genealogy</a>
     <a href="#merch">Merch</a>
     <a href="#contact">Contact</a>
 </nav>
 
-<!-- Hero Section -->
 <section id="hero" class="hero-world fade-in">
     <h1>Welcome to My World</h1>
     <p>Fragments, Frequencies & Storylines</p>
     <a href="#music" class="btn">Explore Music</a>
 </section>
 
-<!-- Music Section -->
 <section id="music" class="section music-section fade-in">
     <h2>Latest Tracks</h2>
     <div class="music-container">
-        <iframe width="100%" height="400" src="https://www.youtube.com/embed/SzVb79Q6KEA?si=bus-IBfXyVmKA5U4" title="YouTube video player" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/SzVb79Q6KEA?si=bus-IBfXyVmKA5U4" title="YouTube video player" allowfullscreen></iframe>
         <div class="track-title">"The Other Side - Haezl/Mark Sky Voltaire"</div>
     </div>
     <a href="#gallery" class="btn">See the Gallery</a>
 </section>
 
-<!-- Gallery Section -->
 <section id="gallery" class="section gallery-section fade-in">
     <h2>Gallery</h2>
     <div class="gallery-grid">
@@ -109,11 +246,15 @@
         <div><img src="https://i.imgur.com/ykdzxfG.jpeg" alt="U Street"><div class="gallery-caption">U Street</div></div>
         <div><img src="https://i.imgur.com/Q4LJGJo.jpeg" alt="NorthStar International"><div class="gallery-caption">NorthStar International</div></div>
     </div>
-    <!-- Button now links to mythology.html -->
-    <a href="mythology.html" class="btn" target="_self">Explore the Mythology Page</a>
+    <a href="#mythology" class="btn">Discover Mythology</a>
 </section>
 
-<!-- History & Genealogy Section -->
+<section id="mythology" class="section fade-in">
+    <h2>Mythology</h2>
+    <p>Explore the symbols, stories, and frequencies that shape my world...</p>
+    <a href="#history" class="btn">Learn History & Genealogy</a>
+</section>
+
 <section id="history" class="section fade-in">
     <h2>History & Genealogy</h2>
     <img src="assets/familytree1.png" alt="Family Tree">
@@ -123,15 +264,13 @@
     <a href="#about" class="btn">Learn About Me</a>
 </section>
 
-<!-- About Me Section -->
 <section id="about" class="section about-section fade-in">
     <h2>About Me</h2>
-    <img src="https://i.imgur.com/Ws4e47I.jpeg" alt="Mark Sky Voltaire">
+    <img src="https://i.imgur.com/Ws4e47I.jpeg" alt="Mark Sky Voltaire" class="about-image">
     <p>Raised between Haiti, France, and Washington D.C., my music is fragments, frequencies, and storylines from the worlds I’ve been through...</p>
     <a href="#contact" class="btn">Connect & Subscribe</a>
 </section>
 
-<!-- Contact & Mailchimp Section -->
 <section id="contact" class="section contact-section fade-in">
     <h2>Contact & Connect</h2>
     <p>Email: mark@markskyvoltaire.com or markskyvoltaire@gmail.com</p>
@@ -152,64 +291,37 @@
     </div>
 </section>
 
-<!-- Lightbox & Audio -->
 <div id="lightbox-overlay"><img src="" alt="Enlarged Image"></div>
 <div id="audioIndicator" title="Toggle music">🔇</div>
-
-<audio id="pageAudio" loop>
-    <source src="assets/Copy of i can feel your vibe.mp3" type="audio/mpeg">
-    <source src="assets/Copy of i can feel your vibe.ogg" type="audio/ogg">
-    Your browser does not support the audio element.
-</audio>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const faders = document.querySelectorAll(".fade-in");
-    const obs = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { 
-            if (!entry.isIntersecting) return; 
-            entry.target.classList.add("show"); 
-            obs.unobserve(entry.target); 
-        });
+    const obs = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => { if (!entry.isIntersecting) return; entry.target.classList.add("show"); observer.unobserve(entry.target); });
     }, { threshold: 0.3 });
     faders.forEach(fader => obs.observe(fader));
 
     const galleryImages = document.querySelectorAll('.gallery-grid img');
     const overlay = document.getElementById('lightbox-overlay');
     const overlayImg = overlay.querySelector('img');
-    galleryImages.forEach(img => {
-        img.addEventListener('click', () => { overlayImg.src = img.src; overlay.style.display = 'flex'; });
-    });
+    galleryImages.forEach(img => { img.addEventListener('click', () => { overlayImg.src = img.src; overlay.style.display = 'flex'; }); });
     overlay.addEventListener('click', () => { overlay.style.display = 'none'; overlayImg.src = ''; });
 
     const sections = document.querySelectorAll("section");
     const navLinks = document.querySelectorAll(".world-nav a");
     window.addEventListener("scroll", () => {
         let current = "";
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 100;
-            if (pageYOffset >= sectionTop) current = section.getAttribute("id");
-        });
-        navLinks.forEach(link => { link.classList.remove("active"); if(link.getAttribute("href").includes(current)) link.classList.add("active"); });
+        sections.forEach(section => { const sectionTop = section.offsetTop - 100; if (pageYOffset >= sectionTop) current = section.getAttribute("id"); });
+        navLinks.forEach(link => { link.classList.remove("active"); if(link.getAttribute("href").substring(1) === current) link.classList.add("active"); });
     });
 
     const audio = document.getElementById("pageAudio");
     const indicator = document.getElementById("audioIndicator");
-    if(audio){
-        audio.muted = false;
-        audio.play().catch(() => console.log("Autoplay blocked."));
-        function updateIndicator() {
-            if(audio.paused || audio.muted){
-                indicator.textContent="🔇"; indicator.classList.remove("playing");
-            } else{
-                indicator.textContent="🎵"; indicator.classList.add("playing");
-            }
-        }
-        indicator.addEventListener("click", () => {
-            if(audio.paused || audio.muted){ audio.muted=false; audio.play(); }
-            else{ audio.muted=true; }
-            updateIndicator();
-        });
+    if(audio) {
+        audio.muted = false; audio.play().catch(() => console.log("Autoplay blocked."));
+        function updateIndicator() { if(audio.paused || audio.muted){ indicator.textContent="🔇"; indicator.classList.remove("playing"); } else{ indicator.textContent="🎵"; indicator.classList.add("playing"); } }
+        indicator.addEventListener("click", () => { if(audio.paused || audio.muted){ audio.muted=false; audio.play(); } else{ audio.muted=true; } updateIndicator(); });
         updateIndicator();
     }
 });
