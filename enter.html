@@ -111,6 +111,37 @@
             .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
         }
 
+        /* Audio indicator */
+        #audioIndicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 1000;
+            font-size: 22px;
+            color: #000;
+            user-select: none;
+            transition: background 0.3s, color 0.3s;
+        }
+        #audioIndicator.playing {
+            background: rgba(0,200,0,0.8);
+            color: #fff;
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 8px rgba(0,200,0,0.6); }
+            50% { transform: scale(1.1); box-shadow: 0 0 20px rgba(0,200,0,0.9); }
+            100% { transform: scale(1); box-shadow: 0 0 8px rgba(0,200,0,0.6); }
+        }
+
         /* Mailchimp embed override styles */
         #mc_embed_signup {
             background: rgba(0,0,0,0.6) !important;
@@ -120,12 +151,8 @@
             max-width: 500px;
             margin: 30px auto;
         }
-        #mc_embed_signup h2 {
-            color: #c1eaff !important;
-        }
-        #mc_embed_signup label, #mc_embed_signup .asterisk {
-            color: #fff !important;
-        }
+        #mc_embed_signup h2 { color: #c1eaff !important; }
+        #mc_embed_signup label, #mc_embed_signup .asterisk { color: #fff !important; }
         #mc_embed_signup input.email {
             width: 100% !important;
             padding: 10px !important;
@@ -172,13 +199,6 @@
         <a href="music.html" class="btn">Explore Music</a>
     </section>
 
-    <!-- Mythology Overview -->
-    <section id="mythology-overview" class="section mythology-section fade-in">
-        <h2>Mythology & Universe</h2>
-        <p>My world is a mix of history, memory, and mythology...</p>
-        <a href="mythology.html" class="btn">Dive Into Mythology</a>
-    </section>
-
     <!-- Music Section -->
     <section id="music" class="section music-section fade-in">
         <h2>Latest Tracks</h2>
@@ -193,87 +213,19 @@
         </div>
     </section>
 
-    <!-- GALLERY - FIXED -->
-    <section id="gallery" class="section gallery-section fade-in">
-        <h2>Gallery</h2>
-        <div class="gallery-grid">
-            <div>
-                <img src="https://i.imgur.com/rYRkE1Y.jpeg" alt="The crew in Toronto">
-                <div class="gallery-caption">The crew in Toronto</div>
-            </div>
-            <div>
-                <img src="https://i.imgur.com/kHRW4Jb.jpeg" alt="The Other Side">
-                <div class="gallery-caption">The Other Side</div>
-            </div>
-            <div>
-                <img src="https://i.imgur.com/CjLlY2F.jpeg" alt="Flying the millenium falcon">
-                <div class="gallery-caption">Flying the millenium falcon</div>
-            </div>
-            <div>
-                <img src="https://i.imgur.com/ykdzxfG.jpeg" alt="U Street">
-                <div class="gallery-caption">U Street</div>
-            </div>
-            <div>
-                <img src="https://i.imgur.com/Q4LJGJo.jpeg" alt="NorthStar International">
-                <div class="gallery-caption">NorthStar International</div>
-            </div>
-        </div>
-    </section>
+    <!-- Audio Indicator -->
+    <div id="audioIndicator" title="Toggle music">🔇</div>
 
-    <!-- About Section -->
-    <section id="about" class="section about-section fade-in">
-        <h2>About Me</h2>
-        <div class="about-wrapper">
-            <img class="about-image" src="https://i.imgur.com/Ws4e47I.jpeg" alt="Mark Sky Voltaire">
-            <p>Raised between Haiti, France, and Washington D.C....</p>
-            <div class="social-links">
-                <a href="https://www.instagram.com/mark_sky_voltaire/" target="_blank">
-                    <img src="https://i.imgur.com/BxxjjUy.png" alt="Instagram" class="social-icon">
-                </a>
-                <a href="https://soundcloud.com/mark-sky-voltaire" target="_blank">
-                    <img src="https://i.imgur.com/l0y6ocA.png" alt="SoundCloud" class="social-icon">
-                </a>
-                <a href="https://www.youtube.com/@markskyvoltaire" target="_blank">
-                    <img src="https://i.imgur.com/9T4wuVN.png" alt="YouTube" class="social-icon">
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact & Subscribe Section -->
-    <section id="contact" class="section contact-section fade-in">
-        <h2>Contact & Connect</h2>
-        <p>Email: mark@markskyvoltaire.com or markskyvoltaire@gmail.com</p>
-        <p>Or reach me via social links above!</p>
-
-        <!-- MAILCHIMP FORM EMBED -->
-        <div id="mc_embed_shell">
-            <div id="mc_embed_signup">
-                <form action="https://markskyvoltaire.us14.list-manage.com/subscribe/post?u=7eb7b436c405498be6f8164fc&amp;id=ba6249fcea&amp;f_id=00e9bbe5f0"
-                      method="post" target="_blank" class="validate">
-                    <h2>Subscribe Now!</h2>
-                    <div class="mc-field-group">
-                        <label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label>
-                        <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required>
-                    </div>
-                    <div style="position: absolute; left: -5000px;" aria-hidden="true">
-                        <input type="text" name="b_7eb7b436c405498be6f8164fc_ba6249fcea" tabindex="-1" value="">
-                    </div>
-                    <div class="clear foot">
-                        <input type="submit" name="subscribe" class="button" value="Subscribe">
-                    </div>
-                </form>
-            </div>
-        </div>
-
-    </section>
-
-    <!-- Lightbox -->
-    <div id="lightbox-overlay"><img src="" alt="Enlarged Image"></div>
+    <!-- Background Audio -->
+    <audio id="pageAudio" loop muted>
+        <source src="assets/Copy of i can feel your vibe.mp3" type="audio/mpeg">
+        <source src="assets/Copy of i can feel your vibe.ogg" type="audio/ogg">
+        Your browser does not support the audio element.
+    </audio>
 
     <script>
-        // Fade-in on scroll
         document.addEventListener("DOMContentLoaded", function() {
+            // Fade-in elements
             const faders = document.querySelectorAll(".fade-in");
             const obs = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
@@ -283,31 +235,48 @@
                 });
             }, { threshold: 0.3, rootMargin: "0px 0px -50px 0px" });
             faders.forEach(fader => obs.observe(fader));
-        });
 
-        // Lightbox
-        const galleryImages = document.querySelectorAll('.gallery-grid img');
-        const overlay = document.getElementById('lightbox-overlay');
-        const overlayImg = overlay.querySelector('img');
-        galleryImages.forEach(img => {
-            img.addEventListener('click', () => {
-                overlayImg.src = img.src;
-                overlay.style.display = 'flex';
+            // Audio setup
+            const audio = document.getElementById("pageAudio");
+            let volume = 0;
+            audio.volume = volume;
+            audio.play().catch(() => {
+                console.log("Autoplay blocked, waiting for user interaction.");
             });
-        });
-        overlay.addEventListener('click', () => {
-            overlay.style.display = 'none';
-            overlayImg.src = '';
+
+            const fadeInAudio = setInterval(() => {
+                if (volume < 0.5) {
+                    volume += 0.01;
+                    audio.volume = volume;
+                } else {
+                    clearInterval(fadeInAudio);
+                }
+            }, 100);
+
+            // Audio indicator toggle
+            const indicator = document.getElementById("audioIndicator");
+            function updateIndicator() {
+                if (audio.muted || audio.paused) {
+                    indicator.textContent = "🔇";
+                    indicator.classList.remove("playing");
+                } else {
+                    indicator.textContent = "🎵";
+                    indicator.classList.add("playing");
+                }
+            }
+            indicator.addEventListener("click", function() {
+                if (audio.muted || audio.paused) {
+                    audio.muted = false;
+                    audio.play();
+                } else {
+                    audio.muted = true;
+                }
+                updateIndicator();
+            });
+
+            updateIndicator();
         });
     </script>
 
-    <!-- Mailchimp validation script -->
-    <script src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
-    <script>
-        (function($) {
-            window.fnames = ['EMAIL'];
-            window.ftypes = ['email'];
-        })(jQuery);
-    </script>
 </body>
 </html>
