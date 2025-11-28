@@ -11,7 +11,6 @@ html, body {
     width: 100%;
     min-height: 100%;
     overflow-x: hidden;
-    scroll-behavior: smooth;
     font-family: Verdana, sans-serif;
     color: #fff;
     background-color: #000;
@@ -26,6 +25,14 @@ a {
 a:focus {
     outline: 2px dashed #fff;
     outline-offset: 4px;
+}
+
+/* ===========================
+   SCROLL SNAP — ONLY FOR WORLD PAGE
+=========================== */
+body.world-page {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
 }
 
 /* ===========================
