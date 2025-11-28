@@ -26,13 +26,6 @@
     <a href="contact.html">Contact</a>
 </nav>
 
-<!-- Audio player -->
-<audio id="pageAudio" loop>
-    <source src="assets/i can feel your vibe.mp3" type="audio/mpeg">
-    <source src="assets/i can feel your vibe.ogg" type="audio/ogg">
-    Your browser does not support the audio element.
-</audio>
-
 <section class="hero-world fade-in">
     <h1>Welcome to My World</h1>
     <p>Fragments, Frequencies & Storylines</p>
@@ -108,7 +101,6 @@
 </section>
 
 <div id="lightbox-overlay"><img src="" alt="Enlarged Image"></div>
-<div id="audioIndicator" title="Toggle music">🔇</div>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -135,30 +127,11 @@ document.addEventListener("DOMContentLoaded", function() {
         overlayImg.removeAttribute('src');
     });
 
+    // Play audio automatically (no mute button)
     const audio = document.getElementById("pageAudio");
-    const indicator = document.getElementById("audioIndicator");
     if(audio) {
-        audio.muted = false; // start unmuted
+        audio.muted = false;
         audio.play().catch(() => console.log("Autoplay blocked."));
-        function updateIndicator() { 
-            if(audio.paused || audio.muted){ 
-                indicator.textContent="🔇"; 
-                indicator.classList.remove("playing"); 
-            } else{ 
-                indicator.textContent="🎵"; 
-                indicator.classList.add("playing"); 
-            } 
-        }
-        indicator.addEventListener("click", () => { 
-            if(audio.paused || audio.muted){ 
-                audio.muted=false; 
-                audio.play(); 
-            } else{ 
-                audio.muted=true; 
-            } 
-            updateIndicator(); 
-        });
-        updateIndicator();
     }
 
     // Highlight current page in nav
