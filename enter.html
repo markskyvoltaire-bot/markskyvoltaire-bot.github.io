@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mark Sky Voltaire | Enter My World</title>
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Mailchimp Form Styles -->
+    <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
     <style>
         /* ===========================
            INLINE PAGE FIXES
@@ -67,8 +70,7 @@
             top: 0; left: 0;
             width: 100%; height: 100%;
             background: rgba(0,0,0,0.9);
-            justify-content: center;
-            align-items: center;
+            justify-content: center; align-items: center;
             z-index: 1000;
             cursor: zoom-out;
         }
@@ -107,6 +109,44 @@
         @media(max-width:768px) {
             .hero-world { min-height: 70vh; }
             .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+        }
+
+        /* Mailchimp embed override styles */
+        #mc_embed_signup {
+            background: rgba(0,0,0,0.6) !important;
+            color: #fff !important;
+            padding: 20px 30px;
+            border-radius: 20px;
+            max-width: 500px;
+            margin: 30px auto;
+        }
+        #mc_embed_signup h2 {
+            color: #c1eaff !important;
+        }
+        #mc_embed_signup label, #mc_embed_signup .asterisk {
+            color: #fff !important;
+        }
+        #mc_embed_signup input.email {
+            width: 100% !important;
+            padding: 10px !important;
+            border-radius: 8px !important;
+            border: none !important;
+            margin-top: 8px !important;
+        }
+        #mc_embed_signup input.button {
+            background: transparent !important;
+            border: 2px solid #fff !important;
+            color: #fff !important;
+            padding: 10px 20px !important;
+            border-radius: 30px !important;
+            text-transform: uppercase !important;
+            cursor: pointer !important;
+            transition: all .3s ease;
+        }
+        #mc_embed_signup input.button:hover {
+            background: rgba(255,255,255,0.9) !important;
+            color: #000 !important;
+            transform: scale(1.05) !important;
         }
     </style>
 </head>
@@ -178,7 +218,7 @@
                 <div class="gallery-caption">NorthStar International</div>
             </div>
         </div>
-    </section> <!-- 🔥 FIXED CLOSURE -->
+    </section>
 
     <!-- About Section -->
     <section id="about" class="section about-section fade-in">
@@ -186,7 +226,6 @@
         <div class="about-wrapper">
             <img class="about-image" src="https://i.imgur.com/Ws4e47I.jpeg" alt="Mark Sky Voltaire">
             <p>Raised between Haiti, France, and Washington D.C....</p>
-
             <div class="social-links">
                 <a href="https://www.instagram.com/mark_sky_voltaire/" target="_blank">
                     <img src="https://i.imgur.com/BxxjjUy.png" alt="Instagram" class="social-icon">
@@ -201,11 +240,32 @@
         </div>
     </section>
 
-    <!-- Contact -->
+    <!-- Contact & Subscribe Section -->
     <section id="contact" class="section contact-section fade-in">
         <h2>Contact & Connect</h2>
         <p>Email: mark@markskyvoltaire.com or markskyvoltaire@gmail.com</p>
         <p>Or reach me via social links above!</p>
+
+        <!-- MAILCHIMP FORM EMBED -->
+        <div id="mc_embed_shell">
+            <div id="mc_embed_signup">
+                <form action="https://markskyvoltaire.us14.list-manage.com/subscribe/post?u=7eb7b436c405498be6f8164fc&amp;id=ba6249fcea&amp;f_id=00e9bbe5f0"
+                      method="post" target="_blank" class="validate">
+                    <h2>Subscribe Now!</h2>
+                    <div class="mc-field-group">
+                        <label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label>
+                        <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required>
+                    </div>
+                    <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                        <input type="text" name="b_7eb7b436c405498be6f8164fc_ba6249fcea" tabindex="-1" value="">
+                    </div>
+                    <div class="clear foot">
+                        <input type="submit" name="subscribe" class="button" value="Subscribe">
+                    </div>
+                </form>
+            </div>
+        </div>
+
     </section>
 
     <!-- Lightbox -->
@@ -229,19 +289,25 @@
         const galleryImages = document.querySelectorAll('.gallery-grid img');
         const overlay = document.getElementById('lightbox-overlay');
         const overlayImg = overlay.querySelector('img');
-
         galleryImages.forEach(img => {
             img.addEventListener('click', () => {
                 overlayImg.src = img.src;
                 overlay.style.display = 'flex';
             });
         });
-
         overlay.addEventListener('click', () => {
             overlay.style.display = 'none';
             overlayImg.src = '';
         });
     </script>
 
+    <!-- Mailchimp validation script -->
+    <script src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+    <script>
+        (function($) {
+            window.fnames = ['EMAIL'];
+            window.ftypes = ['email'];
+        })(jQuery);
+    </script>
 </body>
 </html>
