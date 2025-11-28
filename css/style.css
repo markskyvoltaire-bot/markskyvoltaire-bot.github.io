@@ -11,7 +11,6 @@ html, body {
     width: 100%;
     min-height: 100%;
     overflow-x: hidden;
-    overflow-y: auto;
     scroll-behavior: smooth;
 }
 
@@ -61,8 +60,6 @@ body {
 =========================== */
 .section,
 .hero-world,
-.hero-text,
-.about-wrapper,
 .about-section,
 .gallery-section,
 .mythology-section,
@@ -81,14 +78,14 @@ body {
     animation: fadeIn 1s ease;
 }
 
-/* Set min-heights for smooth scroll flow */
-.hero-world       { min-height: 75vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-.music-section    { min-height: 80vh; }
-.gallery-section  { min-height: 80vh; }
-.about-section    { min-height: 75vh; }
-.mythology-section{ min-height: 75vh; }
-.history-section  { min-height: 75vh; }
-.contact-section  { min-height: 70vh; }
+/* Section min-heights */
+.hero-world        { min-height: 75vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.music-section     { min-height: 80vh; }
+.gallery-section   { min-height: 80vh; }
+.about-section     { min-height: 75vh; }
+.mythology-section { min-height: 75vh; }
+.history-section   { min-height: 75vh; }
+.contact-section   { min-height: 70vh; }
 
 /* ===========================
    NAVIGATION
@@ -117,7 +114,6 @@ body {
     font-weight: bold;
     transition: 0.25s ease;
     white-space: nowrap;
-    display: inline-block;
 }
 
 .world-nav a:hover,
@@ -151,8 +147,6 @@ body {
 
 .gallery-grid img {
     display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
     width: 100%;
     height: auto;
     object-fit: cover;
@@ -173,8 +167,6 @@ body {
     color: #c1eaff;
 }
 
-.gallery-grid > div { display: block; }
-
 /* ===========================
    LIGHTBOX
 =========================== */
@@ -184,7 +176,6 @@ body {
     top: 0; left: 0;
     width: 100%; height: 100%;
     background: rgba(0,0,0,0.92);
-    display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
@@ -218,7 +209,11 @@ body {
     border-radius: 12px;
 }
 
-.track-title { color: #c1eaff; margin-top: 0.5rem; font-weight: 600; }
+.track-title {
+    color: #c1eaff;
+    margin-top: 0.5rem;
+    font-weight: 600;
+}
 
 /* ===========================
    AUDIO INDICATOR
@@ -229,7 +224,7 @@ body {
     right: 20px;
     width: 50px;
     height: 50px;
-    background: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.85);
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -240,7 +235,7 @@ body {
     font-size: 22px;
     color: #000;
     user-select: none;
-    transition: background 0.3s, color 0.3s;
+    transition: all 0.3s ease;
 }
 
 #audioIndicator.playing {
@@ -269,7 +264,50 @@ body {
     text-transform: uppercase;
     transition: all 0.25s ease;
 }
-.btn:hover { background: rgba(255,255,255,0.9); color: #000; transform: translateY(-3px); }
+.btn:hover {
+    background: rgba(255,255,255,0.9);
+    color: #000;
+    transform: translateY(-3px);
+}
+
+/* ===========================
+   MAILCHIMP FORM
+=========================== */
+#mc_embed_signup {
+    background: rgba(0,0,0,0.6) !important;
+    color: #fff !important;
+    padding: 20px 30px;
+    border-radius: 20px;
+    max-width: 500px;
+    margin: 30px auto;
+    text-align: center;
+}
+#mc_embed_signup h2 { color: #c1eaff !important; }
+#mc_embed_signup label, #mc_embed_signup .asterisk { color: #fff !important; }
+#mc_embed_signup input.email {
+    width: 100% !important;
+    padding: 10px !important;
+    border-radius: 8px !important;
+    border: none !important;
+    margin-top: 8px !important;
+}
+#mc_embed_signup input.button {
+    background: transparent !important;
+    border: 2px solid #fff !important;
+    color: #fff !important;
+    padding: 10px 20px !important;
+    border-radius: 30px !important;
+    text-transform: uppercase !important;
+    cursor: pointer !important;
+    transition: all .3s ease;
+    display: inline-block;
+    margin: 15px auto 0 auto;
+}
+#mc_embed_signup input.button:hover {
+    background: rgba(255,255,255,0.9) !important;
+    color: #000 !important;
+    transform: scale(1.05) !important;
+}
 
 /* ===========================
    RESPONSIVE / MOBILE
@@ -277,13 +315,14 @@ body {
 @media (max-width: 980px) {
     .hero-world { min-height: 55vh; padding: 2rem 1rem; margin-top: 70px; }
     .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
-    .about-image { max-width: 140px; width: 40%; }
+    .about-section img { max-width: 140px; width: 40%; }
     .music-container iframe { height: 260px; }
-    .world-nav { left: 50%; transform: translateX(-50%); padding: 8px 14px; }
+    .world-nav { padding: 8px 14px; }
 }
 
 @media (max-width: 520px) {
     .hero-world { min-height: 48vh; margin-top: 62px; }
     .section { margin: 90px 12px; padding: 1rem; }
     .gallery-grid { gap: 12px; }
+    .music-container iframe { height: 220px; }
 }
