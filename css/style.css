@@ -11,6 +11,7 @@ html, body {
     width: 100%;
     min-height: 100%;
     overflow-x: hidden;
+    overflow-y: auto;
     scroll-behavior: smooth;
 }
 
@@ -29,7 +30,6 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    min-height: 100vh;
     width: 100%;
     position: relative;
 }
@@ -46,18 +46,19 @@ body {
 .history-bg   { background-image: url('https://i.imgur.com/7NFnyMU.png'); }
 
 /* ===========================
-   OVERLAY – BEHIND CONTENT
+   OVERLAY
 =========================== */
-/* Overlay sits behind content but above background */
 .overlay {
-    position: absolute;
+    position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.35);
-    z-index: 0;                 /* behind content but above background */
+    z-index: 0;
     pointer-events: none;
 }
 
-/* Ensure main content sections render above overlay */
+/* ===========================
+   MAIN SECTIONS
+=========================== */
 .section,
 .hero-world,
 .hero-text,
@@ -71,7 +72,23 @@ body {
 .contact-section {
     position: relative;
     z-index: 2;
+    max-width: 1100px;
+    margin: 90px auto 40px;
+    padding: 2rem 1.5rem;
+    background: rgba(0,0,0,0.55);
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+    animation: fadeIn 1s ease;
 }
+
+/* Set min-heights for smooth scroll flow */
+.hero-world       { min-height: 75vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.music-section    { min-height: 80vh; }
+.gallery-section  { min-height: 80vh; }
+.about-section    { min-height: 75vh; }
+.mythology-section{ min-height: 75vh; }
+.history-section  { min-height: 75vh; }
+.contact-section  { min-height: 70vh; }
 
 /* ===========================
    NAVIGATION
@@ -85,7 +102,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     gap: 12px;
-    z-index: 1000;              /* always on top */
+    z-index: 1000;
     background: rgba(0,0,0,0.65);
     padding: 10px 20px;
     border-radius: 50px;
@@ -110,38 +127,6 @@ body {
 }
 
 /* ===========================
-   HERO / SECTION BOXES
-=========================== */
-.hero-world,
-.hero-text,
-.ancestor-intro,
-.about-wrapper,
-.family-section,
-.outro-text,
-.section {
-    max-width: 1100px;
-    margin: 90px auto 40px;
-    padding: 2rem 1.5rem;
-    background: rgba(0,0,0,0.55);
-    border-radius: 18px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-    animation: fadeIn 1s ease;
-}
-
-.hero-world {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    min-height: 70vh;
-}
-
-/* small headings & copy */
-.hero-text { text-shadow: 1px 1px 8px rgba(0,0,0,0.7); }
-.section h2 { margin-top: 0; }
-
-/* ===========================
    FADE-IN ANIMATION
 =========================== */
 .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.9s ease-out; }
@@ -153,18 +138,7 @@ body {
 }
 
 /* ===========================
-   TEXT / UTILITY
-=========================== */
-.section p,
-.about-wrapper p,
-.hero-text p {
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: #fff;
-}
-
-/* ===========================
-   GALLERY GRID (FIXED)
+   GALLERY GRID
 =========================== */
 .gallery-grid {
     display: grid;
@@ -175,7 +149,6 @@ body {
     margin: 2rem auto;
 }
 
-/* Make sure images are visible (fix for hidden-click bug) */
 .gallery-grid img {
     display: block !important;
     opacity: 1 !important;
@@ -193,7 +166,6 @@ body {
     box-shadow: 0 18px 35px rgba(0,0,0,0.6);
 }
 
-/* optional caption under images */
 .gallery-caption {
     text-align: center;
     margin-top: 8px;
@@ -201,11 +173,10 @@ body {
     color: #c1eaff;
 }
 
-/* ensure grid children don't collapse */
 .gallery-grid > div { display: block; }
 
 /* ===========================
-   LIGHTBOX (topmost)
+   LIGHTBOX
 =========================== */
 #lightbox-overlay {
     display: none;
@@ -216,7 +187,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;              /* top of everything */
+    z-index: 9999;
     cursor: zoom-out;
     padding: 20px;
 }
@@ -247,61 +218,42 @@ body {
     border-radius: 12px;
 }
 
-/* small track title under iframe */
 .track-title { color: #c1eaff; margin-top: 0.5rem; font-weight: 600; }
 
 /* ===========================
-   ABOUT / INSTAGRAM RESPONSIVE
+   AUDIO INDICATOR
 =========================== */
-.about-wrapper { text-align: center; }
-.about-image {
-    width: 240px;
-    max-width: 45%;
+#audioIndicator {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.8);
     border-radius: 50%;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-    display: inline-block;
-    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 1000;
+    font-size: 22px;
+    color: #000;
+    user-select: none;
+    transition: background 0.3s, color 0.3s;
 }
 
-/* Instagram embed responsive wrapper */
-.instagram-container {
-    position: relative;
-    width: 100%;
-    max-width: 900px;
-    margin: 1.5rem auto 0;
-    padding-bottom: 56.25%; /* 16:9 */
-}
-.instagram-container iframe,
-.instagram-container blockquote.instagram-media {
-    position: absolute !important;
-    top: 0;
-    left: 0;
-    width: 100% !important;
-    height: 100% !important;
+#audioIndicator.playing {
+    background: rgba(0,200,0,0.8);
+    color: #fff;
+    animation: pulse 1s infinite;
 }
 
-/* ===========================
-   SOCIAL ICONS
-=========================== */
-.social-links { display: flex; gap: 12px; justify-content: center; margin-top: 12px; }
-.social-icon {
-    width: 36px;
-    height: 36px;
-    display: inline-block;
-    transition: transform 0.2s ease;
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 8px rgba(0,200,0,0.6); }
+    50% { transform: scale(1.1); box-shadow: 0 0 20px rgba(0,200,0,0.9); }
+    100% { transform: scale(1); box-shadow: 0 0 8px rgba(0,200,0,0.6); }
 }
-.social-icon:hover { transform: scale(1.15); }
-
-/* ===========================
-   FAMILY TREE / HISTORY MOCKUP
-=========================== */
-.family-tree { text-align: left; display: inline-block; margin: 1rem auto 0; font-size: 1rem; }
-.family-tree ul { list-style: none; margin-left: 0; padding-left: 18px; border-left: 2px solid rgba(255,255,255,0.18); }
-.family-tree li { margin: 10px 0; position: relative; padding-left: 12px; }
-.family-tree li::before { content: ''; position: absolute; left: -12px; top: 12px; width: 10px; height: 2px; background: rgba(255,255,255,0.18); }
-.drouaire-line .family-tree li { border-left-color: rgba(0,200,255,0.6); }
-.drouaire-line .family-tree li::before { background: rgba(0,200,255,0.6); }
-.mystery-note { font-style: italic; color: #c1eaff; margin-top: 0.75rem; }
 
 /* ===========================
    BUTTONS
@@ -320,11 +272,6 @@ body {
 .btn:hover { background: rgba(255,255,255,0.9); color: #000; transform: translateY(-3px); }
 
 /* ===========================
-   DIVIDER
-=========================== */
-.divider { height: 1px; width: 100%; background: rgba(255,255,255,0.08); margin: 2rem 0; border: 0; }
-
-/* ===========================
    RESPONSIVE / MOBILE
 =========================== */
 @media (max-width: 980px) {
@@ -339,6 +286,4 @@ body {
     .hero-world { min-height: 48vh; margin-top: 62px; }
     .section { margin: 90px 12px; padding: 1rem; }
     .gallery-grid { gap: 12px; }
-    .social-icon { width: 30px; height: 30px; }
-    .instagram-container { padding-bottom: 75%; } /* stack tall embeds on mobile */
 }
