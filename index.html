@@ -5,6 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mark Sky Voltaire | Artist</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Audio indicator styling */
+        #audioIndicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 1000;
+            font-size: 22px;
+            color: #000;
+            user-select: none;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* Playing state */
+        #audioIndicator.playing {
+            background: rgba(0, 200, 0, 0.8);
+            color: #fff;
+            animation: pulse 1s infinite;
+        }
+
+        /* Pulse animation */
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 8px rgba(0,200,0,0.6); }
+            50% { transform: scale(1.1); box-shadow: 0 0 20px rgba(0,200,0,0.9); }
+            100% { transform: scale(1); box-shadow: 0 0 8px rgba(0,200,0,0.6); }
+        }
+    </style>
 </head>
 <body class="home-bg">
 
@@ -13,12 +49,23 @@
 
     <!-- Hero Section -->
     <div class="hero-text fade-in">
-        <a href="enter.html" class="btn" style="padding: 1rem 2rem; font-size: 1.2rem; border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); color: white; text-decoration: none;">Enter My World</a>
+        <a href="enter.html" id="enterBtn" class="btn" style="padding: 1rem 2rem; font-size: 1.2rem; border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); color: white; text-decoration: none;">Enter My World</a>
     </div>
 
-    <!-- Fade-in Script -->
+    <!-- Audio Indicator -->
+    <div id="audioIndicator" title="Toggle music">🔇</div>
+
+    <!-- Background Audio -->
+    <audio id="pageAudio" loop muted>
+        <source src="assets/Copy of Bap.mp3" type="audio/mpeg">
+        <source src="assets/Copy of Bap.ogg" type="audio/ogg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Scripts -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // Fade-in elements
             const faders = document.querySelectorAll(".fade-in");
             const appearOptions = { threshold: 0.3, rootMargin: "0px 0px -50px 0px" };
             const appearOnScroll = new IntersectionObserver((entries, observer) => {
@@ -29,6 +76,55 @@
                 });
             }, appearOptions);
             faders.forEach(fader => appearOnScroll.observe(fader));
+
+            // Audio setup
+            const audio = document.getElementById("pageAudio");
+            let volume = 0;
+            audio.volume = volume;
+            audio.play().catch(() => {
+                console.log("Autoplay blocked, waiting for user interaction.");
+            });
+
+            const fadeInAudio = setInterval(() => {
+                if (volume < 0.5) { // target volume
+                    volume += 0.01;
+                    audio.volume = volume;
+                } else {
+                    clearInterval(fadeInAudio);
+                }
+            }, 100);
+
+            // Unmute & fade in audio when user clicks "Enter"
+            const enterBtn = document.getElementById("enterBtn");
+            enterBtn.addEventListener("click", function() {
+                audio.muted = false; // unmute
+                if (audio.paused) audio.play();
+                updateIndicator();
+            });
+
+            // Audio indicator toggle
+            const indicator = document.getElementById("audioIndicator");
+            function updateIndicator() {
+                if (audio.muted || audio.paused) {
+                    indicator.textContent = "🔇";
+                    indicator.classList.remove("playing");
+                } else {
+                    indicator.textContent = "🎵";
+                    indicator.classList.add("playing");
+                }
+            }
+            indicator.addEventListener("click", function() {
+                if (audio.muted || audio.paused) {
+                    audio.muted = false;
+                    audio.play();
+                } else {
+                    audio.muted = true;
+                }
+                updateIndicator();
+            });
+
+            // Initial indicator state
+            updateIndicator();
         });
     </script>
 
