@@ -10,14 +10,22 @@
 <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
 
 <style>
-    /* ===========================
-       INLINE PAGE FIXES
-    ============================ */
     body, html {
         height: auto;
         overflow-x: hidden;
         overflow-y: auto;
         scroll-behavior: smooth;
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.4);
+        z-index: 1;
+        pointer-events: none;
     }
 
     .hero-world {
@@ -38,13 +46,12 @@
         text-align: center;
         max-width: 1200px;
         margin: 0 auto;
+        min-height: 70vh;
     }
 
     .music-container { margin: 2rem auto; max-width: 700px; }
-
     .track-title { font-size: 1.1rem; margin-top: 0.5rem; color: #c1eaff; }
 
-    /* Audio Indicator */
     #audioIndicator {
         position: fixed;
         bottom: 20px;
@@ -75,7 +82,6 @@
         100% { transform: scale(1); box-shadow: 0 0 8px rgba(0,200,0,0.6); }
     }
 
-    /* Gallery Grid */
     .gallery-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -119,7 +125,6 @@
         box-shadow: 0 20px 40px rgba(0,0,0,0.7);
     }
 
-    /* Buttons */
     .btn {
         display: inline-block;
         margin-top: 1rem;
@@ -135,6 +140,40 @@
         background: rgba(255,255,255,0.9);
         color: #000;
         transform: scale(1.05);
+    }
+
+    /* Mailchimp embed fixes */
+    #mc_embed_signup {
+        background: rgba(0,0,0,0.6) !important;
+        color: #fff !important;
+        padding: 20px 30px;
+        border-radius: 20px;
+        max-width: 500px;
+        margin: 30px auto;
+    }
+    #mc_embed_signup h2 { color: #c1eaff !important; }
+    #mc_embed_signup label, #mc_embed_signup .asterisk { color: #fff !important; }
+    #mc_embed_signup input.email {
+        width: 100% !important;
+        padding: 10px !important;
+        border-radius: 8px !important;
+        border: none !important;
+        margin-top: 8px !important;
+    }
+    #mc_embed_signup input.button {
+        background: transparent !important;
+        border: 2px solid #fff !important;
+        color: #fff !important;
+        padding: 10px 20px !important;
+        border-radius: 30px !important;
+        text-transform: uppercase !important;
+        cursor: pointer !important;
+        transition: all .3s ease;
+    }
+    #mc_embed_signup input.button:hover {
+        background: rgba(255,255,255,0.9) !important;
+        color: #000 !important;
+        transform: scale(1.05) !important;
     }
 
 </style>
@@ -212,6 +251,45 @@
     </div>
 </section>
 
+<!-- History & Genealogy Section -->
+<section id="history" class="section fade-in">
+    <h2>History & Genealogy</h2>
+    <p>I Was Never “From” One Place. People always want a place. Where are you from?<br>
+       But my family doesn’t trace in straight lines. We web out — across Port-au-Prince, Paris, Guadeloupe, Brittany, and Naples.<br>
+       We show up in Ellis Island logs. In faded French censuses.</p>
+</section>
+
+<!-- About Section -->
+<section id="about" class="section about-section fade-in">
+    <h2>About Me</h2>
+    <p>Raised between Haiti, France, and Washington D.C., my music is fragments, frequencies, and storylines from the worlds I’ve been through...</p>
+</section>
+
+<!-- Contact & Subscribe Section -->
+<section id="contact" class="section contact-section fade-in">
+    <h2>Contact & Connect</h2>
+    <p>Email: mark@markskyvoltaire.com or markskyvoltaire@gmail.com</p>
+    <p>Or reach me via social links above!</p>
+
+    <!-- MAILCHIMP FORM EMBED -->
+    <div id="mc_embed_signup">
+        <form action="https://markskyvoltaire.us14.list-manage.com/subscribe/post?u=7eb7b436c405498be6f8164fc&amp;id=ba6249fcea&amp;f_id=00e9bbe5f0"
+              method="post" target="_blank" class="validate">
+            <h2>Subscribe Now!</h2>
+            <div class="mc-field-group">
+                <label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label>
+                <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required>
+            </div>
+            <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                <input type="text" name="b_7eb7b436c405498be6f8164fc_ba6249fcea" tabindex="-1" value="">
+            </div>
+            <div class="clear foot">
+                <input type="submit" name="subscribe" class="button" value="Subscribe">
+            </div>
+        </form>
+    </div>
+</section>
+
 <!-- Lightbox -->
 <div id="lightbox-overlay"><img src="" alt="Enlarged Image"></div>
 
@@ -272,5 +350,6 @@ document.addEventListener("DOMContentLoaded", function() {
     updateIndicator();
 });
 </script>
+
 </body>
 </html>
