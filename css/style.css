@@ -32,21 +32,21 @@ body.world-page {
     background-size: cover;
     background-position: center center;
     width: 100%;
-    height: 100vh;              /* CHANGED from min-height — prevents collapse */
+    min-height: 100vh;           /* REVERTED from height */
     background-repeat: no-repeat;
-    position: relative;         /* Ensures hero and sections position correctly */
+    position: relative;
 }
 
 /* FIXED BACKGROUND IMAGE STAY FULL */
 .world-page .world-bg {
-    background-attachment: scroll;  /* was fixed — caused collapse */
+    background-attachment: scroll;  /* leave as scroll for world-page */
 }
 
 /* =======================
    OVERLAY  (LOWER LAYER)
 ======================= */
 .overlay {
-    position: absolute;         /* CHANGED from fixed — avoids blocking the page */
+    position: fixed;              /* FIXED to keep background visible */
     inset: 0;
     background: rgba(0,0,0,0.35);
     z-index: 0;
@@ -88,7 +88,7 @@ body.world-page {
 /* =======================
    NAV BAR  (ONLY FOR WORLD PAGE)
 ======================= */
-body.world-page .world-nav {    /* SCOPED — avoids changing index page! */
+body.world-page .world-nav {    
     position: fixed;
     top: 20px;
     left: 50%;
