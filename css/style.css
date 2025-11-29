@@ -23,6 +23,18 @@ body {
 }
 
 /* ===========================
+   SAFE OVERLAY (NEW FIX)
+=========================== */
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1;             /* stays behind all content */
+    background: transparent;
+    pointer-events: none;   /* never block clicks OR visuals */
+    animation: bgFadeIn 1.5s ease forwards;
+}
+
+/* ===========================
    BACKGROUND SECTIONS WITH OVERLAY
 =========================== */
 .home-bg, .world-bg, .about-bg, .music-bg, .gallery-bg, .contact-bg,
@@ -65,6 +77,11 @@ body {
 .contact-section {
     position: relative;
     z-index: 2;
+}
+
+/* EXTRA INSURANCE – GALLERY SHOULD ALWAYS BE ABOVE OVERLAY */
+.gallery-section {
+    z-index: 3;
 }
 
 /* ===========================
