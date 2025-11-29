@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>Voltaire Family Tree</title>
 
-<!-- Balkan FamilyTree CSS & JS -->
 <link rel="stylesheet" href="https://balkan.app/js/familytree.css">
 <script src="https://balkan.app/js/familytree.js"></script>
 
@@ -24,77 +23,61 @@
 </style>
 </head>
 <body>
-
 <div id="tree"></div>
 
 <script>
 // ===========================
-//   CLEAN FIXED FAMILY DATA
+//   FAMILY TREE DATA
 // ===========================
 const nodes = [
-    // ==== YOU ====
     { id: "@I1@", name: "Mark Voltaire", gender: "male", fid: "@I2@", mid: "@I3@" },
 
-    // ==== PARENTS ====
     { id: "@I2@", name: "Karl Voltaire", gender: "male", fid: "@I7@", mid: "@I8@" },
     { id: "@I3@", name: "Claire Abgrall", gender: "female", fid: "@I5@", mid: "@I6@" },
 
-    // ==== YOUR BRO(s) ====
     { id: "@I4@", name: "Mikael Voltaire", gender: "male", fid: "@I2@", mid: "@I3@" },
 
-    // ==== CLAIRE'S PARENTS ====
     { id: "@I5@", name: "Jean Abgrall", gender: "male", fid: "@I27@", mid: "@I28@" },
     { id: "@I6@", name: "Monique Drouaire", gender: "female", fid: "@I17@", mid: "@I18@" },
 
-    // ==== KARL'S PARENTS ====
     { id: "@I7@", name: "Michel-Ange Voltaire", gender: "male", fid: "@I9@", mid: "@I10@" },
     { id: "@I8@", name: "Adrienne Anglade", gender: "female", fid: "@I13@", mid: "@I14@" },
 
-    // ==== MONIQUE'S PARENTS ====
     { id: "@I17@", name: "Julien Henry", gender: "male" },
     { id: "@I18@", name: "Olga Drouaire", gender: "female" },
 
-    // ==== ADRIENNE'S PARENTS ====
     { id: "@I13@", name: "Jean Baptiste Virgile Anglade", gender: "male" },
     { id: "@I14@", name: "Lucie Victor", gender: "female" },
 
-    // ==== MICHEL-ANGE'S PARENTS ====
     { id: "@I9@", name: "Luigi Schettini", gender: "male" },
     { id: "@I10@", name: "Laure Voltaire", gender: "female", fid: "@I11@", mid: "@I12@" },
 
-    // ==== LAURE'S PARENTS ====
     { id: "@I11@", name: "Gaston Louis Joseph Thomas Voltaire", gender: "male", mid: "@I41@" },
     { id: "@I12@", name: "Julia Charles", gender: "female" },
 
-    // ==== GASTON'S MOTHER ====
     { id: "@I41@", name: "Marie-Cephelie Voltaire", gender: "female", fid: "@I43@", mid: "@I42@" },
-
-    // ==== CEPHELIE'S PARENTS ====
     { id: "@I43@", name: "Louis Voltaire", gender: "male", mid: "@I45@" },
     { id: "@I42@", name: "Josephine Palmerie", gender: "female", mid: "@I139@" },
-
-    // ==== ROOT (Luce) ====
     { id: "@I45@", name: "Luce Voltaire", gender: "female" },
 
-    // ==== JOSEPHINE'S MOTHER ====
     { id: "@I139@", name: "Coralie Lazare", gender: "female" },
-
-    // ==== JEAN ABGRALL'S PARENTS ====
     { id: "@I27@", name: "Gustave Abgrall", gender: "male" },
     { id: "@I28@", name: "Francoise Le Roy", gender: "female" }
 ];
 
-
 // ===========================
-//   RENDER THE TREE
+//   RENDER TREE PROPERLY
 // ===========================
 new FamilyTree(document.getElementById("tree"), {
     nodes: nodes,
-    template: "hugo",         // you can try "john", "mila", "nancy", "tommy", etc.
+    root: "@I1@",                 // ← THIS FIXES THE EMPTY TREE
+    template: "hugo",
     enableSearch: true,
-    mouseScroll: FamilyTree.scroll.zoom,  // OR FamilyTree.scroll.pan
+    mouseScroll: FamilyTree.scroll.zoom,
+    nodeBinding: {
+        field_0: "name"           // ← SHOW NAMES ON BOXES
+    }
 });
 </script>
-
 </body>
 </html>
