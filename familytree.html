@@ -1,840 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Voltaire Family Tree</title>
-    <!-- Official Balkan FamilyTreeJS CDN -->
-    <link rel="stylesheet" href="https://balkan.app/js/familytree.css">
-    <script src="https://balkan.app/js/familytree.js"></script>
-    <style>
-        /* Fullscreen tree container */
-        #tree {
-            width: 100%;
-            height: 100vh;
-            background-color: #fdf3d9;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Voltaire Family Tree</title>
+<link rel="stylesheet" href="https://balkan.app/js/familytree.css">
+<script src="https://balkan.app/js/familytree.js"></script>
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fdf3d9;
+    }
+    #tree {
+        width: 100%;
+        height: 100%;
+    }
+</style>
 </head>
 <body>
-    <div id="tree"></div>
+<div id="tree"></div>
 
-    <script>
-    // ===== Voltaire Family Tree JS (embedded) =====
-    const data = [
-    {
-        "id": "@I1@",
-        "name": "Mark Voltaire",
-        "sex": "M",
-        "birth": "30 JAN 1975",
-        "death": null,
-        "parents": [Karl Voltaire, Claire Abgrall],
-        "children": []
-    },
-    {
-        "id": "@I2@",
-        "name": "Karl Voltaire",
-        "sex": "M",
-        "birth": "1950",
-        "death": null,
-        "parents": [Michel Ange Voltaire, Adrienne Anglade],
-        "children": [Karl Voltaire]
-    },
-    {
-        "id": "@I3@",
-        "name": "Claire Abgrall",
-        "sex": "F",
-        "birth": "1949",
-        "death": null,
-        "parents": [Jean Abgrall, Monique Drouaire],
-        "children": [Clare Abgrall]
-    },
-    {
-        "id": "@I4@",
-        "name": "Mikael Voltaire",
-        "sex": "M",
-        "birth": "",
-        "death": null,
-        "parents": [Karl Voltaire, Claire Abgrall],
-        "children": []
-    },
-    {
-        "id": "@I5@",
-        "name": "Jean Abgrall",
-        "sex": "M",
-        "birth": "3 NOV 1923",
-        "death": "6 JUN 2013",
-        "parents": [],
-        "children": [Claire Voltaire]
-    },
-    {
-        "id": "@I6@",
-        "name": "Monique Drouaire",
-        "sex": "F",
-        "birth": "16 OCT 1929",
-        "death": null,
-        "parents": [],
-        "children": [Claire Voltaire]
-    },
-    {
-        "id": "@I7@",
-        "name": "Michel-Ange Voltaire",
-        "sex": "M",
-        "birth": "29 SEP 1919",
-        "death": "29 JAN 2005",
-        "parents": [],
-        "children": [Karl Voltaire]
-    },
-    {
-        "id": "@I8@",
-        "name": "Adrienne Anglade",
-        "sex": "F",
-        "birth": "23 NOV 1920",
-        "death": null,
-        "parents": [],
-        "children": [Karl Voltaire]
-    },
-    {
-        "id": "@I9@",
-        "name": "Luigi Schettini",
-        "sex": "M",
-        "birth": "1893",
-        "death": "1952",
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I10@",
-        "name": "Laure Voltaire",
-        "sex": "F",
-        "birth": "1897",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I11@",
-        "name": "Gaston Louis Joseph Thomas Voltaire",
-        "sex": "M",
-        "birth": "26 DEC 1865",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I12@",
-        "name": "Julia Charles",
-        "sex": "F",
-        "birth": "3 OCT 1879",
-        "death": "1960",
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I13@",
-        "name": "Marc-Virgile Anglade",
-        "sex": "M",
-        "birth": null,
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I14@",
-        "name": "Lucie Victor",
-        "sex": "F",
-        "birth": "1898",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I15@",
-        "name": "Albert Victor",
-        "sex": "M",
-        "birth": "19 NOV 1854",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I16@",
-        "name": "Viltelie Cipre",
-        "sex": "F",
-        "birth": null,
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I17@",
-        "name": "Julien Henry",
-        "sex": "M",
-        "birth": "11 SEP 1895",
-        "death": "8 MAY 1982",
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I18@",
-        "name": "Olga Drouaire",
-        "sex": "F",
-        "birth": "23 APR 1899",
-        "death": "25 JUN 1945",
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I41@",
-        "name": "Marie-Cephelie Voltaire",
-        "sex": "F",
-        "birth": "1842",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I42@",
-        "name": "Josephine Palmerie",
-        "sex": "F",
-        "birth": "1819",
-        "death": "4 DEC 1865",
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I43@",
-        "name": "Louis Voltaire",
-        "sex": "M",
-        "birth": "1821",
-        "death": "23 JUL 1896",
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I45@",
-        "name": "Luce Voltaire",
-        "sex": "F",
-        "birth": "1802",
-        "death": "30 MAY 1873",
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I46@",
-        "name": "Helen Lucy Voltaire",
-        "sex": "F",
-        "birth": "18 AUG 1850",
-        "death": "4 DEC 1865",
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I47@",
-        "name": "Sylvestre Emmanuel Voltaire",
-        "sex": "M",
-        "birth": "31 DEC 1852",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I48@",
-        "name": "Colombe Louisa Voltaire",
-        "sex": "F",
-        "birth": "30 DEC 1854",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I49@",
-        "name": "St. Beauve Pierrevile Voltaire",
-        "sex": "M",
-        "birth": "24 APR 1857",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I50@",
-        "name": "Cecile Clemence Youdel",
-        "sex": "F",
-        "birth": "1857",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I51@",
-        "name": "Marie Edouard Seraphim Clement Voltaire",
-        "sex": "M",
-        "birth": "1899",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I52@",
-        "name": "Pierre Francois Emmanuelle Victor Voltaire",
-        "sex": "M",
-        "birth": "1868",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I53@",
-        "name": "Marie-Josephine Domitille Leonce Voltaire",
-        "sex": "F",
-        "birth": "12 AUG 1864",
-        "death": "9 DEC 1921",
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I55@",
-        "name": "Gerardo Voltaire",
-        "sex": "M",
-        "birth": "NOV 1917",
-        "death": "OCT 1988",
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I56@",
-        "name": "Louise Anne Voltaire",
-        "sex": "F",
-        "birth": null,
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I57@",
-        "name": "Ghislaine Voltaire",
-        "sex": "F",
-        "birth": "21 NOV 1941",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I58@",
-        "name": "Carmen Voltaire",
-        "sex": "F",
-        "birth": null,
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I59@",
-        "name": "Micheline Voltaire",
-        "sex": "F",
-        "birth": null,
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I60@",
-        "name": "Freud Marx Voltaire",
-        "sex": "M",
-        "birth": "2 FEB 1948",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I61@",
-        "name": "Kareen Voltaire",
-        "sex": "F",
-        "birth": null,
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I62@",
-        "name": "Joseph Le Roy",
-        "sex": "M",
-        "birth": "11 NOV 1890",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I63@",
-        "name": "Jean Le Roy",
-        "sex": "M",
-        "birth": "18 FEB 1892",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I64@",
-        "name": "Francois Le Roy",
-        "sex": "M",
-        "birth": "23 JUN 1896",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I65@",
-        "name": "Jeanne Le Roy",
-        "sex": "F",
-        "birth": "7 NOV 1899",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I66@",
-        "name": "Joseph Le Roy",
-        "sex": "M",
-        "birth": "7 NOV 1899",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I67@",
-        "name": "Jean-Paul Le Roy",
-        "sex": "M",
-        "birth": "2 NOV 1902",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I68@",
-        "name": "Martine Abgrall",
-        "sex": "F",
-        "birth": "4 MAR 1952",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I69@",
-        "name": "Chantal Abgrall",
-        "sex": "F",
-        "birth": "14 OCT 1953",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I70@",
-        "name": "Leslie Voltaire",
-        "sex": "M",
-        "birth": "11 JUL 1949",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I71@",
-        "name": "Frantz Voltaire",
-        "sex": "M",
-        "birth": "22 MAY 1948",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I72@",
-        "name": "Michele Voltaire",
-        "sex": "F",
-        "birth": "4 DEC 1955",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I73@",
-        "name": "Peggy Voltaire",
-        "sex": "F",
-        "birth": "27 APR 1947",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I74@",
-        "name": "Isabelle Voltaire",
-        "sex": "F",
-        "birth": null,
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I75@",
-        "name": "Erick Voltaire",
-        "sex": "M",
-        "birth": "24 SEP 1945",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I76@",
-        "name": "Erica Voltaire",
-        "sex": "F",
-        "birth": "8 OCT 1974",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I77@",
-        "name": "Sonie Gue",
-        "sex": "F",
-        "birth": "5 SEP 1956",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I78@",
-        "name": "Sacha Voltaire",
-        "sex": "F",
-        "birth": "7 SEP 1984",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I79@",
-        "name": "Tessa Voltaire",
-        "sex": "F",
-        "birth": "14 JUN 1982",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I80@",
-        "name": "Jason Guillou",
-        "sex": "M",
-        "birth": null,
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I81@",
-        "name": "Mario Guillou",
-        "sex": "M",
-        "birth": null,
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I82@",
-        "name": "Chris Guillou",
-        "sex": "M",
-        "birth": null,
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I83@",
-        "name": "Alie Guillou",
-        "sex": "F",
-        "birth": null,
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I84@",
-        "name": "Michael Guillou",
-        "sex": "M",
-        "birth": null,
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I85@",
-        "name": "Mario Jr. Guillou",
-        "sex": "M",
-        "birth": null,
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I86@",
-        "name": "Krysian Fabien Voltaire",
-        "sex": "M",
-        "birth": "29 MAY 1984",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I87@",
-        "name": "Marie Carolle Roy Voltaire",
-        "sex": "F",
-        "birth": "15 JUL 1954",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I88@",
-        "name": "Luigi Voltaire",
-        "sex": "M",
-        "birth": "13 MAR 1992",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I89@",
-        "name": "Chloe Voltaire",
-        "sex": "F",
-        "birth": "27 MAY 1994",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I90@",
-        "name": "Jane Charles-Voltaire",
-        "sex": "F",
-        "birth": "27 FEB 1985",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I91@",
-        "name": "Carolle Charles",
-        "sex": "F",
-        "birth": "11 APR 1949",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I92@",
-        "name": "Jessika Gilles-Voltaire",
-        "sex": "F",
-        "birth": "6 DEC 1981",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I93@",
-        "name": "Rollande Gilles",
-        "sex": "F",
-        "birth": "6 JUN 1944",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I94@",
-        "name": "Leo Coltrane Marcelin",
-        "sex": "M",
-        "birth": "18 APR 1978",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I95@",
-        "name": "Ernst Crepsac Marcelin",
-        "sex": "M",
-        "birth": null,
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I96@",
-        "name": "Rosa Henriette Drouaire",
-        "sex": "F",
-        "birth": "29 DEC 1896",
-        "death": "6 JUL 1944",
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I97@",
-        "name": "Odile Drouaire",
-        "sex": "F",
-        "birth": null,
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I98@",
-        "name": "Henri Emile Drouaire",
-        "sex": "M",
-        "birth": "6 MAR 1932",
-        "death": "7 AUG 1989",
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I99@",
-        "name": "Helene Le Roy",
-        "sex": "F",
-        "birth": null,
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I100@",
-        "name": "Jeanne Perrot",
-        "sex": "F",
-        "birth": null,
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I101@",
-        "name": "Yves Marie Abiven",
-        "sex": "M",
-        "birth": "4 JUL 1816",
-        "death": "19 FEB 1857",
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I102@",
-        "name": "Mari-Perrine Julienne Le Vern",
-        "sex": "F",
-        "birth": "827",
-        "death": "15 FEB 1893",
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I103@",
-        "name": "Marc Abgrall",
-        "sex": "M",
-        "birth": "20 APR 1810",
-        "death": "20 JUL 1858",
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I104@",
-        "name": "Marie-Francoise Helene Picart",
-        "sex": "F",
-        "birth": "27 OCT 1824",
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I105@",
-        "name": "Herve Abgrall",
-        "sex": "M",
-        "birth": "1772",
-        "death": "11 FEB 1837",
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I106@",
-        "name": "Marguerite Hily",
-        "sex": "F",
-        "birth": null,
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I107@",
-        "name": "Alain Picart",
-        "sex": "M",
-        "birth": null,
-        "death": null,
-        "parents": [],
-        "children": []
-    },
-    {
-        "id": "@I694@",
-        "name": "Marie Gustaline Dite Nanine Voltaire",
-        "sex": "F",
-        "birth": "1825",
-        "death": "6 DEC 1865",
-        "parents": [],
-        "children": []
-    }
+<script>
+const data = [
+    { id: "@I1@", name: "Mark Voltaire", sex: "M", parents: ["@I2@", "@I3@"] },
+    { id: "@I2@", name: "Karl Voltaire", sex: "M", parents: ["@I7@", "@I8@"] },
+    { id: "@I3@", name: "Claire Abgrall", sex: "F", parents: ["@I5@", "@I6@"] },
+    { id: "@I4@", name: "Mikael Voltaire", sex: "M", parents: ["@I2@", "@I3@"] },
+    { id: "@I5@", name: "Jean Abgrall", sex: "M" },
+    { id: "@I6@", name: "Monique Drouaire", sex: "F" },
+    { id: "@I7@", name: "Michel-Ange Voltaire", sex: "M" },
+    { id: "@I8@", name: "Adrienne Anglade", sex: "F" }
 ];
 
-    const nodes = [];
-    const marriages = [];
-    const personMap = {};
+// Prepare nodes and marriages
+const nodes = [];
+const marriages = [];
+const personMap = {};
 
-    // Map each person
-    data.forEach(person => {
-        personMap[person.id] = {
-            id: person.id,
-            name: person.name,
-            gender: person.sex === "M" ? "male" : "female"
-        };
-    });
+// Map persons
+data.forEach(p => {
+    personMap[p.id] = {
+        id: p.id,
+        name: p.name,
+        gender: p.sex === "M" ? "male" : "female"
+    };
+});
 
-    // Create nodes and marriages
-    data.forEach(person => {
-        if (person.parents.length > 0) {
-            const parentsIds = person.parents.filter(p => personMap[p]);
-            if (parentsIds.length === 1) {
-                nodes.push({
-                    id: person.id,
-                    name: person.name,
-                    gender: person.sex === "M" ? "male" : "female",
-                    pid: parentsIds[0]
-                });
-            } else if (parentsIds.length === 2) {
-                const marriageId = `${parentsIds[0]}_${parentsIds[1]}_marriage`;
-                let marriage = marriages.find(m => m.id === marriageId);
-                if (!marriage) {
-                    marriages.push({
-                        id: marriageId,
-                        spouses: parentsIds,
-                        children: [person.id]
-                    });
-                } else {
-                    marriage.children.push(person.id);
-                }
-            }
-        } else {
-            nodes.push({
-                id: person.id,
-                name: person.name,
-                gender: person.sex === "M" ? "male" : "female"
+// Create nodes and marriages
+data.forEach(p => {
+    if (p.parents && p.parents.length === 2) {
+        const marriageId = `${p.parents[0]}_${p.parents[1]}_marriage`;
+        let marriage = marriages.find(m => m.id === marriageId);
+        if (!marriage) {
+            marriages.push({
+                id: marriageId,
+                spouses: p.parents,
+                children: [p.id]
             });
+        } else {
+            marriage.children.push(p.id);
         }
-    });
+    } else if (p.parents && p.parents.length === 1) {
+        nodes.push({
+            id: p.id,
+            name: p.name,
+            gender: p.sex === "M" ? "male" : "female",
+            pid: p.parents[0]
+        });
+    } else {
+        nodes.push({
+            id: p.id,
+            name: p.name,
+            gender: p.sex === "M" ? "male" : "female"
+        });
+    }
+});
 
-    // Initialize the FamilyTreeJS chart
-    const chart = new FamilyTree(document.getElementById('tree'), {
-        nodes: nodes,
-        marriages: marriages,
-        template: "hugo",
-        enableSearch: true,
-        mouseScroll: FamilyTree.scroll.scroll
-    });
+// Initialize chart
+new FamilyTree(document.getElementById('tree'), {
+    nodes: nodes,
+    marriages: marriages,
+    template: "hugo",
+    enableSearch: true,
+    mouseScroll: FamilyTree.scroll.scroll
+});
 
-    console.log("Family tree loaded successfully");
-    </script>
+console.log("Family tree loaded successfully");
+</script>
 </body>
 </html>
