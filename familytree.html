@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Voltaire Family Tree</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- IMPORTANT -->
+
+<!-- Balkan FamilyTree CSS & JS -->
 <link rel="stylesheet" href="https://balkan.app/js/familytree.css">
 <script src="https://balkan.app/js/familytree.js"></script>
 
@@ -14,6 +15,7 @@
         width: 100%;
         height: 100%;
         background-color: #fdf3d9;
+        font-family: Arial, sans-serif;
     }
     #tree {
         width: 100%;
@@ -22,119 +24,75 @@
 </style>
 </head>
 <body>
+
 <div id="tree"></div>
 
 <script>
-const data = [
-    // ===== ORIGINAL ENTRIES =====
-    { id: "@I1@", name: "Mark Voltaire", sex: "M", parents: ["@I2@", "@I3@"] },
-    { id: "@I2@", name: "Karl Voltaire", sex: "M", parents: ["@I7@", "@I8@"] },
-    { id: "@I3@", name: "Claire Abgrall", sex: "F", parents: ["@I5@", "@I6@"] },
-    { id: "@I4@", name: "Mikael Voltaire", sex: "M", parents: ["@I2@", "@I3@"] },
+// ===========================
+//   CLEAN FIXED FAMILY DATA
+// ===========================
+const nodes = [
+    // ==== YOU ====
+    { id: "@I1@", name: "Mark Voltaire", gender: "male", fid: "@I2@", mid: "@I3@" },
 
-    // ===== Jean Abgrall (fixed) =====
-    { id: "@I5@", name: "Jean Abgrall", sex: "M", parents: ["@I27@", "@I28@"] },
+    // ==== PARENTS ====
+    { id: "@I2@", name: "Karl Voltaire", gender: "male", fid: "@I7@", mid: "@I8@" },
+    { id: "@I3@", name: "Claire Abgrall", gender: "female", fid: "@I5@", mid: "@I6@" },
 
-    // ===== Monique (@I6@) =====
-    { id: "@I6@", name: "Monique Drouaire", sex: "F", parents: ["@I17@", "@I18@"] },
+    // ==== YOUR BRO(s) ====
+    { id: "@I4@", name: "Mikael Voltaire", gender: "male", fid: "@I2@", mid: "@I3@" },
 
-    // ===== Michel-Ange (@I7@) =====
-    { id: "@I7@", name: "Michel-Ange Voltaire", sex: "M", parents: ["@I9@", "@I10@"] },
+    // ==== CLAIRE'S PARENTS ====
+    { id: "@I5@", name: "Jean Abgrall", gender: "male", fid: "@I27@", mid: "@I28@" },
+    { id: "@I6@", name: "Monique Drouaire", gender: "female", fid: "@I17@", mid: "@I18@" },
 
-    // ===== Adrienne (@I8@) =====
-    { id: "@I8@", name: "Adrienne Anglade", sex: "F", parents: ["@I13@", "@I14@"] },
+    // ==== KARL'S PARENTS ====
+    { id: "@I7@", name: "Michel-Ange Voltaire", gender: "male", fid: "@I9@", mid: "@I10@" },
+    { id: "@I8@", name: "Adrienne Anglade", gender: "female", fid: "@I13@", mid: "@I14@" },
 
+    // ==== MONIQUE'S PARENTS ====
+    { id: "@I17@", name: "Julien Henry", gender: "male" },
+    { id: "@I18@", name: "Olga Drouaire", gender: "female" },
 
-    // ===== PARENTS OF MONIQUE =====
-    { id: "@I17@", name: "Julien Henry", sex: "M" },
-    { id: "@I18@", name: "Olga Drouaire", sex: "F" },
+    // ==== ADRIENNE'S PARENTS ====
+    { id: "@I13@", name: "Jean Baptiste Virgile Anglade", gender: "male" },
+    { id: "@I14@", name: "Lucie Victor", gender: "female" },
 
-    // ===== PARENTS OF ADRIENNE =====
-    { id: "@I13@", name: "Jean Baptiste Virgile Anglade", sex: "M" },
-    { id: "@I14@", name: "Lucie Victor", sex: "F" },
+    // ==== MICHEL-ANGE'S PARENTS ====
+    { id: "@I9@", name: "Luigi Schettini", gender: "male" },
+    { id: "@I10@", name: "Laure Voltaire", gender: "female", fid: "@I11@", mid: "@I12@" },
 
-    // ===== PARENTS OF MICHEL-ANGE =====
-    { id: "@I9@", name: "Luigi Schettini", sex: "M" },
-    { id: "@I10@", name: "Laure Voltaire", sex: "F", parents: ["@I11@", "@I12@"] },
+    // ==== LAURE'S PARENTS ====
+    { id: "@I11@", name: "Gaston Louis Joseph Thomas Voltaire", gender: "male", mid: "@I41@" },
+    { id: "@I12@", name: "Julia Charles", gender: "female" },
 
-    // ===== PARENTS OF LAURE =====
-    { id: "@I11@", name: "Gaston Louis Joseph Thomas Voltaire", sex: "M", parents: ["@U1@", "@I41@"] },
-    { id: "@I12@", name: "Julia Charles", sex: "F" },
+    // ==== GASTON'S MOTHER ====
+    { id: "@I41@", name: "Marie-Cephelie Voltaire", gender: "female", fid: "@I43@", mid: "@I42@" },
 
+    // ==== CEPHELIE'S PARENTS ====
+    { id: "@I43@", name: "Louis Voltaire", gender: "male", mid: "@I45@" },
+    { id: "@I42@", name: "Josephine Palmerie", gender: "female", mid: "@I139@" },
 
-    // ===== MISSING FATHERS (PREVENT ERRORS) =====
-    { id: "@U1@", name: "Unknown Voltaire Father", sex: "M" },  // Gaston's father
-    { id: "@U2@", name: "Unknown Louis Father", sex: "M" },      // Louis's father
-    { id: "@U3@", name: "Unknown Palmerie Father", sex: "M" },   // Josephine's father
+    // ==== ROOT (Luce) ====
+    { id: "@I45@", name: "Luce Voltaire", gender: "female" },
 
+    // ==== JOSEPHINE'S MOTHER ====
+    { id: "@I139@", name: "Coralie Lazare", gender: "female" },
 
-    // ===== GASTON'S MOTHER =====
-    { id: "@I41@", name: "Marie-Cephelie Voltaire", sex: "F", parents: ["@I43@", "@I42@"] },
-
-    // ===== PARENTS OF MARIE-CEPHELIE =====
-    { id: "@I43@", name: "Louis Voltaire", sex: "M", parents: ["@U2@", "@I45@"] },
-    { id: "@I42@", name: "Josephine Palmerie", sex: "F", parents: ["@U3@", "@I139@"] },
-
-    // ===== EARLIEST KNOWN WOMEN =====
-    { id: "@I45@", name: "Luce Voltaire", sex: "F" },
-    { id: "@I139@", name: "Coralie Lazare", sex: "F" },
-
-    // ===== JEAN ABGRALL’S PARENTS =====
-    { id: "@I27@", name: "Gustave Abgrall", sex: "M" },
-    { id: "@I28@", name: "Francoise Le Roy", sex: "F" }
+    // ==== JEAN ABGRALL'S PARENTS ====
+    { id: "@I27@", name: "Gustave Abgrall", gender: "male" },
+    { id: "@I28@", name: "Francoise Le Roy", gender: "female" }
 ];
 
 
-// --------------------- PROCESS DATA ---------------------
-const nodes = [];
-const marriages = [];
-const personMap = {};
-
-data.forEach(p => {
-    personMap[p.id] = {
-        id: p.id,
-        name: p.name,
-        gender: p.sex === "M" ? "male" : "female"
-    };
-});
-
-data.forEach(p => {
-    if (p.parents && p.parents.length === 2) {
-        const marriageId = `${p.parents[0]}_${p.parents[1]}_marriage`;
-        let marriage = marriages.find(m => m.id === marriageId);
-        if (!marriage) {
-            marriages.push({
-                id: marriageId,
-                spouses: p.parents,
-                children: [p.id]
-            });
-        } else {
-            marriage.children.push(p.id);
-        }
-    } else if (p.parents && p.parents.length === 1) {
-        nodes.push({
-            id: p.id,
-            name: p.name,
-            gender: p.sex === "M" ? "male" : "female",
-            pid: p.parents[0]
-        });
-    } else {
-        nodes.push({
-            id: p.id,
-            name: p.name,
-            gender: p.sex === "M" ? "male" : "female"
-        });
-    }
-});
-
-
-// --------------------- RENDER TREE ---------------------
-new FamilyTree(document.getElementById('tree'), {
+// ===========================
+//   RENDER THE TREE
+// ===========================
+new FamilyTree(document.getElementById("tree"), {
     nodes: nodes,
-    marriages: marriages,
-    template: "hugo",
+    template: "hugo",         // you can try "john", "mila", "nancy", "tommy", etc.
     enableSearch: true,
-    mouseScroll: FamilyTree.scroll.scroll
+    mouseScroll: FamilyTree.scroll.zoom,  // OR FamilyTree.scroll.pan
 });
 </script>
 
