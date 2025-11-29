@@ -3,90 +3,158 @@
 <head>
 <meta charset="UTF-8">
 <title>Voltaire Family Tree</title>
+
 <link rel="stylesheet" href="https://balkan.app/js/familytree.css">
 <script src="https://balkan.app/js/familytree.js"></script>
+
 <style>
-    body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #fdf3d9; font-family: Arial,sans-serif; }
-    #tree { width: 100%; height: 100%; }
+    body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fdf3d9;
+        font-family: Arial, sans-serif;
+    }
+    #tree {
+        width: 100%;
+        height: 100%;
+    }
+    .male {
+        background-color: #4A90E2;
+        color: white;
+    }
+    .female {
+        background-color: #E91E63;
+        color: white;
+    }
+    .unknown {
+        background-color: #9E9E9E;
+        color: white;
+    }
+    .deceased {
+        opacity: 0.5;
+    }
 </style>
 </head>
 <body>
 <div id="tree"></div>
 
 <script>
-// ===== NODES FROM YOUR DATA =====
+// ===== FULL FAMILY TREE DATA =====
 const nodes = [
-    { id: "@I1@", name: "Mark Voltaire", gender: "male", fid: "@I2@", mid: "@I3@" },
-    { id: "@I4@", name: "Mikael Voltaire", gender: "male", fid: "@I2@", mid: "@I3@" },
-    { id: "@I2@", name: "Karl Voltaire", gender: "male", fid: "@I7@", mid: "@I8@" },
-    { id: "@I3@", name: "Claire Abgrall", gender: "female", fid: "@I5@", mid: "@I6@" },
-    { id: "@I5@", name: "Jean Abgrall", gender: "male", fid: "@I27@", mid: "@I28@" },
-    { id: "@I6@", name: "Monique Drouaire", gender: "female", fid: "@I17@", mid: "@I18@" },
-    { id: "@I7@", name: "Michel-Ange Voltaire", gender: "male", fid: "@I9@", mid: "@I10@" },
-    { id: "@I8@", name: "Adrienne Anglade", gender: "female", fid: "@I13@", mid: "@I14@" },
-    { id: "@I17@", name: "Julien Henry", gender: "male" },
-    { id: "@I18@", name: "Olga Drouaire", gender: "female" },
-    { id: "@I13@", name: "Jean Baptiste Virgile Anglade", gender: "male" },
-    { id: "@I14@", name: "Lucie Victor", gender: "female" },
-    { id: "@I9@", name: "Luigi Schettini", gender: "male" },
-    { id: "@I10@", name: "Laure Voltaire", gender: "female", fid: "@I11@", mid: "@I12@" },
-    { id: "@I11@", name: "Gaston Louis Joseph Thomas Voltaire", gender: "male", mid: "@I41@" },
-    { id: "@I12@", name: "Julia Charles", gender: "female" },
-    { id: "@I41@", name: "Marie-Cephelie Voltaire", gender: "female", fid: "@I43@", mid: "@I42@" },
-    { id: "@I43@", name: "Louis Voltaire", gender: "male", mid: "@I45@" },
-    { id: "@I42@", name: "Josephine Palmerie", gender: "female", mid: "@I139@" },
-    { id: "@I45@", name: "Luce Voltaire", gender: "female" },
-    { id: "@I139@", name: "Coralie Lazare", gender: "female" },
-    { id: "@I27@", name: "Gustave Abgrall", gender: "male" },
-    { id: "@I28@", name: "Francoise Le Roy", gender: "female" }
+    { id: "@I1@", name: "Mark Voltaire", gender: "male", fid: "@I2@", mid: "@I3@", birth: "30 JAN 1975", death: "", pob: "Unknown", pod: "" },
+    { id: "@I4@", name: "Mikael Voltaire", gender: "male", fid: "@I2@", mid: "@I3@", birth: "", death: "", pob: "", pod: "" },
+
+    { id: "@I2@", name: "Karl Voltaire", gender: "male", fid: "@I7@", mid: "@I8@", birth: "", death: "", pob: "", pod: "" },
+    { id: "@I3@", name: "Claire Abgrall", gender: "female", fid: "@I5@", mid: "@I6@", birth: "", death: "", pob: "", pod: "" },
+
+    { id: "@I5@", name: "Jean Abgrall", gender: "male", fid: "@I27@", mid: "@I28@", birth: "", death: "", pob: "", pod: "" },
+    { id: "@I6@", name: "Monique Drouaire", gender: "female", fid: "@I17@", mid: "@I18@", birth: "", death: "", pob: "", pod: "" },
+
+    { id: "@I7@", name: "Michel-Ange Voltaire", gender: "male", fid: "@I9@", mid: "@I10@", birth: "", death: "", pob: "", pod: "" },
+    { id: "@I8@", name: "Adrienne Anglade", gender: "female", fid: "@I13@", mid: "@I14@", birth: "", death: "", pob: "", pod: "" },
+
+    { id: "@I17@", name: "Julien Henry", gender: "male", birth: "", death: "", pob: "", pod: "" },
+    { id: "@I18@", name: "Olga Drouaire", gender: "female", birth: "", death: "", pob: "", pod: "" },
+
+    { id: "@I13@", name: "Jean Baptiste Virgile Anglade", gender: "male", birth: "", death: "", pob: "", pod: "" },
+    { id: "@I14@", name: "Lucie Victor", gender: "female", birth: "", death: "", pob: "", pod: "" },
+
+    { id: "@I9@", name: "Luigi Schettini", gender: "male", birth: "", death: "", pob: "", pod: "" },
+    { id: "@I10@", name: "Laure Voltaire", gender: "female", fid: "@I11@", mid: "@I12@", birth: "", death: "", pob: "", pod: "" },
+
+    { id: "@I11@", name: "Gaston Louis Joseph Thomas Voltaire", gender: "male", mid: "@I41@", birth: "", death: "", pob: "", pod: "" },
+    { id: "@I12@", name: "Julia Charles", gender: "female", birth: "", death: "", pob: "", pod: "" },
+
+    { id: "@I41@", name: "Marie-Cephelie Voltaire", gender: "female", fid: "@I43@", mid: "@I42@", birth: "", death: "", pob: "", pod: "" },
+    { id: "@I43@", name: "Louis Voltaire", gender: "male", mid: "@I45@", birth: "", death: "", pob: "", pod: "" },
+    { id: "@I42@", name: "Josephine Palmerie", gender: "female", fid: "@UNKNOWN1@", mid: "@I139@", birth: "", death: "", pob: "", pod: "" },
+    { id: "@I45@", name: "Luce Voltaire", gender: "female", birth: "", death: "", pob: "", pod: "" },
+
+    { id: "@I139@", name: "Coralie Lazare", gender: "female", birth: "", death: "", pob: "", pod: "" },
+    { id: "@I27@", name: "Gustave Abgrall", gender: "male", birth: "", death: "", pob: "", pod: "" },
+    { id: "@I28@", name: "Francoise Le Roy", gender: "female", birth: "", death: "", pob: "", pod: "" },
+
+    { id: "@UNKNOWN1@", name: "Unknown Father", gender: "male", birth: "", death: "", pob: "", pod: "" }
 ];
 
-// ===== BUILD NODES AND MARRIAGES =====
+// ===== BUILD FT NODES & MARRIAGES =====
 const ftNodes = [];
 const ftMarriages = [];
 const personMap = {};
 
-nodes.forEach(p => {
-    personMap[p.id] = p;
-    ftNodes.push({ id: p.id, name: p.name, gender: p.gender });
-});
+nodes.forEach(p => personMap[p.id] = p);
 
 nodes.forEach(p => {
     const parents = [];
-    if(p.fid) parents.push(p.fid);
-    if(p.mid) parents.push(p.mid);
+    if (p.fid) parents.push(p.fid);
+    if (p.mid) parents.push(p.mid);
 
-    if(parents.length === 2){
+    if (parents.length === 2) {
         const marriageId = `${parents[0]}_${parents[1]}_marriage`;
-        let marriage = ftMarriages.find(m=>m.id===marriageId);
-        if(!marriage){
-            marriage = { id: marriageId, spouses: parents, children: [] };
-            ftMarriages.push(marriage);
+        let marriage = ftMarriages.find(m => m.id === marriageId);
+        if (!marriage) {
+            ftMarriages.push({
+                id: marriageId,
+                spouses: parents,
+                children: [p.id]
+            });
+        } else {
+            marriage.children.push(p.id);
         }
-        marriage.children.push(p.id);
+    } else if (parents.length === 1) {
+        ftNodes.push({
+            id: p.id,
+            name: p.name,
+            gender: p.gender,
+            pid: parents[0]
+        });
+    } else {
+        ftNodes.push({
+            id: p.id,
+            name: p.name,
+            gender: p.gender
+        });
     }
 });
 
 // ===== INIT FAMILY TREE =====
-new FamilyTree(document.getElementById("tree"), {
+const chart = new FamilyTree(document.getElementById("tree"), {
     nodes: ftNodes,
     marriages: ftMarriages,
-    root: "@I1@",
     template: "hugo",
+    root: "@I1@",
     enableSearch: true,
     mouseScroll: FamilyTree.scroll.zoom,
-    nodeBinding: { field_0: "name" },
+    nodeBinding: {
+        field_0: "name"
+    },
     nodeMenu: {
         details: {
             text: "View Details",
-            onClick: id => {
-                const p = personMap[id];
-                if(!p) return;
-                alert(`Name: ${p.name}\nGender: ${p.gender}`);
-            }
+            onClick: showDetails
         }
     }
 });
+
+// ===== POPUP FUNCTION =====
+function showDetails(nodeId) {
+    const p = personMap[nodeId];
+    if (!p) return;
+    alert(
+        `Name: ${p.name}\n` +
+        `Gender: ${p.gender}\n` +
+        `Birth: ${p.birth || "Unknown"}\n` +
+        `Death: ${p.death || "Unknown"}\n` +
+        `Place of Birth: ${p.pob || "Unknown"}\n` +
+        `Place of Death: ${p.pod || "Unknown"}\n` +
+        `Father ID: ${p.fid || "Unknown"}\n` +
+        `Mother ID: ${p.mid || "Unknown"}`
+    );
+}
+
+console.log("Family tree loaded successfully");
 </script>
 </body>
 </html>
