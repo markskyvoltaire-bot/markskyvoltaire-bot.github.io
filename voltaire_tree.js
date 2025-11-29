@@ -1,111 +1,83 @@
-// ===== Voltaire Family Tree JS =====
+// ===== Voltaire Family Tree JS (FOR INLINE HTML) =====
 
-// ===== FAMILY DATA (CLEANED + READY FOR EXPANSION) =====
-const data = [
-    {
-        id: "@I1@",
-        name: "Mark Voltaire",
-        sex: "M",
-        birth: "30 JAN 1975",
-        death: null,
-        parents: ["@I2@", "@I3@"],
-        children: []
-    },
-    {
-        id: "@I2@",
-        name: "Karl Voltaire",
-        sex: "M",
-        birth: "1950",
-        death: null,
-        parents: ["@I7@", "@I8@"],
-        children: ["@I1@"]
-    },
-    {
-        id: "@I3@",
-        name: "Claire Abgrall",
-        sex: "F",
-        birth: "1949",
-        death: null,
-        parents: ["@I5@", "@I6@"],
-        children: ["@I1@"]
-    }
-];
+// Grab the nodes from the HTML-defined array
+const nodesData = nodes; // 'nodes' comes from your HTML inline array
 
-// ===== MAP PERSONS =====
-const nodes = [];
-const marriages = [];
+// Prepare FamilyTree nodes and marriages
+const ftNodes = [];
+const ftMarriages = [];
 const personMap = {};
 
-// Create person lookup
-data.forEach(person => {
-    personMap[person.id] = person;
+// Build person lookup
+nodesData.forEach(p => {
+    personMap[p.id] = p;
 });
 
-// ===== BUILD TREE STRUCTURE =====
-data.forEach(person => {
-    // If no parents → root
-    if (!person.parents || person.parents.length === 0) {
-        nodes.push({
-            id: person.id,
-            name: person.name,
-            gender: person.sex === "M" ? "male" : "female",
-        });
-        return;
-    }
+// Build nodes and marriages for FamilyTree
+nodesData.forEach(p => {
+    const parents = [];
+    if (p.fid) parents.push(p.fid);
+    if (p.mid) parents.push(p.mid);
 
-    // Handle parents
-    const validParents = person.parents.filter(p => personMap[p]);
-
-    if (validParents.length === 1) {
-        nodes.push({
-            id: person.id,
-            name: person.name,
-            gender: person.sex === "M" ? "male" : "female",
-            pid: validParents[0]
-        });
-    }
-
-    if (validParents.length === 2) {
-        const marriageId = `${validParents[0]}_${validParents[1]}_marriage`;
-        let marriage = marriages.find(m => m.id === marriageId);
-
+    if (parents.length === 2) {
+        // Two parents → marriage
+        const marriageId = `${parents[0]}_${parents[1]}_marriage`;
+        let marriage = ftMarriages.find(m => m.id === marriageId);
         if (!marriage) {
-            marriages.push({
+            ftMarriages.push({
                 id: marriageId,
-                spouses: validParents,
-                children: [person.id]
+                spouses: parents,
+                children: [p.id]
             });
         } else {
-            marriage.children.push(person.id);
+            marriage.children.push(p.id);
+        }
+    } else if (parents.length === 1) {
+        // Single parent
+        ftNodes.push({
+            id: p.id,
+            name: p.name,
+            gender: p.gender,
+            pid: parents[0]
+        });
+    } else {
+        // No parents → root
+        ftNodes.push({
+            id: p.id,
+            name: p.name,
+            gender: p.gender
+        });
+    }
+});
+
+// Initialize FamilyTree
+const chart = new FamilyTree(document.getElementById("tree"), {
+    nodes: ftNodes,
+    marriages: ftMarriages,
+    template: "hugo",
+    root: "@I1@",       // center on Mark Voltaire
+    enableSearch: true,
+    mouseScroll: FamilyTree.scroll.zoom,
+    nodeBinding: {
+        field_0: "name" // show names on boxes
+    },
+    nodeMenu: {
+        details: {
+            text: "View Details",
+            onClick: showDetails
         }
     }
 });
 
-// ===== FAMILY TREE INIT =====
-const chart = new FamilyTree(document.getElementById("tree"), {
-    nodes: nodes,
-    marriages: marriages,
-    template: "hugo",
-    root: "@I1@", // CENTER YOU AT START
-    enableSearch: true,
-    mouseScroll: FamilyTree.scroll.zoom,
-    nodeBinding: {
-        field_0: "name", // SHOW NAME ON BOXES
-    },
-    // ===== HOVER CARD (INFO POPUP) =====
-    nodeMenu: {
-        details: { text: "View Details", onClick: showDetails }
-    }
-});
-
-// ===== POPUP FUNCTION (CAN EXPAND LATER) =====
+// Popup function
 function showDetails(nodeId) {
     const p = personMap[nodeId];
+    if (!p) return;
     alert(
         `Name: ${p.name}\n` +
-        `Sex: ${p.sex === "M" ? "Male" : "Female"}\n` +
-        `Born: ${p.birth || "Unknown"}\n` +
-        `Died: ${p.death || "Still living"}`
+        `Gender: ${p.gender === "male" ? "Male" : "Female"}\n` +
+        `Father ID: ${p.fid || "Unknown"}\n` +
+        `Mother ID: ${p.mid || "Unknown"}`
     );
 }
 
