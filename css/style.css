@@ -28,9 +28,9 @@ body {
 .overlay {
     position: fixed;
     inset: 0;
-    z-index: 1;             /* stays behind all content */
+    z-index: 1;
     background: transparent;
-    pointer-events: none;   /* never block clicks OR visuals */
+    pointer-events: none;
     animation: bgFadeIn 1.5s ease forwards;
 }
 
@@ -46,16 +46,15 @@ body {
     background-position: center;
     display: flex;
     flex-direction: column;
-    /* Keep opacity for fade-in but ensure children (images) are visible */
     animation: bgFadeIn 1.5s ease forwards;
 }
 
-/* Apply dark overlay via linear-gradient to all backgrounds */
+/* Apply dark overlay via linear-gradient to all backgrounds except gallery */
 .home-bg      { background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://i.imgur.com/DvE7RQV.png'); }
 .world-bg     { background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://i.imgur.com/kiIqDp2.png'); }
 .about-bg     { background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://i.imgur.com/awySCK4.png'); }
 .music-bg     { background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://i.imgur.com/1fpCXEN.png'); }
-.gallery-bg   { background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://i.imgur.com/eVcCh9U.png'); }
+.gallery-bg   { background-image: url('https://i.imgur.com/eVcCh9U.png'); } /* removed dark overlay */
 .contact-bg   { background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://i.imgur.com/hM5H2cJ.png'); }
 .merch-bg     { background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://i.imgur.com/dxT8OGs.png'); }
 .mythology-bg { background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://i.imgur.com/M6FKg5S.png'); }
@@ -82,6 +81,7 @@ body {
 /* EXTRA INSURANCE – GALLERY SHOULD ALWAYS BE ABOVE OVERLAY */
 .gallery-section {
     z-index: 3;
+    background: transparent; /* removed dark overlay to show images */
 }
 
 /* ===========================
@@ -136,7 +136,7 @@ body {
     background: rgba(0,0,0,0.55);
     border-radius: 18px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-    animation: fadeIn 1s ease;
+    /* removed animation: fadeIn to prevent text disappearing */
 }
 
 .hero-world {
@@ -203,12 +203,6 @@ body {
     border-radius: 14px;
     cursor: pointer;
     transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-
-/* Ensure gallery images are visible even if parent has opacity */
-.gallery-section img {
-    opacity: 1 !important;
-    visibility: visible !important;
 }
 
 .gallery-grid img:hover {
