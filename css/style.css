@@ -23,7 +23,7 @@ body {
 }
 
 /* ===========================
-   SAFE OVERLAY (NEW FIX)
+   SAFE OVERLAY
 =========================== */
 .overlay {
     position: fixed;
@@ -35,7 +35,7 @@ body {
 }
 
 /* ===========================
-   BACKGROUND SECTIONS WITH OVERLAY
+   BACKGROUND SECTIONS
 =========================== */
 .home-bg, .world-bg, .about-bg, .music-bg, .gallery-bg, .contact-bg,
 .mythology-bg, .merch-bg, .history-bg {
@@ -49,12 +49,12 @@ body {
     animation: bgFadeIn 1.5s ease forwards;
 }
 
-/* Apply dark overlay via linear-gradient to all backgrounds except gallery */
+/* Dark overlay backgrounds */
 .home-bg      { background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://i.imgur.com/DvE7RQV.png'); }
 .world-bg     { background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://i.imgur.com/kiIqDp2.png'); }
 .about-bg     { background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://i.imgur.com/awySCK4.png'); }
 .music-bg     { background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://i.imgur.com/1fpCXEN.png'); }
-.gallery-bg   { background-image: url('https://i.imgur.com/eVcCh9U.png'); } /* removed dark overlay */
+.gallery-bg   { background-image: url('https://i.imgur.com/eVcCh9U.png'); } /* gallery has no overlay */
 .contact-bg   { background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://i.imgur.com/hM5H2cJ.png'); }
 .merch-bg     { background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://i.imgur.com/dxT8OGs.png'); }
 .mythology-bg { background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://i.imgur.com/M6FKg5S.png'); }
@@ -78,10 +78,10 @@ body {
     z-index: 2;
 }
 
-/* EXTRA INSURANCE – GALLERY SHOULD ALWAYS BE ABOVE OVERLAY */
+/* Gallery stacking above overlay */
 .gallery-section {
     z-index: 3;
-    background: transparent; /* removed dark overlay to show images */
+    background: transparent;
 }
 
 /* ===========================
@@ -136,7 +136,6 @@ body {
     background: rgba(0,0,0,0.55);
     border-radius: 18px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-    /* removed animation: fadeIn to prevent text disappearing */
 }
 
 .hero-world {
@@ -147,10 +146,6 @@ body {
     text-align: center;
     min-height: 70vh;
 }
-
-/* small headings & copy */
-.hero-text { text-shadow: 1px 1px 8px rgba(0,0,0,0.7); }
-.section h2 { margin-top: 0; }
 
 /* ===========================
    FADE-IN ANIMATION
@@ -191,6 +186,7 @@ body {
     width: 90%;
     max-width: 1200px;
     margin: 2rem auto;
+    position: relative;
 }
 
 .gallery-grid img {
@@ -202,6 +198,8 @@ body {
     object-fit: cover;
     border-radius: 14px;
     cursor: pointer;
+    position: relative; /* fix stacking */
+    z-index: 3; /* above overlay */
     transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
@@ -228,13 +226,17 @@ body {
     top: 0; left: 0;
     width: 100%; height: 100%;
     background: rgba(0,0,0,0.92);
-    display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
     cursor: zoom-out;
     padding: 20px;
+    display: flex;
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
+
+#lightbox-overlay.show { opacity: 1; }
 
 #lightbox-overlay img {
     max-width: 96%;
@@ -325,7 +327,6 @@ body {
     .music-container iframe { height: 260px; }
     .world-nav { left: 50%; transform: translateX(-50%); padding: 8px 14px; }
 
-    /* Fix mobile background scroll */
     .home-bg, .world-bg, .about-bg, .music-bg, .gallery-bg, 
     .contact-bg, .mythology-bg, .merch-bg, .history-bg {
         background-attachment: scroll;
