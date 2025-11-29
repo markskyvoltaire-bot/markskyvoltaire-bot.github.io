@@ -3,8 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Voltaire Family Tree</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- IMPORTANT -->
 <link rel="stylesheet" href="https://balkan.app/js/familytree.css">
 <script src="https://balkan.app/js/familytree.js"></script>
+
 <style>
     body, html {
         margin: 0;
@@ -29,46 +31,61 @@ const data = [
     { id: "@I2@", name: "Karl Voltaire", sex: "M", parents: ["@I7@", "@I8@"] },
     { id: "@I3@", name: "Claire Abgrall", sex: "F", parents: ["@I5@", "@I6@"] },
     { id: "@I4@", name: "Mikael Voltaire", sex: "M", parents: ["@I2@", "@I3@"] },
-    { id: "@I5@", name: "Jean Abgrall", sex: "M", parents: ["@I27@", "@I28@"] },  // NEW
-    { id: "@I6@", name: "Monique Drouaire", sex: "F", parents: ["@I17@", "@I18@"] }, // NEW links
-    { id: "@I7@", name: "Michel-Ange Voltaire", sex: "M", parents: ["@I9@", "@I10@"] }, // NEW links
-    { id: "@I8@", name: "Adrienne Anglade", sex: "F", parents: ["@I13@", "@I14@"] }, // NEW links
 
-    // ===== NEW — Monique's Parents (@I6@) =====
+    // ===== Jean Abgrall (fixed) =====
+    { id: "@I5@", name: "Jean Abgrall", sex: "M", parents: ["@I27@", "@I28@"] },
+
+    // ===== Monique (@I6@) =====
+    { id: "@I6@", name: "Monique Drouaire", sex: "F", parents: ["@I17@", "@I18@"] },
+
+    // ===== Michel-Ange (@I7@) =====
+    { id: "@I7@", name: "Michel-Ange Voltaire", sex: "M", parents: ["@I9@", "@I10@"] },
+
+    // ===== Adrienne (@I8@) =====
+    { id: "@I8@", name: "Adrienne Anglade", sex: "F", parents: ["@I13@", "@I14@"] },
+
+
+    // ===== PARENTS OF MONIQUE =====
     { id: "@I17@", name: "Julien Henry", sex: "M" },
     { id: "@I18@", name: "Olga Drouaire", sex: "F" },
 
-    // ===== NEW — Adrienne’s Parents (@I8@) =====
+    // ===== PARENTS OF ADRIENNE =====
     { id: "@I13@", name: "Jean Baptiste Virgile Anglade", sex: "M" },
     { id: "@I14@", name: "Lucie Victor", sex: "F" },
 
-    // ===== NEW — Michel-Ange’s Parents (@I7@) =====
+    // ===== PARENTS OF MICHEL-ANGE =====
     { id: "@I9@", name: "Luigi Schettini", sex: "M" },
     { id: "@I10@", name: "Laure Voltaire", sex: "F", parents: ["@I11@", "@I12@"] },
 
-    // ===== NEW — Laure’s Parents =====
-    { id: "@I11@", name: "Gaston Louis Joseph Thomas Voltaire", sex: "M", parents: ["@I41@"] }, // Unknown father
+    // ===== PARENTS OF LAURE =====
+    { id: "@I11@", name: "Gaston Louis Joseph Thomas Voltaire", sex: "M", parents: ["@U1@", "@I41@"] },
     { id: "@I12@", name: "Julia Charles", sex: "F" },
 
-    // ===== NEW — Gaston’s Mother =====
+
+    // ===== MISSING FATHERS (PREVENT ERRORS) =====
+    { id: "@U1@", name: "Unknown Voltaire Father", sex: "M" },  // Gaston's father
+    { id: "@U2@", name: "Unknown Louis Father", sex: "M" },      // Louis's father
+    { id: "@U3@", name: "Unknown Palmerie Father", sex: "M" },   // Josephine's father
+
+
+    // ===== GASTON'S MOTHER =====
     { id: "@I41@", name: "Marie-Cephelie Voltaire", sex: "F", parents: ["@I43@", "@I42@"] },
 
-    // ===== NEW — Marie-Cephelie's Parents =====
-    { id: "@I43@", name: "Louis Voltaire", sex: "M", parents: ["@I45@"] }, // Unknown father
-    { id: "@I42@", name: "Josephine Palmerie", sex: "F", parents: ["@I139@"] }, // Unknown father
+    // ===== PARENTS OF MARIE-CEPHELIE =====
+    { id: "@I43@", name: "Louis Voltaire", sex: "M", parents: ["@U2@", "@I45@"] },
+    { id: "@I42@", name: "Josephine Palmerie", sex: "F", parents: ["@U3@", "@I139@"] },
 
-    // ===== NEW — Luce Voltaire (start of line) =====
+    // ===== EARLIEST KNOWN WOMEN =====
     { id: "@I45@", name: "Luce Voltaire", sex: "F" },
-
-    // ===== NEW — Coralie Lazare (Josephine’s mother) =====
     { id: "@I139@", name: "Coralie Lazare", sex: "F" },
 
-    // ===== NEW — Jean Abgrall’s Parents =====
+    // ===== JEAN ABGRALL’S PARENTS =====
     { id: "@I27@", name: "Gustave Abgrall", sex: "M" },
     { id: "@I28@", name: "Francoise Le Roy", sex: "F" }
 ];
 
-// ==== PROCESS DATA FOR FAMILY TREE ====
+
+// --------------------- PROCESS DATA ---------------------
 const nodes = [];
 const marriages = [];
 const personMap = {};
@@ -110,6 +127,8 @@ data.forEach(p => {
     }
 });
 
+
+// --------------------- RENDER TREE ---------------------
 new FamilyTree(document.getElementById('tree'), {
     nodes: nodes,
     marriages: marriages,
@@ -118,5 +137,6 @@ new FamilyTree(document.getElementById('tree'), {
     mouseScroll: FamilyTree.scroll.scroll
 });
 </script>
+
 </body>
 </html>
