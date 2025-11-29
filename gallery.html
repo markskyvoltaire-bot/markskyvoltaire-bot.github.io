@@ -66,7 +66,6 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.7);
         }
 
-        /* Fix overlay issue (so it doesn't block gallery) */
         .overlay {
             position: fixed;
             inset: 0;
@@ -74,44 +73,11 @@
             pointer-events: none;
             z-index: 0;
         }
-
-        /* Audio Indicator Neon Glow */
-        #audioIndicator {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 55px;
-            height: 55px;
-            background: rgba(0, 200, 0, 0.25);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: 0 0 12px rgba(0, 200, 0, 0.5);
-            z-index: 1000;
-            font-size: 24px;
-            color: #fff;
-            user-select: none;
-            transition: background 0.3s, color 0.3s, transform 0.2s, box-shadow 0.3s;
-        }
-
-        #audioIndicator.playing {
-            animation: pulseGlow 1.5s infinite ease-in-out;
-            background: rgba(0, 200, 0, 0.35);
-            box-shadow: 0 0 20px rgba(0, 200, 0, 0.8);
-        }
-
-        @keyframes pulseGlow {
-            0% { transform: scale(1); box-shadow: 0 0 12px rgba(0, 200, 0, 0.5); }
-            50% { transform: scale(1.15); box-shadow: 0 0 28px rgba(0, 200, 0, 0.9); }
-            100% { transform: scale(1); box-shadow: 0 0 12px rgba(0, 200, 0, 0.5); }
-        }
     </style>
 </head>
 <body class="gallery-bg">
 
-    <!-- Overlay (now harmless) -->
+    <!-- Overlay (harmless) -->
     <div class="overlay"></div>
 
     <!-- Navigation -->
@@ -180,7 +146,7 @@
     </audio>
 
     <script>
-        // Lightbox functionality with smooth fade-in
+        // Lightbox functionality
         const galleryImages = document.querySelectorAll('.gallery-grid img');
         const lightboxOverlay = document.getElementById('lightbox-overlay');
         const lightboxImg = lightboxOverlay.querySelector('img');
@@ -201,7 +167,7 @@
             }, 400);
         });
 
-        // Fade-in scroll + Audio
+        // Fade-in scroll
         document.addEventListener("DOMContentLoaded", function() {
             const faders = document.querySelectorAll(".fade-in");
             const observerOptions = { threshold: 0.3, rootMargin: "0px 0px -50px 0px" };
@@ -214,15 +180,13 @@
             }, observerOptions);
             faders.forEach(fader => appearOnScroll.observe(fader));
 
-            // Audio setup
+            // Audio functionality
             const audio = document.getElementById("pageAudio");
             const indicator = document.getElementById("audioIndicator");
             let volume = 0;
             audio.volume = volume;
 
-            audio.play().catch(() => {
-                console.log("Autoplay blocked. Click indicator to play audio.");
-            });
+            audio.play().catch(() => console.log("Autoplay blocked. Click indicator to play."));
 
             const fadeInAudio = setInterval(() => {
                 if (volume < 0.5) {
@@ -244,21 +208,15 @@
             }
 
             indicator.addEventListener("click", function() {
-                if (audio.paused) {
-                    audio.play();
-                } else {
-                    audio.pause();
-                }
+                if (audio.paused) audio.play();
+                else audio.pause();
                 updateIndicator();
             });
 
             updateIndicator();
 
             document.addEventListener("click", function() {
-                if (audio.paused) {
-                    audio.play();
-                    updateIndicator();
-                }
+                if (audio.paused) { audio.play(); updateIndicator(); }
             }, { once: true });
         });
     </script>
