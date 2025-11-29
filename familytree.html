@@ -75,6 +75,7 @@ const ftMarriages = [];
 const personMap = {};
 nodes.forEach(p => personMap[p.id]=p);
 
+// Add description field for each node (name, gender, birth-death)
 nodes.forEach(p=>{
     const parents = [];
     if(p.fid) parents.push(p.fid);
@@ -88,12 +89,10 @@ nodes.forEach(p=>{
             ftMarriages.push(marriage);
         }
         marriage.children.push(p.id);
-        ftNodes.push({id:p.id, name:p.name, gender:p.gender, birth:p.birth, death:p.death, pob:p.pob, pod:p.pod});
-    } else if(parents.length === 1){
-        ftNodes.push({id:p.id, name:p.name, gender:p.gender, pid:parents[0], birth:p.birth, death:p.death, pob:p.pob, pod:p.pod});
-    } else {
-        ftNodes.push({id:p.id, name:p.name, gender:p.gender, birth:p.birth, death:p.death, pob:p.pob, pod:p.pod});
     }
+
+    const desc = `${p.name}\n${p.gender.charAt(0).toUpperCase()+p.gender.slice(1)}\n${p.birth||"Unknown"} - ${p.death||"Unknown"}`;
+    ftNodes.push({id:p.id, name:p.name, gender:p.gender, birth:p.birth, death:p.death, pob:p.pob, pod:p.pod, description:desc});
 });
 
 // ===========================
@@ -106,20 +105,28 @@ const chart = new FamilyTree(document.getElementById("tree"), {
     template: "hugo",
     enableSearch:true,
     mouseScroll:FamilyTree.scroll.zoom,
-    nodeBinding:{ field_0:"name" },
+    nodeBinding:{ 
+        field_0:"name",
+        field_1:"description"
+    },
     nodeMenu:{
-        details:{ text:"View Details", onClick:function(nodeId){
-            const p=personMap[nodeId];
-            if(!p) return;
-            alert(
-                `Name: ${p.name}\n`+
-                `Gender: ${p.gender}\n`+
-                `Birth: ${p.birth}\n`+
-                `Death: ${p.death}\n`+
-                `POB: ${p.pob}\n`+
-                `POD: ${p.pod}`
-            );
-        }}
+        details:{ 
+            text:"View Details", 
+            onClick:function(nodeId){
+                const p=personMap[nodeId];
+                if(!p) return;
+                alert(
+                    `Name: ${p.name}\n`+
+                    `Gender: ${p.gender}\n`+
+                    `Birth: ${p.birth||"Unknown"}\n`+
+                    `Death: ${p.death||"Unknown"}\n`+
+                    `POB: ${p.pob||"Unknown"}\n`+
+                    `POD: ${p.pod||"Unknown"}\n`+
+                    `Father ID: ${p.fid||"Unknown"}\n`+
+                    `Mother ID: ${p.mid||"Unknown"}`
+                );
+            }
+        }
     }
 });
 
