@@ -7,7 +7,7 @@ fetch('voltaire.json')
             id: person.id,
             name: person.name,
             gender: person.sex === "M" ? "male" : "female",
-            pid: person.parents.length ? person.parents[0] : null // 'pid' is parent id
+            pid: person.parents.length > 0 ? person.parents[0] : null // Only first parent for now
         }));
 
         // Initialize FamilyTreeJS
@@ -15,7 +15,7 @@ fetch('voltaire.json')
             nodes: nodes,
             template: "hugo",
             enableSearch: true,
-            mouseScrool: FamilyTree.scroll.scroll
+            mouseScroll: FamilyTree.scroll.scroll // fixed typo
         });
     })
     .catch(err => console.error("Failed to load JSON:", err));
