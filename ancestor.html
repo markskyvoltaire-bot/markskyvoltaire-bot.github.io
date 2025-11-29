@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancestors | Mark Sky Voltaire</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- TEMP STYLE – move to style.css later -->
+    <style>
+        /* Page background */
+        body {
+            background: url('https://i.imgur.com/FkkEqW1.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            color: #f1f1f1;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        /* Dark overlay */
+        .overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.55);
+            z-index: 0;
+        }
+
+        /* Navigation */
+        nav.world-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.7);
+            padding: 12px 0;
+            text-align: center;
+            z-index: 10;
+        }
+        nav.world-nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 18px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        nav.world-nav a:hover, nav.world-nav a.active {
+            color: #FFD700;
+        }
+
+        /* Hero section */
+        .hero-text {
+            text-align: center;
+            padding: 100px 20px 60px;
+            position: relative;
+            z-index: 5;
+        }
+        .hero-text h1 {
+            font-size: 3rem;
+            text-shadow: 0 0 8px rgba(0,0,0,0.7);
+            margin-bottom: 1rem;
+        }
+        .hero-text p {
+            font-size: 1.3rem;
+            line-height: 1.5;
+            text-shadow: 0 0 8px rgba(0,0,0,0.7);
+        }
+        .hero-text .btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 12px 30px;
+            color: #fff;
+            background: #FFD700;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: background 0.3s;
+        }
+        .hero-text .btn:hover {
+            background: #e6c200;
+        }
+
+        /* Ancestors container */
+        .ancestors-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px 120px;
+            position: relative;
+            z-index: 5;
+        }
+
+        /* Individual ancestor card */
+        .ancestor-card {
+            background: rgba(0, 0, 0, 0.65);
+            border-radius: 12px;
+            margin-bottom: 50px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.7);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            transition: transform 0.3s;
+        }
+        .ancestor-card:hover {
+            transform: scale(1.02);
+        }
+
+        .ancestor-image {
+            flex: 1 1 250px;
+            min-width: 250px;
+            max-width: 350px;
+        }
+        .ancestor-image img {
+            width: 100%;
+            display: block;
+        }
+
+        .ancestor-text {
+            flex: 2 1 400px;
+            padding: 30px;
+        }
+        .ancestor-text h2 {
+            margin-top: 0;
+            font-size: 2em;
+            color: #FFD700;
+            text-shadow: 0 0 6px rgba(0,0,0,0.7);
+        }
+        .ancestor-text p {
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        /* Placeholder ancestors */
+        .placeholder-card {
+            background: rgba(50, 50, 50, 0.6);
+            border: 2px dashed #fff;
+            text-align: center;
+            padding: 60px 20px;
+            border-radius: 12px;
+            margin-bottom: 50px;
+            font-size: 1.2em;
+            color: #ccc;
+            text-shadow: 0 0 6px rgba(0,0,0,0.5);
+        }
+
+        @media(max-width: 768px) {
+            .ancestor-card {
+                flex-direction: column;
+            }
+            .ancestor-text {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="world-nav fade-in">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="music.html">Music</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="mythology.html" class="active">Mythology</a>
+        <a href="history.html">History & Genealogy</a>
+        <a href="merch.html">Merch</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-text fade-in">
+        <h1 class="glitch-type" data-text="Ancestors">Ancestors</h1>
+        <p>
+            A gallery of ancestors and spirits, where memory meets myth.  
+            Discover the lineage, stories, and guardians who shaped the bloodline.
+        </p>
+        <a href="#content" class="btn">Enter the Lineage</a>
+    </section>
+
+    <!-- Ancestors Content -->
+    <section id="content" class="ancestors-container fade-in">
+
+        <!-- Luce Voltaire -->
+        <div class="ancestor-card">
+            <div class="ancestor-image">
+                <img src="https://i.imgur.com/Y41NuRF.png" alt="Luce Voltaire">
+            </div>
+            <div class="ancestor-text">
+                <h2>Luce Voltaire (c. 1802)</h2>
+                <p>
+                    Born in Trois-Rivières, Guadeloupe, Luce Voltaire emerged into a world of hardship. Brave, cunning, and nurturing, she survived and guided her descendants across centuries. A voodoo priestess and seer, she could communicate with spirits, manipulate elements symbolically, and whisper guidance to chosen bloodlines. She embodies freedom, memory, justice, and resilience—always watching over her lineage.
+                </p>
+                <p>
+                    Her presence is signaled by a faint shimmer, the beat of a hummingbird's wings, and whispers carried on the wind. Garbed in earth-toned robes threaded with deep red and blue, and carrying talismans of beads and carved wood, she stands as a living link to the ancestors.
+                </p>
+            </div>
+        </div>
+
+        <!-- Placeholders for other ancestors -->
+        <div class="placeholder-card">Ancestor 2 - Coming Soon</div>
+        <div class="placeholder-card">Ancestor 3 - Coming Soon</div>
+        <div class="placeholder-card">Ancestor 4 - Coming Soon</div>
+        <div class="placeholder-card">Ancestor 5 - Coming Soon</div>
+        <div class="placeholder-card">Ancestor 6 - Coming Soon</div>
+        <div class="placeholder-card">Ancestor 7 - Coming Soon</div>
+        <div class="placeholder-card">Ancestor 8 - Coming Soon</div>
+        <div class="placeholder-card">Ancestor 9 - Coming Soon</div>
+
+    </section>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
