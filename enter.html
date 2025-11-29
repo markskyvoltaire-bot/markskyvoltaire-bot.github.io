@@ -5,12 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mark Sky Voltaire | Enter My World</title>
 <link rel="stylesheet" href="css/style.css">
-
-<!-- Mailchimp Form Styles -->
 <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
-
 <style>
-/* ... all your existing CSS unchanged ... */
+/* Example fade-in CSS */
+.fade-in {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+.fade-in.show {
+    opacity: 1;
+}
+
+/* Audio Indicator */
+#audioIndicator {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 999;
+}
+
+/* Keep your existing CSS unchanged */
 </style>
 </head>
 <body class="world-bg">
@@ -101,10 +117,7 @@
 </section>
 
 <!-- AUDIO ELEMENT -->
-<!-- Audio Indicator -->
 <div id="audioIndicator" title="Toggle music">🔇</div>
-
-<!-- Background Audio -->
 <audio id="pageAudio" loop>
     <source src="assets/Copy of i can feel your vibe.mp3" type="audio/mpeg">
     <source src="assets/Copy of i can feel your vibe.ogg" type="audio/ogg">
@@ -113,7 +126,6 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-
     // Fade-in
     const faders = document.querySelectorAll(".fade-in");
     const observer = new IntersectionObserver((entries, obs) => {
@@ -126,38 +138,16 @@ document.addEventListener("DOMContentLoaded", function() {
     }, { threshold: 0.3 });
     faders.forEach(fader => observer.observe(fader));
 
-    // Lightbox
-    const galleryImages = document.querySelectorAll('.gallery-grid img');
-    const overlay = document.getElementById('lightbox-overlay');
-    const overlayImg = overlay.querySelector('img');
-    overlay.style.display = 'none';
-    overlayImg.removeAttribute('src');
-    galleryImages.forEach(img => {
-        img.addEventListener('click', () => {
-            overlayImg.src = img.src;
-            overlay.style.display = 'flex';
-        });
-    });
-    overlay.addEventListener('click', () => {
-        overlay.style.display = 'none';
-        overlayImg.removeAttribute('src');
-    });
-
     // Audio
-const audio = document.getElementById("pageAudio");
+    const audio = document.getElementById("pageAudio");
     const indicator = document.getElementById("audioIndicator");
-    audio.muted = false;
-    audio.play().catch(() => console.log("Autoplay blocked."));
-    
+
     function updateIndicator() {
-        if(audio.paused || audio.muted){
-            indicator.textContent = "🔇";
-            indicator.classList.remove("playing");
-        } else {
-            indicator.textContent = "🎵";
-            indicator.classList.add("playing");
-        }
+        indicator.textContent = audio.paused || audio.muted ? "🔇" : "🎵";
     }
+
+    // Attempt autoplay
+    audio.play().catch(() => console.log("Autoplay blocked, waiting for user interaction."));
 
     indicator.addEventListener("click", () => {
         if(audio.paused || audio.muted){
@@ -165,12 +155,12 @@ const audio = document.getElementById("pageAudio");
             audio.play();
         } else {
             audio.muted = true;
+            audio.pause();
         }
         updateIndicator();
     });
 
     updateIndicator();
-});
 
     // Highlight nav
     const navLinks = document.querySelectorAll(".world-nav a");
@@ -178,7 +168,6 @@ const audio = document.getElementById("pageAudio");
     navLinks.forEach(link => {
         link.classList.toggle("active", link.getAttribute("href") === currentPage);
     });
-
 });
 </script>
 
