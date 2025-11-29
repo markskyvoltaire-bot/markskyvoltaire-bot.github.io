@@ -101,14 +101,15 @@
 </section>
 
 <!-- AUDIO ELEMENT -->
-<audio id="pageAudio" loop muted>
-    <source src="assets/copy of i can feel your vibe.mp3" type="audio/mpeg">
-    <source src="assets/copy of i can feel your vibe.ogg" type="audio/ogg">
+<!-- Audio Indicator -->
+<div id="audioIndicator" title="Toggle music">🔇</div>
+
+<!-- Background Audio -->
+<audio id="pageAudio" loop>
+    <source src="assets/Copy of i can feel your vibe.mp3" type="audio/mpeg">
+    <source src="assets/Copy of i can feel your vibe.ogg" type="audio/ogg">
     Your browser does not support the audio element.
 </audio>
-
-<div id="lightbox-overlay"><img src="" alt="Enlarged Image"></div>
-<div id="audioIndicator" title="Toggle music">🔇</div>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -143,43 +144,33 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // Audio
-    const audio = document.getElementById("pageAudio");
+const audio = document.getElementById("pageAudio");
     const indicator = document.getElementById("audioIndicator");
-
-    function updateIndicator(){
+    audio.muted = false;
+    audio.play().catch(() => console.log("Autoplay blocked."));
+    
+    function updateIndicator() {
         if(audio.paused || audio.muted){
             indicator.textContent = "🔇";
             indicator.classList.remove("playing");
-        } else{
+        } else {
             indicator.textContent = "🎵";
             indicator.classList.add("playing");
         }
     }
 
-    // Try autoplay muted
-    audio.play().catch(()=>console.log("Autoplay blocked"));
-
-    // Toggle on indicator click
     indicator.addEventListener("click", () => {
-        if(audio.muted){
+        if(audio.paused || audio.muted){
             audio.muted = false;
-            audio.play().catch(()=>console.log("User interaction needed"));
-        } else{
+            audio.play();
+        } else {
             audio.muted = true;
         }
         updateIndicator();
     });
 
-    // If autoplay blocked, play on first click anywhere
-    const startAudioOnClick = () => {
-        audio.muted = false;
-        audio.play().catch(()=>console.log("User interaction needed"));
-        updateIndicator();
-        window.removeEventListener("click", startAudioOnClick);
-    };
-    window.addEventListener("click", startAudioOnClick);
-
     updateIndicator();
+});
 
     // Highlight nav
     const navLinks = document.querySelectorAll(".world-nav a");
