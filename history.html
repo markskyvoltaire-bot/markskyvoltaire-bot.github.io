@@ -1,392 +1,388 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>History & Genealogy | Mark Sky Voltaire</title>
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>History & Genealogy | Mark Sky Voltaire</title>
+<link rel="stylesheet" href="css/style.css">
 
-    <!-- Updated font to more readable cursive -->
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<!-- Cursive font -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 
-    <style>
-        /* =======================
-           Scroll / Parchment Styling
-        ======================== */
-        .ancestor-intro {
-            position: relative;
-            max-width: 900px;
-            width: 90%;
-            margin: 50px auto;
-            padding: 60px 50px;
-            background: #fdf3d9;
-            font-family: 'Dancing Script', cursive;
-            color: #3b2f2f;
-            line-height: 1.8;
-            border-radius: 50px;
-            border: 5px solid #8b5e3c;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.7), inset 0 0 30px rgba(0,0,0,0.2);
-            overflow: hidden;
-            transform: rotate(-0.2deg);
-        }
+<style>
+/* =======================
+   Scroll / Parchment Styling
+======================= */
+.ancestor-intro {
+    position: relative;
+    max-width: 900px;
+    width: 90%;
+    margin: 50px auto;
+    padding: 60px 50px;
+    background: #fdf3d9;
+    font-family: 'Dancing Script', cursive;
+    color: #3b2f2f;
+    line-height: 1.8;
+    border-radius: 50px;
+    border: 5px solid #8b5e3c;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.7), inset 0 0 30px rgba(0,0,0,0.2);
+    overflow: hidden;
+    transform: rotate(-0.2deg);
+}
 
-        .ancestor-intro::before,
-        .ancestor-intro::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 60px;
-            left: 0;
-            z-index: 5;
-            pointer-events: none;
-        }
-        .ancestor-intro::before {
-            top: -30px;
-            border-radius: 50% / 50%;
-            transform: rotate(180deg);
-            background: radial-gradient(circle at 85% 15%, rgba(0,0,0,0.08) 0%, transparent 70%),
-                        radial-gradient(circle at 15% 25%, rgba(0,0,0,0.08) 0%, transparent 70%);
-        }
-        .ancestor-intro::after {
-            bottom: -30px;
-            border-radius: 50% / 50%;
-            background: radial-gradient(circle at 90% 90%, rgba(0,0,0,0.1) 0%, transparent 70%),
-                        radial-gradient(circle at 10% 80%, rgba(0,0,0,0.1) 0%, transparent 70%);
-        }
+.ancestor-intro::before,
+.ancestor-intro::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 60px;
+    left: 0;
+    z-index: 5;
+    pointer-events: none;
+}
+.ancestor-intro::before {
+    top: -30px;
+    border-radius: 50% / 50%;
+    transform: rotate(180deg);
+    background: radial-gradient(circle at 85% 15%, rgba(0,0,0,0.08) 0%, transparent 70%),
+                radial-gradient(circle at 15% 25%, rgba(0,0,0,0.08) 0%, transparent 70%);
+}
+.ancestor-intro::after {
+    bottom: -30px;
+    border-radius: 50% / 50%;
+    background: radial-gradient(circle at 90% 90%, rgba(0,0,0,0.1) 0%, transparent 70%),
+                radial-gradient(circle at 10% 80%, rgba(0,0,0,0.1) 0%, transparent 70%);
+}
 
-        .ancestor-intro {
-            clip-path: polygon(
-                5% 0%, 95% 0%, 100% 5%, 100% 95%, 95% 100%, 5% 100%, 0% 95%, 0% 5%
-            );
-        }
+.ancestor-intro {
+    clip-path: polygon(
+        5% 0%, 95% 0%, 100% 5%, 100% 95%, 95% 100%, 5% 100%, 0% 95%, 0% 5%
+    );
+}
 
-        .ancestor-intro h1, .ancestor-intro h2 {
-            text-align: center;
-            margin-bottom: 25px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.25);
-        }
-        .ancestor-intro p {
-            margin-bottom: 20px;
-            font-size: 1.25rem;
-        }
+.ancestor-intro h1, .ancestor-intro h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.25);
+}
+.ancestor-intro p {
+    margin-bottom: 20px;
+    font-size: 1.25rem;
+}
 
-        /* =======================
-           Overlay
-        ======================== */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.2);
-            z-index: 0; /* fixed overlay blocking content */
-        }
+/* =======================
+   Overlay
+======================= */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.2);
+    z-index: 0;
+}
 
-        /* =======================
-           Family Tree Image
-        ======================== */
-        .ancestor-intro .family-image {
-            display: block;
-            max-width: 90%;
-            margin: 0 auto 30px;
-            border: 5px solid #8b5e3c;
-            border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
+/* =======================
+   Family Tree Image
+======================= */
+.ancestor-intro .family-image {
+    display: block;
+    max-width: 90%;
+    margin: 0 auto 30px;
+    border: 5px solid #8b5e3c;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
 
-        /* =======================
-           Audio Indicator
-        ======================== */
-        #audioIndicator {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            z-index: 9999;
-            font-size: 1.5rem;
-            cursor: pointer;
-            background: #8b5e3c;
-            color: #fdf3d9;
-            border-radius: 50px;
-            padding: 10px 16px;
-            box-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-            user-select: none;
-        }
+/* =======================
+   Audio Indicator
+======================= */
+#audioIndicator {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 9999;
+    font-size: 1.5rem;
+    cursor: pointer;
+    background: #8b5e3c;
+    color: #fdf3d9;
+    border-radius: 50px;
+    padding: 10px 16px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    user-select: none;
+}
 
-        /* =======================
-           Fade-in Animations
-        ======================== */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
-        }
-        .fade-in.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+/* =======================
+   Fade-in Animations
+======================= */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+</style>
 </head>
 <body class="history-bg">
 
-    <!-- Overlay -->
-    <div class="overlay"></div>
+<!-- Overlay -->
+<div class="overlay"></div>
 
-    <!-- Navigation -->
-    <nav class="world-nav fade-in">
-        <a href="index.html" class="active">Home</a>
-        <a href="about.html">About</a>
-        <a href="music.html">Music</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="mythology.html">Mythology</a>
-        <a href="history.html">History & Genealogy</a>
-        <a href="merch.html">Merch</a>
-        <a href="contact.html">Contact</a>
-    </nav>
+<!-- Navigation -->
+<nav class="world-nav fade-in">
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About</a>
+    <a href="music.html">Music</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="mythology.html">Mythology</a>
+    <a href="history.html">History & Genealogy</a>
+    <a href="merch.html">Merch</a>
+    <a href="contact.html">Contact</a>
+</nav>
 
-    <!-- Introduction Section -->
-    <section class="ancestor-intro fade-in show">
-        <img src="assets/familytree1.png" alt="Voltaire Family Tree" class="family-image">
+<!-- Introduction Section -->
+<section class="ancestor-intro fade-in show">
+    <img src="assets/familytree1.png" alt="Voltaire Family Tree" class="family-image">
 
-        <h1>I came here looking for ghosts...</h1>
-        <h2>I Was Never “From” One Place</h2>
+    <h1>I came here looking for ghosts...</h1>
+    <h2>I Was Never “From” One Place</h2>
 
-        <p>
-            People always want a place. Where are you from?  
-            But my family doesn’t trace in straight lines. We web out — across Port-au-Prince, Paris, Guadeloupe, Brittany, and Naples.  
-            We show up in Ellis Island logs. In faded French censuses. In stories told half in French and half in suspicion.
-        </p>
-
-        <p>
-            I’m Mark Sky Voltaire. My family is from Haiti. Also France. Also Italy. Also Guadeloupe and maybe Martinique.  
-            Some of them crossed the ocean by choice. Some didn’t have one. Some ran. Some married into cultures they never planned to belong to.  
-            I’ve been trying to make sense of it all.
-        </p>
-
-        <p>
-            My mom, Claire Abgrall, was born in Paris. Her dad, Jean Abgrall, was Breton. Her mom, Monique Drouaire, also French.  
-            I didn’t grow up knowing anyone except my grandfather on the Abgrall side, and the same for my grandmother Monique’s Drouaire side, which is part of why I’m writing this.  
-            I want to fix that. Sometimes the gaps in your memory feel like they're holding the shape of people you were supposed to know.
-        </p>
-
-        <p>
-            Every time I go looking, the story turns back toward Haiti — like all true Caribbean stories do. But not just as a place of birth.  
-            Haiti, for my family, is the forge. The transformation chamber. The place where Frenchmen turned to fugitives, Italians became in-laws,  
-            and a girl named Vilthelie gave birth to legacy from the soil no one wrote down.
-        </p>
-
-        <p>
-            My dad, Karl Voltaire, was born in Port-au-Prince. His father, Michel-Ange Voltaire born before 1920, came from a man named Luigi Schettini and Laure Voltaire.  
-            Laure’s parents were Gaston Voltaire and Julia Charles. Michel-Ange’s father—my great-grandfather—was Italian. That’s Luigi.  
-            I found records of him and his family through the Ellis Island database. The Schettinis came to the U.S. at some point,  
-            so there’s a whole thread of this family that passed through New York — probably never imagining a Haitian great-grandson would be searching for their names a hundred years later.
-        </p>
-
-        <p>
-            On the other side of my Haitian family, things get blurry. My grandmother Adrienne Anglade was the daughter of Jean-Baptiste Virgile Anglade and Lucie Victor.  
-            I’ve heard stories about Lucie’s parents—Albert Victor and Vilthelie Cypres—but they’re half-formed and hard to pin down. Supposedly Albert was from Martinique,  
-            possibly white or mixed-race, and his boat caught fire near Jacmel. People on the coast saved him. That’s how the story goes.  
-            He stayed, met Vilthelie, and had a daughter. I’ve never been able to find a record for Vilthelie — a name so soft and quiet it almost disappears when you try to trace it.  
-            It’s like she appears for one moment to give life to Lucie… and then vanishes from history.
-        </p>
-
-        <p>
-            That story right there—that’s why I do this. Because people like Vilthelie get erased. And I don’t accept that.  
-            If the paper trail ends, then I follow oral stories. If the stories dry up, I look at patterns. Migration routes. Naming customs. Land records.  
-            Even silence tells you something if you know how to listen.
-        </p>
-
-        <p>
-            This isn’t just curiosity. It’s responsibility. I carry their names, even the ones I don’t know yet. They’re my family.  
-            People often treat genealogy like a hobby for retirees. For me, it’s survival. It’s identity. It’s a way of telling the world:  
-            I wasn’t dropped here out of nowhere. I didn’t come from a void. I came from people. Places. Struggles. Choices. Mistakes. Love stories. Fires. Ships. Soil.
-        </p>
-
-        <p>
-            And when I say I came from Haiti, I mean all of it—the revolution, the trauma, the brilliance, the diaspora.  
-            I also mean I came from Martinique, maybe. From Naples. From Brittany. From the neighborhoods of Port-au-Prince.  
-            From family dinners where nobody talked about ancestry because they were too busy surviving the present.
-        </p>
-
-        <p>
-            I’m writing this chapter because I want my kids to know what I found. I want them to understand that their story didn’t start with them.  
-            It didn’t even start with me. It started before the records and will continue after the data stops.  
-            And somewhere in that space — between what’s known and what’s forgotten — is the truth we’re here to protect.
-        </p>
-    </section>
-
-    <hr class="divider">
-
-    <!-- Voltaire Lineage -->
-    <section class="family-section fade-in">
-        <h2>Voltaire Line (Paternal)</h2>
-
-        <ul class="family-tree">
-            <li>Mark Voltaire  
-                <ul><li>son of Karl Voltaire & Claire Abgrall</li></ul>
-            </li>
-            <li>Karl Voltaire  
-                <ul><li>son of Michel-Ange Voltaire & Adrienne Anglade</li></ul>
-            </li>
-            <li>Michel-Ange Voltaire  
-                <ul><li>son of Laure Voltaire & Luigi Schettini</li></ul>
-            </li>
-            <li>Laure Voltaire - Born 1897 in Cap Haitien, Haiti - 1982 Miami, FL, USA
-                <ul><li>daughter of Gaston Voltaire & Julia Charles</li></ul>
-            </li>
-            <li>Gaston Voltaire - Born 1865 in Pointe a Pitre, Guadeloupe - Unknown
-                <ul><li>son of Marie-Cephelie Voltaire & Unknown</li></ul>
-            </li>
-            <li>Marie-Cephelie Voltaire - Born circa 1842 probably Basse-Terre, Guadeloupe - Unknown
-                <ul><li>daughter of Louis Voltaire & Josephine Palmerie</li></ul>
-            </li>
-            <li>Louis Voltaire - Born circa 1821 in Trois-Rivières, Guadeloupe - 1896 Baillif, Guadeloupe
-                <ul><li>son of Luce Voltaire & Unknown</li></ul>
-            </li>
-            <li>Luce Voltaire — Born circa 1802 in Trois-Rivières, Guadeloupe - 1876 Baillif, Guadeloupe
-                <ul><li>Parents unknown — possibility of enslavement prior to 1848</li></ul>
-            </li>
-        </ul>
-
-        <p class="mystery-note">
-            French emancipation came in 1848 so it's not clear right now if Louis, his wife, daughter, and mother were all enslaved before then.
-            There is speculation about a connection to **Jean-Baptiste Voltaire**, a soldier in Guadeloupe in the late 1700s. No confirmed link — but we’re searching.
-        </p>
-    </section>
-
-    <hr class="divider">
-
-    <!-- Anglade Lineage -->
-    <section class="family-section fade-in">
-        <h2>Anglade Line</h2>
-        <ul class="family-tree">
-            <li>Karl Voltaire  
-                <ul><li>son of Adrienne Anglade & Michel-Ange Voltaire</li></ul>
-            </li>
-            <li>Adrienne Anglade
-                <ul><li>daughter of Jean Baptiste Virgile Anglade (b. 1866) & Lucie Victor</li></ul>
-            </li>
-            <li>Jean Baptiste Virgile Anglade Born 1866 Haiti - Uknown
-                <ul><li>son of Fenelon Anglade and Tulina Morisseau</li></ul>
-            </li>
-            <li>Fenelon Anglade - Born 1833, Aquin, Haiti - Unkown 
-                <ul><li>son of Jean Jacques Anglade and unknown</li></ul>
-            </li>
-            <li>Jean Jacques Anglade (b. 1806, Aquin, Haiti) - 1842 Aquin, Haiti
-                <ul><li>son of unknown</li></ul>
-            </li>
-        </ul>
-        <p class="mystery-note">
-            This branch connects directly with a Frech line of Anglade's that came to Saint Domingue in the 17th century.  
-            The records in Aquin, where Jean Jacques was born according to his death certificate, don't exist in 1806 so we may never know who his actual parents were.
-        </p>
-    </section>
-
-    <hr class="divider">
-
-    <!-- Drouaire Lineage -->
-    <section class="family-section fade-in drouaire-line">
-        <h2>Drouaire Line (Maternal French)</h2>
-        <ul class="family-tree">
-            <li>Mark VOLTAIRE (b. Paris, 1975) → Claire ABGRALL (b. 1949) → Monique DROUAIRE (b. 1928) → Olga DROUAIRE (1899-1945)  
-                <ul>
-                    <li>Marie-Amandine Melanie DROUAIRE (b. 1866)  
-                        <ul>
-                            <li>Amandine Alexandrine DROUAIRE (1841-1902)  
-                                <ul>
-                                    <li>Francois Isidor DROUAIRE/DROUERE (1811-1858)  
-                                        <ul>
-                                            <li>Francois DROUERE (1784)</li>
-                                            <li>Jacques DROUERE</li>
-                                            <li>Guillaume DROUERE (b. 1684 - d. 1753)</li>
-                                            <li>Jacques DROUERE</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        <p class="mystery-note">
-            The Drouaire side has traces back to early 17th century France. I even located cousins in Montpellier living today, through Paris archives and Facebook.
-        </p>
-    </section>
-
-    <hr class="divider">
-
-    <!-- Outro / Contact -->
-    <p class="outro-text fade-in">
-        If you’re related, if you have a memory, if you know a name — or if you just want to ask a question — write me.  
-        <br><br>
-        <strong>markskyvoltaire@gmail.com</strong>
+    <p>
+        People always want a place. Where are you from?  
+        But my family doesn’t trace in straight lines. We web out — across Port-au-Prince, Paris, Guadeloupe, Brittany, and Naples.  
+        We show up in Ellis Island logs. In faded French censuses. In stories told half in French and half in suspicion.
     </p>
 
-    <!-- Audio Indicator and Music -->
-    <div id="audioIndicator">🎵</div>
+    <p>
+        I’m Mark Sky Voltaire. My family is from Haiti. Also France. Also Italy. Also Guadeloupe and maybe Martinique.  
+        Some of them crossed the ocean by choice. Some didn’t have one. Some ran. Some married into cultures they never planned to belong to.  
+        I’ve been trying to make sense of it all.
+    </p>
 
-    <audio id="pageAudio" loop>
-        <source src="assets/Copy of you_family tree.mp3" type="audio/mpeg">
-        <source src="assets/Copy of you_family tree.ogg" type="audio/ogg">
-        Your browser does not support the audio element.
-    </audio>
+    <p>
+        My mom, Claire Abgrall, was born in Paris. Her dad, Jean Abgrall, was Breton. Her mom, Monique Drouaire, also French.  
+        I didn’t grow up knowing anyone except my grandfather on the Abgrall side, and the same for my grandmother Monique’s Drouaire side, which is part of why I’m writing this.  
+        I want to fix that. Sometimes the gaps in your memory feel like they're holding the shape of people you were supposed to know.
+    </p>
 
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Fade-in elements
-        const faders = document.querySelectorAll(".fade-in");
-        const observerOptions = { threshold: 0.3, rootMargin: "0px 0px -50px 0px" };
-        const appearOnScroll = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                entry.target.classList.add("show");
-                observer.unobserve(entry.target);
-            });
-        }, observerOptions);
-        faders.forEach(fader => appearOnScroll.observe(fader));
+    <p>
+        Every time I go looking, the story turns back toward Haiti — like all true Caribbean stories do. But not just as a place of birth.  
+        Haiti, for my family, is the forge. The transformation chamber. The place where Frenchmen turned to fugitives, Italians became in-laws,  
+        and a girl named Vilthelie gave birth to legacy from the soil no one wrote down.
+    </p>
 
-        // Audio setup
-        const audio = document.getElementById("pageAudio");
-        const indicator = document.getElementById("audioIndicator");
-        let volume = 0;
-        audio.volume = volume;
-        audio.play().catch(() => console.log("Autoplay blocked. Click indicator to play."));
+    <p>
+        My dad, Karl Voltaire, was born in Port-au-Prince. His father, Michel-Ange Voltaire born before 1920, came from a man named Luigi Schettini and Laure Voltaire.  
+        Laure’s parents were Gaston Voltaire and Julia Charles. Michel-Ange’s father—my great-grandfather—was Italian. That’s Luigi.  
+        I found records of him and his family through the Ellis Island database. The Schettinis came to the U.S. at some point,  
+        so there’s a whole thread of this family that passed through New York — probably never imagining a Haitian great-grandson would be searching for their names a hundred years later.
+    </p>
 
-        const fadeInAudio = setInterval(() => {
-            if (volume < 0.5) { 
-                volume += 0.01; 
-                audio.volume = volume; 
-            } else clearInterval(fadeInAudio);
-        }, 100);
+    <p>
+        On the other side of my Haitian family, things get blurry. My grandmother Adrienne Anglade was the daughter of Jean-Baptiste Virgile Anglade and Lucie Victor.  
+        I’ve heard stories about Lucie’s parents—Albert Victor and Vilthelie Cypres—but they’re half-formed and hard to pin down. Supposedly Albert was from Martinique,  
+        possibly white or mixed-race, and his boat caught fire near Jacmel. People on the coast saved him. That’s how the story goes.  
+        He stayed, met Vilthelie, and had a daughter. I’ve never been able to find a record for Vilthelie — a name so soft and quiet it almost disappears when you try to trace it.  
+        It’s like she appears for one moment to give life to Lucie… and then vanishes from history.
+    </p>
 
-        function updateIndicator() {
-            if (!audio.paused) { 
-                indicator.classList.add("playing"); 
-                indicator.textContent = "🎵"; 
-            } else { 
-                indicator.classList.remove("playing"); 
-                indicator.textContent = "🔇"; 
-            }
-        }
+    <p>
+        That story right there—that’s why I do this. Because people like Vilthelie get erased. And I don’t accept that.  
+        If the paper trail ends, then I follow oral stories. If the stories dry up, I look at patterns. Migration routes. Naming customs. Land records.  
+        Even silence tells you something if you know how to listen.
+    </p>
 
-        indicator.addEventListener("click", function() {
-            if (audio.paused) audio.play();
-            else audio.pause();
-            updateIndicator();
+    <p>
+        This isn’t just curiosity. It’s responsibility. I carry their names, even the ones I don’t know yet. They’re my family.  
+        People often treat genealogy like a hobby for retirees. For me, it’s survival. It’s identity. It’s a way of telling the world:  
+        I wasn’t dropped here out of nowhere. I didn’t come from a void. I came from people. Places. Struggles. Choices. Mistakes. Love stories. Fires. Ships. Soil.
+    </p>
+
+    <p>
+        And when I say I came from Haiti, I mean all of it—the revolution, the trauma, the brilliance, the diaspora.  
+        I also mean I came from Martinique, maybe. From Naples. From Brittany. From the neighborhoods of Port-au-Prince.  
+        From family dinners where nobody talked about ancestry because they were too busy surviving the present.
+    </p>
+
+    <p>
+        I’m writing this chapter because I want my kids to know what I found. I want them to understand that their story didn’t start with them.  
+        It didn’t even start with me. It started before the records and will continue after the data stops.  
+        And somewhere in that space — between what’s known and what’s forgotten — is the truth we’re here to protect.
+    </p>
+</section>
+
+<hr class="divider">
+
+<!-- Voltaire Lineage -->
+<section class="family-section fade-in">
+<h2>Voltaire Line (Paternal)</h2>
+
+<ul class="family-tree">
+<li>Mark Voltaire  
+    <ul><li>son of Karl Voltaire & Claire Abgrall</li></ul>
+</li>
+<li>Karl Voltaire  
+    <ul><li>son of Michel-Ange Voltaire & Adrienne Anglade</li></ul>
+</li>
+<li>Michel-Ange Voltaire  
+    <ul><li>son of Laure Voltaire & Luigi Schettini</li></ul>
+</li>
+<li>Laure Voltaire - Born 1897 in Cap Haitien, Haiti - 1982 Miami, FL, USA
+    <ul><li>daughter of Gaston Voltaire & Julia Charles</li></ul>
+</li>
+<li>Gaston Voltaire - Born 1865 in Pointe a Pitre, Guadeloupe - Unknown
+    <ul><li>son of Marie-Cephelie Voltaire & Unknown</li></ul>
+</li>
+<li>Marie-Cephelie Voltaire - Born circa 1842 probably Basse-Terre, Guadeloupe - Unknown
+    <ul><li>daughter of Louis Voltaire & Josephine Palmerie</li></ul>
+</li>
+<li>Louis Voltaire - Born circa 1821 in Trois-Rivières, Guadeloupe - 1896 Baillif, Guadeloupe
+    <ul><li>son of Luce Voltaire & Unknown</li></ul>
+</li>
+<li>Luce Voltaire — Born circa 1802 in Trois-Rivières, Guadeloupe - 1876 Baillif, Guadeloupe
+    <ul><li>Parents unknown — possibility of enslavement prior to 1848</li></ul>
+</li>
+</ul>
+
+<p class="mystery-note">
+French emancipation came in 1848 so it's not clear right now if Louis, his wife, daughter, and mother were all enslaved before then.
+There is speculation about a connection to <strong>Jean-Baptiste Voltaire</strong>, a soldier in Guadeloupe in the late 1700s. No confirmed link — but we’re searching.
+</p>
+</section>
+
+<hr class="divider">
+
+<!-- Anglade Lineage -->
+<section class="family-section fade-in">
+<h2>Anglade Line</h2>
+<ul class="family-tree">
+<li>Karl Voltaire  
+    <ul><li>son of Adrienne Anglade & Michel-Ange Voltaire</li></ul>
+</li>
+<li>Adrienne Anglade
+    <ul><li>daughter of Jean Baptiste Virgile Anglade (b. 1866) & Lucie Victor</li></ul>
+</li>
+<li>Jean Baptiste Virgile Anglade Born 1866 Haiti - Unknown
+    <ul><li>son of Fenelon Anglade and Tulina Morisseau</li></ul>
+</li>
+<li>Fenelon Anglade - Born 1833, Aquin, Haiti - Unknown 
+    <ul><li>son of Jean Jacques Anglade and unknown</li></ul>
+</li>
+<li>Jean Jacques Anglade (b. 1806, Aquin, Haiti) - 1842 Aquin, Haiti
+    <ul><li>son of unknown</li></ul>
+</li>
+</ul>
+<p class="mystery-note">
+This branch connects directly with a French line of Anglade's that came to Saint Domingue in the 17th century.  
+The records in Aquin, where Jean Jacques was born according to his death certificate, don't exist in 1806 so we may never know who his actual parents were.
+</p>
+</section>
+
+<hr class="divider">
+
+<!-- Drouaire Lineage -->
+<section class="family-section fade-in">
+<h2>Drouaire Line (Maternal French)</h2>
+<ul class="family-tree">
+<li>Mark VOLTAIRE (b. Paris, 1975) → Claire ABGRALL (b. 1949) → Monique DROUAIRE (b. 1928) → Olga DROUAIRE (1899-1945)  
+    <ul>
+        <li>Marie-Amandine Melanie DROUAIRE (b. 1866)  
+            <ul>
+                <li>Amandine Alexandrine DROUAIRE (1841-1902)  
+                    <ul>
+                        <li>Francois Isidor DROUAIRE/DROUERE (1811-1858)  
+                            <ul>
+                                <li>Francois DROUERE (1784)</li>
+                                <li>Jacques DROUERE</li>
+                                <li>Guillaume DROUERE (b. 1684 - d. 1753)</li>
+                                <li>Jacques DROUERE</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</li>
+</ul>
+<p class="mystery-note">
+The Drouaire side has traces back to early 17th century France. I even located cousins in Montpellier living today, through Paris archives and Facebook.
+</p>
+</section>
+
+<hr class="divider">
+
+<!-- Outro / Contact -->
+<p class="outro-text fade-in">
+If you’re related, if you have a memory, if you know a name — or if you just want to ask a question — write me.  
+<br><br>
+<strong>markskyvoltaire@gmail.com</strong>
+</p>
+
+<!-- Audio Indicator and Music -->
+<div id="audioIndicator">🎵</div>
+<audio id="pageAudio" loop>
+    <source src="assets/Copy of you_family tree.mp3" type="audio/mpeg">
+    <source src="assets/Copy of you_family tree.ogg" type="audio/ogg">
+    Your browser does not support the audio element.
+</audio>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Fade-in observer
+    const faders = document.querySelectorAll(".fade-in");
+    const appearOnScroll = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("show");
+            appearOnScroll.unobserve(entry.target);
         });
+    }, { threshold: 0.3, rootMargin: "0px 0px -50px 0px" });
+    faders.forEach(fader => appearOnScroll.observe(fader));
 
+    // Audio setup
+    const audio = document.getElementById("pageAudio");
+    const indicator = document.getElementById("audioIndicator");
+    let volume = 0;
+    audio.volume = volume;
+    audio.play().catch(() => console.log("Autoplay blocked. Click indicator to play."));
+
+    const fadeInAudio = setInterval(() => {
+        if (volume < 0.5) { 
+            volume += 0.01; 
+            audio.volume = volume; 
+        } else clearInterval(fadeInAudio);
+    }, 100);
+
+    function updateIndicator() {
+        if (!audio.paused) { 
+            indicator.classList.add("playing"); 
+            indicator.textContent = "🎵"; 
+        } else { 
+            indicator.classList.remove("playing"); 
+            indicator.textContent = "🔇"; 
+        }
+    }
+
+    indicator.addEventListener("click", function() {
+        if (audio.paused) audio.play();
+        else audio.pause();
         updateIndicator();
-
-        // Attempt to play once on first click anywhere (autoplay workaround)
-        document.addEventListener("click", function() {
-            if (audio.paused) { 
-                audio.play(); 
-                updateIndicator(); 
-            }
-        }, { once: true });
     });
-    </script>
+
+    // Attempt to play once on first click anywhere
+    document.addEventListener("click", function() {
+        if (audio.paused) { 
+            audio.play(); 
+            updateIndicator(); 
+        }
+    }, { once: true });
+});
+</script>
 
 </body>
 </html>
