@@ -5,6 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>History & Genealogy | Mark Sky Voltaire</title>
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        /* Scroll Styling */
+        .ancestor-intro {
+            position: relative;
+            max-width: 900px;
+            width: 90%;
+            margin: 50px auto;
+            padding: 60px 50px;
+            background: #fdf3d9;
+            font-family: 'Great Vibes', cursive;
+            color: #3b2f2f;
+            line-height: 1.8;
+            border-radius: 50px;
+            border: 5px solid #8b5e3c;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.7), inset 0 0 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+            transform: rotate(-0.2deg);
+        }
+
+        /* Top and bottom curls / burn marks */
+        .ancestor-intro::before,
+        .ancestor-intro::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 60px;
+            left: 0;
+            z-index: 5;
+            pointer-events: none;
+        }
+        .ancestor-intro::before {
+            top: -30px;
+            border-radius: 50% / 50%;
+            transform: rotate(180deg);
+            background: radial-gradient(circle at 85% 15%, rgba(0,0,0,0.08) 0%, transparent 70%),
+                        radial-gradient(circle at 15% 25%, rgba(0,0,0,0.08) 0%, transparent 70%);
+        }
+        .ancestor-intro::after {
+            bottom: -30px;
+            border-radius: 50% / 50%;
+            background: radial-gradient(circle at 90% 90%, rgba(0,0,0,0.1) 0%, transparent 70%),
+                        radial-gradient(circle at 10% 80%, rgba(0,0,0,0.1) 0%, transparent 70%);
+        }
+
+        /* Torn edges */
+        .ancestor-intro {
+            clip-path: polygon(
+                5% 0%, 95% 0%, 100% 5%, 100% 95%, 95% 100%, 5% 100%, 0% 95%, 0% 5%
+            );
+        }
+
+        /* Headings & paragraphs */
+        .ancestor-intro h1, .ancestor-intro h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.25);
+        }
+        .ancestor-intro p {
+            margin-bottom: 20px;
+            font-size: 1.25rem;
+        }
+
+        /* Optional overlay for background */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.2);
+            z-index: -1;
+        }
+    </style>
 </head>
 <body class="history-bg">
 
@@ -23,7 +97,7 @@
         <a href="contact.html">Contact</a>
     </nav>
 
-    <!-- Introduction Section -->
+    <!-- Introduction Section (Scroll) -->
     <section class="ancestor-intro fade-in">
         <h1>I came here looking for ghosts...</h1>
         <h2>I Was Never “From” One Place</h2>
@@ -53,7 +127,7 @@
         </p>
 
         <p>
-            My dad, Karl Voltaire, was born in Port-au-Prince. His father, Michel-Ange Voltaire bornn before 1920, came from a man named Luigi Schettini and Laure Voltaire.  
+            My dad, Karl Voltaire, was born in Port-au-Prince. His father, Michel-Ange Voltaire born before 1920, came from a man named Luigi Schettini and Laure Voltaire.  
             Laure’s parents were Gaston Voltaire and Julia Charles. Michel-Ange’s father—my great-grandfather—was Italian. That’s Luigi.  
             I found records of him and his family through the Ellis Island database. The Schettinis came to the U.S. at some point,  
             so there’s a whole thread of this family that passed through New York — probably never imagining a Haitian great-grandson would be searching for their names a hundred years later.
