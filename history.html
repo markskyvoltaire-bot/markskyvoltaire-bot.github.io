@@ -20,7 +20,7 @@
             margin: 50px auto;
             padding: 60px 50px;
             background: #fdf3d9;
-            font-family: 'Dancing Script', cursive; /* updated font */
+            font-family: 'Dancing Script', cursive;
             color: #3b2f2f;
             line-height: 1.8;
             border-radius: 50px;
@@ -80,7 +80,7 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0,0,0,0.2);
-            z-index: -1;
+            z-index: 0; /* fixed overlay blocking content */
         }
 
         /* =======================
@@ -89,7 +89,7 @@
         .ancestor-intro .family-image {
             display: block;
             max-width: 90%;
-            margin: 0 auto 30px; /* moved to top of intro */
+            margin: 0 auto 30px;
             border: 5px solid #8b5e3c;
             border-radius: 20px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.5);
@@ -145,8 +145,7 @@
     </nav>
 
     <!-- Introduction Section -->
-    <section class="ancestor-intro fade-in">
-        <!-- Family Tree Image at top -->
+    <section class="ancestor-intro fade-in show">
         <img src="assets/familytree1.png" alt="Voltaire Family Tree" class="family-image">
 
         <h1>I came here looking for ghosts...</h1>
