@@ -57,7 +57,8 @@ data.forEach(person => {
             const marriageId = `${parentsIds[0]}_${parentsIds[1]}_marriage`;
 
             // Check if marriage already exists
-            if (!marriages.find(m => m.id === marriageId)) {
+            let marriage = marriages.find(m => m.id === marriageId);
+            if (!marriage) {
                 marriages.push({
                     id: marriageId,
                     spouses: parentsIds,
@@ -65,7 +66,6 @@ data.forEach(person => {
                 });
             } else {
                 // Add child to existing marriage
-                const marriage = marriages.find(m => m.id === marriageId);
                 marriage.children.push(person.id);
             }
         }
