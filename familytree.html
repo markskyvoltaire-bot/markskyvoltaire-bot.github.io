@@ -3,8 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Voltaire Family Tree</title>
+
 <link rel="stylesheet" href="https://balkan.app/js/familytree.css">
 <script src="https://balkan.app/js/familytree.js"></script>
+
 <style>
     body, html {
         margin: 0;
@@ -24,13 +26,15 @@
 <div id="tree"></div>
 
 <script>
-// ===== FULL FAMILY TREE DATA =====
+// ===========================
+//   FAMILY TREE NODES
+// ===========================
 const nodes = [
-    { id: "@I1@", name: "Mark Voltaire", gender: "male", fid: "@I2@", mid: "@I3@", birth:"30 JAN 1975", death:"", pob:"", pod:"" },
+    { id: "@I1@", name: "Mark Voltaire", gender: "male", fid: "@I2@", mid: "@I3@", birth: "30 JAN 1975", death: "", pob:"", pod:"" },
     { id: "@I4@", name: "Mikael Voltaire", gender: "male", fid: "@I2@", mid: "@I3@", birth:"", death:"", pob:"", pod:"" },
 
-    { id: "@I2@", name: "Karl Voltaire", gender: "male", fid: "@I7@", mid: "@I8@", birth:"1950", death:"", pob:"", pod:"" },
-    { id: "@I3@", name: "Claire Abgrall", gender: "female", fid: "@I5@", mid: "@I6@", birth:"1949", death:"", pob:"", pod:"" },
+    { id: "@I2@", name: "Karl Voltaire", gender: "male", fid: "@I7@", mid: "@I8@", birth:"", death:"", pob:"", pod:"" },
+    { id: "@I3@", name: "Claire Abgrall", gender: "female", fid: "@I5@", mid: "@I6@", birth:"", death:"", pob:"", pod:"" },
 
     { id: "@I5@", name: "Jean Abgrall", gender: "male", fid: "@I27@", mid: "@I28@", birth:"", death:"", pob:"", pod:"" },
     { id: "@I6@", name: "Monique Drouaire", gender: "female", fid: "@I17@", mid: "@I18@", birth:"", death:"", pob:"", pod:"" },
@@ -59,67 +63,63 @@ const nodes = [
     { id: "@I27@", name: "Gustave Abgrall", gender: "male", birth:"", death:"", pob:"", pod:"" },
     { id: "@I28@", name: "Francoise Le Roy", gender: "female", birth:"", death:"", pob:"", pod:"" },
 
-    // Unknown placeholder parents
-    { id: "@UNKNOWN1@", name: "Unknown Father", gender: "male", birth:"", death:"", pob:"", pod:"" }
+    // Placeholder unknown parents
+    { id: "@UNKNOWN1@", name: "Unknown Father", gender:"male" }
 ];
 
-// ===== INITIALIZE FAMILY TREE =====
+// ===========================
+//   BUILD FAMILYTREE NODES & MARRIAGES
+// ===========================
 const ftNodes = [];
 const ftMarriages = [];
 const personMap = {};
+nodes.forEach(p => personMap[p.id]=p);
 
-// Build person lookup
-nodes.forEach(p => personMap[p.id] = p);
-
-// Build nodes and marriages
-nodes.forEach(p => {
+nodes.forEach(p=>{
     const parents = [];
-    if (p.fid) parents.push(p.fid);
-    if (p.mid) parents.push(p.mid);
+    if(p.fid) parents.push(p.fid);
+    if(p.mid) parents.push(p.mid);
 
-    if (parents.length === 2) {
+    if(parents.length === 2){
         const marriageId = `${parents[0]}_${parents[1]}_marriage`;
-        let marriage = ftMarriages.find(m => m.id === marriageId);
-        if (!marriage) {
+        let marriage = ftMarriages.find(m=>m.id===marriageId);
+        if(!marriage){
             marriage = { id: marriageId, spouses: parents, children: [] };
             ftMarriages.push(marriage);
         }
         marriage.children.push(p.id);
-        ftNodes.push({ id: p.id, name: p.name, gender: p.gender });
-    } else if (parents.length === 1) {
-        ftNodes.push({ id: p.id, name: p.name, gender: p.gender, pid: parents[0] });
+        ftNodes.push({id:p.id, name:p.name, gender:p.gender, birth:p.birth, death:p.death, pob:p.pob, pod:p.pod});
+    } else if(parents.length === 1){
+        ftNodes.push({id:p.id, name:p.name, gender:p.gender, pid:parents[0], birth:p.birth, death:p.death, pob:p.pob, pod:p.pod});
     } else {
-        ftNodes.push({ id: p.id, name: p.name, gender: p.gender });
+        ftNodes.push({id:p.id, name:p.name, gender:p.gender, birth:p.birth, death:p.death, pob:p.pob, pod:p.pod});
     }
 });
 
-// Initialize FamilyTree
-new FamilyTree(document.getElementById("tree"), {
+// ===========================
+//   INIT FAMILY TREE
+// ===========================
+const chart = new FamilyTree(document.getElementById("tree"), {
     nodes: ftNodes,
     marriages: ftMarriages,
-    root: "@I1@",
+    root: "@I1@", // Center on Mark Voltaire
     template: "hugo",
-    enableSearch: true,
-    mouseScroll: FamilyTree.scroll.zoom,
-    nodeBinding: { field_0: "name" },
-    nodeMenu: {
-        details: {
-            text: "View Details",
-            onClick: nodeId => {
-                const p = personMap[nodeId];
-                if (!p) return;
-                alert(
-                    `Name: ${p.name}\n` +
-                    `Gender: ${p.gender}\n` +
-                    `Birth: ${p.birth || "Unknown"}\n` +
-                    `Death: ${p.death || "Unknown"}\n` +
-                    `Place of Birth: ${p.pob || "Unknown"}\n` +
-                    `Place of Death: ${p.pod || "Unknown"}\n` +
-                    `Father ID: ${p.fid || "Unknown"}\n` +
-                    `Mother ID: ${p.mid || "Unknown"}`
-                );
-            }
-        }
+    enableSearch:true,
+    mouseScroll:FamilyTree.scroll.zoom,
+    nodeBinding:{ field_0:"name" },
+    nodeMenu:{
+        details:{ text:"View Details", onClick:function(nodeId){
+            const p=personMap[nodeId];
+            if(!p) return;
+            alert(
+                `Name: ${p.name}\n`+
+                `Gender: ${p.gender}\n`+
+                `Birth: ${p.birth}\n`+
+                `Death: ${p.death}\n`+
+                `POB: ${p.pob}\n`+
+                `POD: ${p.pod}`
+            );
+        }}
     }
 });
 
