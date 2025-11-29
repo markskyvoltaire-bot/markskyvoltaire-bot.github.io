@@ -24,22 +24,55 @@
 
 <script>
 const data = [
+    // ===== ORIGINAL ENTRIES =====
     { id: "@I1@", name: "Mark Voltaire", sex: "M", parents: ["@I2@", "@I3@"] },
     { id: "@I2@", name: "Karl Voltaire", sex: "M", parents: ["@I7@", "@I8@"] },
     { id: "@I3@", name: "Claire Abgrall", sex: "F", parents: ["@I5@", "@I6@"] },
     { id: "@I4@", name: "Mikael Voltaire", sex: "M", parents: ["@I2@", "@I3@"] },
-    { id: "@I5@", name: "Jean Abgrall", sex: "M" },
-    { id: "@I6@", name: "Monique Drouaire", sex: "F" },
-    { id: "@I7@", name: "Michel-Ange Voltaire", sex: "M" },
-    { id: "@I8@", name: "Adrienne Anglade", sex: "F" }
+    { id: "@I5@", name: "Jean Abgrall", sex: "M", parents: ["@I27@", "@I28@"] },  // NEW
+    { id: "@I6@", name: "Monique Drouaire", sex: "F", parents: ["@I17@", "@I18@"] }, // NEW links
+    { id: "@I7@", name: "Michel-Ange Voltaire", sex: "M", parents: ["@I9@", "@I10@"] }, // NEW links
+    { id: "@I8@", name: "Adrienne Anglade", sex: "F", parents: ["@I13@", "@I14@"] }, // NEW links
+
+    // ===== NEW — Monique's Parents (@I6@) =====
+    { id: "@I17@", name: "Julien Henry", sex: "M" },
+    { id: "@I18@", name: "Olga Drouaire", sex: "F" },
+
+    // ===== NEW — Adrienne’s Parents (@I8@) =====
+    { id: "@I13@", name: "Jean Baptiste Virgile Anglade", sex: "M" },
+    { id: "@I14@", name: "Lucie Victor", sex: "F" },
+
+    // ===== NEW — Michel-Ange’s Parents (@I7@) =====
+    { id: "@I9@", name: "Luigi Schettini", sex: "M" },
+    { id: "@I10@", name: "Laure Voltaire", sex: "F", parents: ["@I11@", "@I12@"] },
+
+    // ===== NEW — Laure’s Parents =====
+    { id: "@I11@", name: "Gaston Louis Joseph Thomas Voltaire", sex: "M", parents: ["@I41@"] }, // Unknown father
+    { id: "@I12@", name: "Julia Charles", sex: "F" },
+
+    // ===== NEW — Gaston’s Mother =====
+    { id: "@I41@", name: "Marie-Cephelie Voltaire", sex: "F", parents: ["@I43@", "@I42@"] },
+
+    // ===== NEW — Marie-Cephelie's Parents =====
+    { id: "@I43@", name: "Louis Voltaire", sex: "M", parents: ["@I45@"] }, // Unknown father
+    { id: "@I42@", name: "Josephine Palmerie", sex: "F", parents: ["@I139@"] }, // Unknown father
+
+    // ===== NEW — Luce Voltaire (start of line) =====
+    { id: "@I45@", name: "Luce Voltaire", sex: "F" },
+
+    // ===== NEW — Coralie Lazare (Josephine’s mother) =====
+    { id: "@I139@", name: "Coralie Lazare", sex: "F" },
+
+    // ===== NEW — Jean Abgrall’s Parents =====
+    { id: "@I27@", name: "Gustave Abgrall", sex: "M" },
+    { id: "@I28@", name: "Francoise Le Roy", sex: "F" }
 ];
 
-// Prepare nodes and marriages
+// ==== PROCESS DATA FOR FAMILY TREE ====
 const nodes = [];
 const marriages = [];
 const personMap = {};
 
-// Map persons
 data.forEach(p => {
     personMap[p.id] = {
         id: p.id,
@@ -48,7 +81,6 @@ data.forEach(p => {
     };
 });
 
-// Create nodes and marriages
 data.forEach(p => {
     if (p.parents && p.parents.length === 2) {
         const marriageId = `${p.parents[0]}_${p.parents[1]}_marriage`;
@@ -78,7 +110,6 @@ data.forEach(p => {
     }
 });
 
-// Initialize chart
 new FamilyTree(document.getElementById('tree'), {
     nodes: nodes,
     marriages: marriages,
@@ -86,8 +117,6 @@ new FamilyTree(document.getElementById('tree'), {
     enableSearch: true,
     mouseScroll: FamilyTree.scroll.scroll
 });
-
-console.log("Family tree loaded successfully");
 </script>
 </body>
 </html>
