@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
-        /* Scroll Styling */
+        /* =======================
+           Scroll / Parchment Styling
+        ======================== */
         .ancestor-intro {
             position: relative;
             max-width: 900px;
@@ -25,7 +27,6 @@
             transform: rotate(-0.2deg);
         }
 
-        /* Top and bottom curls / burn marks */
         .ancestor-intro::before,
         .ancestor-intro::after {
             content: '';
@@ -50,14 +51,12 @@
                         radial-gradient(circle at 10% 80%, rgba(0,0,0,0.1) 0%, transparent 70%);
         }
 
-        /* Torn edges */
         .ancestor-intro {
             clip-path: polygon(
                 5% 0%, 95% 0%, 100% 5%, 100% 95%, 95% 100%, 5% 100%, 0% 95%, 0% 5%
             );
         }
 
-        /* Headings & paragraphs */
         .ancestor-intro h1, .ancestor-intro h2 {
             text-align: center;
             margin-bottom: 25px;
@@ -68,7 +67,9 @@
             font-size: 1.25rem;
         }
 
-        /* Optional overlay for background */
+        /* =======================
+           Overlay
+        ======================== */
         .overlay {
             position: fixed;
             top: 0;
@@ -77,6 +78,49 @@
             height: 100%;
             background-color: rgba(0,0,0,0.2);
             z-index: -1;
+        }
+
+        /* =======================
+           Family Tree Image
+        ======================== */
+        .family-image {
+            display: block;
+            max-width: 90%;
+            margin: 40px auto;
+            border: 5px solid #8b5e3c;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        /* =======================
+           Audio control button
+        ======================== */
+        #music-control {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 999;
+            background: #8b5e3c;
+            color: #fdf3d9;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+
+        /* =======================
+           Fade-in Animations
+        ======================== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -97,7 +141,7 @@
         <a href="contact.html">Contact</a>
     </nav>
 
-    <!-- Introduction Section (Scroll) -->
+    <!-- Introduction Section -->
     <section class="ancestor-intro fade-in">
         <h1>I came here looking for ghosts...</h1>
         <h2>I Was Never “From” One Place</h2>
@@ -176,31 +220,24 @@
             <li>Mark Voltaire  
                 <ul><li>son of Karl Voltaire & Claire Abgrall</li></ul>
             </li>
-
             <li>Karl Voltaire  
                 <ul><li>son of Michel-Ange Voltaire & Adrienne Anglade</li></ul>
             </li>
-
             <li>Michel-Ange Voltaire  
                 <ul><li>son of Laure Voltaire & Luigi Schettini (Italian businessman in Haiti)</li></ul>
             </li>
-
             <li>Laure Voltaire  
                 <ul><li>daughter of Gaston Voltaire & Julia Charles</li></ul>
             </li>
-
             <li>Gaston Voltaire  
                 <ul><li>son of Marie-Cephelie Voltaire & Unknown</li></ul>
             </li>
-
             <li>Marie-Cephelie Voltaire  
                 <ul><li>daughter of Louis Voltaire & Josephine Palmerie</li></ul>
             </li>
-
             <li>Louis Voltaire  
                 <ul><li>son of Luce Voltaire & Unknown</li></ul>
             </li>
-
             <li>Luce Voltaire — Born ~1802 in Trois-Rivières, Guadeloupe  
                 <ul><li>Parents unknown — possibility of enslavement prior to 1848</li></ul>
             </li>
@@ -209,6 +246,9 @@
         <p class="mystery-note">
             There is speculation about a connection to **Jean-Baptiste Voltaire**, a soldier in Guadeloupe in the late 1700s. No confirmed link — but we’re searching.
         </p>
+
+        <!-- Family Tree Image -->
+        <img src="assets/familytree1.png" alt="Voltaire Family Tree" class="family-image">
     </section>
 
     <hr class="divider">
@@ -216,29 +256,23 @@
     <!-- Anglade Lineage -->
     <section class="family-section fade-in">
         <h2>Anglade Line (Maternal Haitian)</h2>
-
         <ul class="family-tree">
             <li>Adrienne Anglade & Michel-Ange Voltaire  
                 <ul><li>parents of Karl Voltaire</li></ul>
             </li>
-
             <li>Marc Virgil Anglade (b. 1866) & Lucie Victor Schettini  
                 <ul><li>parents of Adrienne Anglade</li></ul>
             </li>
-
             <li>Jean Baptiste Virgile Anglade & Tulina Morisseau  
                 <ul><li>parents of Marc Virgil Anglade</li></ul>
             </li>
-
             <li>Fenelon Anglade (b. 1833, Aquin) & Unknown  
                 <ul><li>parents of Jean Baptiste Virgile</li></ul>
             </li>
-
             <li>Jean Jacques Anglade (b. 1806, Aquin) & Unknown  
                 <ul><li>parents of Fenelon Anglade</li></ul>
             </li>
         </ul>
-
         <p class="mystery-note">
             This branch has almost certainly touched Martinique.  
             The name **Albert Victor** appears in oral stories. So does **Vilthelie Cypres** — barely visible in history, yet responsible for everything that followed.
@@ -247,10 +281,9 @@
 
     <hr class="divider">
 
-    <!-- Drouaire Lineage (Maternal French) -->
+    <!-- Drouaire Lineage -->
     <section class="family-section fade-in drouaire-line">
         <h2>Drouaire Line (Maternal French)</h2>
-
         <ul class="family-tree">
             <li>Mark VOLTAIRE (b. Paris, 1975) → Claire ABGRALL (b. 1949) → Monique DROUAIRE (b. 1928) → Olga DROUAIRE (1899-1945)  
                 <ul>
@@ -273,7 +306,6 @@
                 </ul>
             </li>
         </ul>
-
         <p class="mystery-note">
             The Drouaire side has traces back to early 17th century France. I even located cousins in Montpellier living today, through Paris archives and Facebook.
         </p>
@@ -288,9 +320,18 @@
         <strong>markskyvoltaire@gmail.com</strong>
     </p>
 
-    <!-- Fade-in script -->
+    <!-- Background Music -->
+    <audio id="bg-music" loop autoplay>
+        <source src="assets/Copy of you_family tree.mp3" type="audio/mpeg">
+        <source src="assets/Copy of you_family tree.ogg" type="audio/ogg">
+        Your browser does not support the audio element.
+    </audio>
+    <button id="music-control">Mute</button>
+
+    <!-- Fade-in and Music Script -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // Fade-in elements
             const faders = document.querySelectorAll(".fade-in");
             const observerOptions = { threshold: 0.3, rootMargin: "0px 0px -50px 0px" };
             const appearOnScroll = new IntersectionObserver((entries, observer) => {
@@ -301,6 +342,19 @@
                 });
             }, observerOptions);
             faders.forEach(fader => appearOnScroll.observe(fader));
+
+            // Music control
+            const music = document.getElementById('bg-music');
+            const btn = document.getElementById('music-control');
+            btn.addEventListener('click', function() {
+                if (music.paused) {
+                    music.play();
+                    btn.textContent = 'Mute';
+                } else {
+                    music.pause();
+                    btn.textContent = 'Play';
+                }
+            });
         });
     </script>
 
