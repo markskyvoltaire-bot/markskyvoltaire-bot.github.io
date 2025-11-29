@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Voltaire Family Tree</title>
-    <!-- Correct CDN links -->
-    <link rel="stylesheet" href="https://balkangraph.com/js/latest/FamilyTree.css">
-    <script src="https://balkangraph.com/js/latest/FamilyTree.js"></script>
+    <!-- Official Balkan FamilyTreeJS CDN -->
+    <link rel="stylesheet" href="https://balkan.app/js/familytree.css">
+    <script src="https://balkan.app/js/familytree.js"></script>
     <style>
+        /* Fullscreen tree container */
         #tree {
             width: 100%;
             height: 100vh;
@@ -16,7 +17,90 @@
 </head>
 <body>
     <div id="tree"></div>
-    <!-- Voltaire family tree JS -->
-    <script src="voltaire_tree.js"></script>
+
+    <script>
+    // ===== Voltaire Family Tree JS (embedded) =====
+    const data = [
+        {
+            "id": "I1",
+            "name": "John Voltaire",
+            "sex": "M",
+            "parents": [],
+            "children": ["I2", "I3"]
+        },
+        {
+            "id": "I2",
+            "name": "Mark Voltaire",
+            "sex": "M",
+            "parents": ["I1"],
+            "children": []
+        },
+        {
+            "id": "I3",
+            "name": "Kandi Voltaire",
+            "sex": "F",
+            "parents": ["I1"],
+            "children": []
+        }
+        // ADD THE REST OF YOUR TREE HERE
+    ];
+
+    const nodes = [];
+    const marriages = [];
+    const personMap = {};
+
+    // Map each person
+    data.forEach(person => {
+        personMap[person.id] = {
+            id: person.id,
+            name: person.name,
+            gender: person.sex === "M" ? "male" : "female"
+        };
+    });
+
+    // Create nodes and marriages
+    data.forEach(person => {
+        if (person.parents.length > 0) {
+            const parentsIds = person.parents.filter(p => personMap[p]);
+            if (parentsIds.length === 1) {
+                nodes.push({
+                    id: person.id,
+                    name: person.name,
+                    gender: person.sex === "M" ? "male" : "female",
+                    pid: parentsIds[0]
+                });
+            } else if (parentsIds.length === 2) {
+                const marriageId = `${parentsIds[0]}_${parentsIds[1]}_marriage`;
+                let marriage = marriages.find(m => m.id === marriageId);
+                if (!marriage) {
+                    marriages.push({
+                        id: marriageId,
+                        spouses: parentsIds,
+                        children: [person.id]
+                    });
+                } else {
+                    marriage.children.push(person.id);
+                }
+            }
+        } else {
+            nodes.push({
+                id: person.id,
+                name: person.name,
+                gender: person.sex === "M" ? "male" : "female"
+            });
+        }
+    });
+
+    // Initialize the FamilyTreeJS chart
+    const chart = new FamilyTree(document.getElementById('tree'), {
+        nodes: nodes,
+        marriages: marriages,
+        template: "hugo",
+        enableSearch: true,
+        mouseScroll: FamilyTree.scroll.scroll
+    });
+
+    console.log("Family tree loaded successfully");
+    </script>
 </body>
 </html>
