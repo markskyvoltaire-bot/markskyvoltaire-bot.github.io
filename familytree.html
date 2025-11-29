@@ -27,7 +27,7 @@
 
 <script>
 // ===========================
-//   FAMILY TREE NODES
+// FAMILY TREE NODES
 // ===========================
 const nodes = [
     { id: "@I1@", name: "Mark Voltaire", gender: "male", fid: "@I2@", mid: "@I3@", birth: "30 JAN", death: "", pob:"", pod:"" },
@@ -63,45 +63,56 @@ const nodes = [
     { id: "@I27@", name: "Gustave Abgrall", gender: "male", birth:"", death:"", pob:"", pod:"" },
     { id: "@I28@", name: "Francoise Le Roy", gender: "female", birth:"", death:"", pob:"", pod:"" },
 
-    // Placeholder unknown parents
     { id: "@UNKNOWN1@", name: "Unknown Father", gender:"male" }
 ];
 
 // ===========================
-//   BUILD FAMILYTREE NODES & MARRIAGES
+// BUILD FAMILYTREE NODES & MARRIAGES
 // ===========================
 const ftNodes = [];
 const ftMarriages = [];
 const personMap = {};
-nodes.forEach(p => personMap[p.id]=p);
+nodes.forEach(p=>personMap[p.id]=p);
 
-// Add description field for each node (name, gender, birth-death)
+// Ensure every node has description and proper marriage assignment
 nodes.forEach(p=>{
-    const parents = [];
-    if(p.fid) parents.push(p.fid);
-    if(p.mid) parents.push(p.mid);
+    const parents = [p.fid,p.mid].filter(Boolean);
 
-    if(parents.length === 2){
+    // Handle marriages
+    if(parents.length===2){
         const marriageId = `${parents[0]}_${parents[1]}_marriage`;
         let marriage = ftMarriages.find(m=>m.id===marriageId);
         if(!marriage){
-            marriage = { id: marriageId, spouses: parents, children: [] };
+            marriage = {id:marriageId, spouses:parents, children:[]};
             ftMarriages.push(marriage);
         }
         marriage.children.push(p.id);
     }
 
+    // Build description string
     const desc = `${p.name}\n${p.gender.charAt(0).toUpperCase()+p.gender.slice(1)}\n${p.birth||"Unknown"} - ${p.death||"Unknown"}`;
-    ftNodes.push({id:p.id, name:p.name, gender:p.gender, birth:p.birth, death:p.death, pob:p.pob, pod:p.pod, description:desc});
+
+    // Push node (do not add pid if two parents exist; marriage handles it)
+    ftNodes.push({
+        id:p.id,
+        name:p.name,
+        gender:p.gender,
+        birth:p.birth,
+        death:p.death,
+        pob:p.pob,
+        pod:p.pod,
+        description:desc,
+        pid: parents.length===1 ? parents[0] : undefined
+    });
 });
 
 // ===========================
-//   INIT FAMILY TREE
+// INIT FAMILY TREE
 // ===========================
 const chart = new FamilyTree(document.getElementById("tree"), {
     nodes: ftNodes,
     marriages: ftMarriages,
-    root: "@I1@", // Center on Mark Voltaire
+    root: "@I1@", 
     template: "hugo",
     enableSearch:true,
     mouseScroll:FamilyTree.scroll.zoom,
@@ -110,8 +121,8 @@ const chart = new FamilyTree(document.getElementById("tree"), {
         field_1:"description"
     },
     nodeMenu:{
-        details:{ 
-            text:"View Details", 
+        details:{
+            text:"View Details",
             onClick:function(nodeId){
                 const p=personMap[nodeId];
                 if(!p) return;
