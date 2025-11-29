@@ -1,28 +1,11 @@
 // ===== Voltaire Family Tree JS =====
 
 // ===== EMBED YOUR JSON DATA DIRECTLY =====
+// Replace this with your full JSON tree
 const data = [
-    {
-        "id": "I1",
-        "name": "John Voltaire",
-        "sex": "M",
-        "parents": [],
-        "children": ["I2", "I3"]
-    },
-    {
-        "id": "I2",
-        "name": "Mark Voltaire",
-        "sex": "M",
-        "parents": ["I1"],
-        "children": []
-    },
-    {
-        "id": "I3",
-        "name": "Kandi Voltaire",
-        "sex": "F",
-        "parents": ["I1"],
-        "children": []
-    }
+    {"id":"I1","name":"John Voltaire","sex":"M","parents":[],"children":["I2","I3"]},
+    {"id":"I2","name":"Mark Voltaire","sex":"M","parents":["I1"],"children":[]},
+    {"id":"I3","name":"Kandi Voltaire","sex":"F","parents":["I1"],"children":[]}
     // ADD THE REST OF YOUR TREE HERE
 ];
 
@@ -31,7 +14,7 @@ const nodes = [];
 const marriages = [];
 const personMap = {};
 
-// First, map each person for quick lookup
+// Map each person for quick lookup
 data.forEach(person => {
     personMap[person.id] = {
         id: person.id,
@@ -55,8 +38,6 @@ data.forEach(person => {
         } else if (parentsIds.length === 2) {
             // Two parents, create a marriage node
             const marriageId = `${parentsIds[0]}_${parentsIds[1]}_marriage`;
-
-            // Check if marriage already exists
             let marriage = marriages.find(m => m.id === marriageId);
             if (!marriage) {
                 marriages.push({
@@ -65,7 +46,6 @@ data.forEach(person => {
                     children: [person.id]
                 });
             } else {
-                // Add child to existing marriage
                 marriage.children.push(person.id);
             }
         }
