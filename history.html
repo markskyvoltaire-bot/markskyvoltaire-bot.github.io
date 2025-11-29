@@ -96,21 +96,21 @@
         }
 
         /* =======================
-           Audio control button
+           Audio Indicator
         ======================== */
-        #music-control {
+        #audioIndicator {
             position: fixed;
             bottom: 20px;
             left: 20px;
-            z-index: 999;
+            z-index: 9999;
+            font-size: 1.5rem;
+            cursor: pointer;
             background: #8b5e3c;
             color: #fdf3d9;
-            border: none;
             border-radius: 50px;
-            padding: 12px 20px;
-            cursor: pointer;
-            font-weight: bold;
+            padding: 10px 16px;
             box-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            user-select: none;
         }
 
         /* =======================
@@ -229,26 +229,27 @@
                 <ul><li>son of Michel-Ange Voltaire & Adrienne Anglade</li></ul>
             </li>
             <li>Michel-Ange Voltaire  
-                <ul><li>son of Laure Voltaire & Luigi Schettini (Italian businessman in Haiti)</li></ul>
+                <ul><li>son of Laure Voltaire & Luigi Schettini</li></ul>
             </li>
-            <li>Laure Voltaire  
+            <li>Laure Voltaire - Born 1897 in Cap Haitien, Haiti - 1982 Miami, FL, USA
                 <ul><li>daughter of Gaston Voltaire & Julia Charles</li></ul>
             </li>
-            <li>Gaston Voltaire  
+            <li>Gaston Voltaire - Born 1865 in Pointe a Pitre, Guadeloupe - Unknown
                 <ul><li>son of Marie-Cephelie Voltaire & Unknown</li></ul>
             </li>
-            <li>Marie-Cephelie Voltaire  
+            <li>Marie-Cephelie Voltaire - Born circa 1842 probably Basse-Terre, Guadeloupe - Unknown
                 <ul><li>daughter of Louis Voltaire & Josephine Palmerie</li></ul>
             </li>
-            <li>Louis Voltaire  
+            <li>Louis Voltaire - Born circa 1821 in Trois-Rivières, Guadeloupe - 1896 Baillif, Guadeloupe
                 <ul><li>son of Luce Voltaire & Unknown</li></ul>
             </li>
-            <li>Luce Voltaire — Born ~1802 in Trois-Rivières, Guadeloupe  
+            <li>Luce Voltaire — Born circa 1802 in Trois-Rivières, Guadeloupe - 1876 Baillif, Guadeloupe
                 <ul><li>Parents unknown — possibility of enslavement prior to 1848</li></ul>
             </li>
         </ul>
 
         <p class="mystery-note">
+            French emancipation came in 1848 so it's not clear right now if Louis, his wife, daughter, and mother were all enslaved before then.
             There is speculation about a connection to **Jean-Baptiste Voltaire**, a soldier in Guadeloupe in the late 1700s. No confirmed link — but we’re searching.
         </p>
     </section>
@@ -257,27 +258,27 @@
 
     <!-- Anglade Lineage -->
     <section class="family-section fade-in">
-        <h2>Anglade Line (Maternal Haitian)</h2>
+        <h2>Anglade Line</h2>
         <ul class="family-tree">
-            <li>Adrienne Anglade & Michel-Ange Voltaire  
-                <ul><li>parents of Karl Voltaire</li></ul>
+            <li>Karl Voltaire  
+                <ul><li>son of Adrienne Anglade & Michel-Ange Voltaire</li></ul>
             </li>
-            <li>Marc Virgil Anglade (b. 1866) & Lucie Victor Schettini  
-                <ul><li>parents of Adrienne Anglade</li></ul>
+            <li>Adrienne Anglade
+                <ul><li>daughter of Jean Baptiste Virgile Anglade (b. 1866) & Lucie Victor</li></ul>
             </li>
-            <li>Jean Baptiste Virgile Anglade & Tulina Morisseau  
-                <ul><li>parents of Marc Virgil Anglade</li></ul>
+            <li>Jean Baptiste Virgile Anglade Born 1866 Haiti - Uknown
+                <ul><li>son of Fenelon Anglade and Tulina Morisseau</li></ul>
             </li>
-            <li>Fenelon Anglade (b. 1833, Aquin) & Unknown  
-                <ul><li>parents of Jean Baptiste Virgile</li></ul>
+            <li>Fenelon Anglade - Born 1833, Aquin, Haiti - Unkown 
+                <ul><li>son of Jean Jacques Anglade and unknown</li></ul>
             </li>
-            <li>Jean Jacques Anglade (b. 1806, Aquin) & Unknown  
-                <ul><li>parents of Fenelon Anglade</li></ul>
+            <li>Jean Jacques Anglade (b. 1806, Aquin, Haiti) - 1842 Aquin, Haiti
+                <ul><li>son of unknown</li></ul>
             </li>
         </ul>
         <p class="mystery-note">
-            This branch has almost certainly touched Martinique.  
-            The name **Albert Victor** appears in oral stories. So does **Vilthelie Cypres** — barely visible in history, yet responsible for everything that followed.
+            This branch connects directly with a Frech line of Anglade's that came to Saint Domingue in the 17th century.  
+            The records in Aquin, where Jean Jacques was born according to his death certificate, don't exist in 1806 so we may never know who his actual parents were.
         </p>
     </section>
 
@@ -322,42 +323,69 @@
         <strong>markskyvoltaire@gmail.com</strong>
     </p>
 
-    <!-- Background Music -->
-    <audio id="bg-music" loop autoplay>
+    <!-- Audio Indicator and Music -->
+    <div id="audioIndicator">🎵</div>
+
+    <audio id="pageAudio" loop>
         <source src="assets/Copy of you_family tree.mp3" type="audio/mpeg">
         <source src="assets/Copy of you_family tree.ogg" type="audio/ogg">
         Your browser does not support the audio element.
     </audio>
-    <button id="music-control">Mute</button>
 
-    <!-- Fade-in and Music Script -->
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Fade-in elements
-            const faders = document.querySelectorAll(".fade-in");
-            const observerOptions = { threshold: 0.3, rootMargin: "0px 0px -50px 0px" };
-            const appearOnScroll = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting) return;
-                    entry.target.classList.add("show");
-                    observer.unobserve(entry.target);
-                });
-            }, observerOptions);
-            faders.forEach(fader => appearOnScroll.observe(fader));
-
-            // Music control
-            const music = document.getElementById('bg-music');
-            const btn = document.getElementById('music-control');
-            btn.addEventListener('click', function() {
-                if (music.paused) {
-                    music.play();
-                    btn.textContent = 'Mute';
-                } else {
-                    music.pause();
-                    btn.textContent = 'Play';
-                }
+    document.addEventListener("DOMContentLoaded", function() {
+        // Fade-in elements
+        const faders = document.querySelectorAll(".fade-in");
+        const observerOptions = { threshold: 0.3, rootMargin: "0px 0px -50px 0px" };
+        const appearOnScroll = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("show");
+                observer.unobserve(entry.target);
             });
+        }, observerOptions);
+        faders.forEach(fader => appearOnScroll.observe(fader));
+
+        // Audio setup
+        const audio = document.getElementById("pageAudio");
+        const indicator = document.getElementById("audioIndicator");
+        let volume = 0;
+        audio.volume = volume;
+        audio.play().catch(() => console.log("Autoplay blocked. Click indicator to play."));
+
+        const fadeInAudio = setInterval(() => {
+            if (volume < 0.5) { 
+                volume += 0.01; 
+                audio.volume = volume; 
+            } else clearInterval(fadeInAudio);
+        }, 100);
+
+        function updateIndicator() {
+            if (!audio.paused) { 
+                indicator.classList.add("playing"); 
+                indicator.textContent = "🎵"; 
+            } else { 
+                indicator.classList.remove("playing"); 
+                indicator.textContent = "🔇"; 
+            }
+        }
+
+        indicator.addEventListener("click", function() {
+            if (audio.paused) audio.play();
+            else audio.pause();
+            updateIndicator();
         });
+
+        updateIndicator();
+
+        // Attempt to play once on first click anywhere (autoplay workaround)
+        document.addEventListener("click", function() {
+            if (audio.paused) { 
+                audio.play(); 
+                updateIndicator(); 
+            }
+        }, { once: true });
+    });
     </script>
 
 </body>
