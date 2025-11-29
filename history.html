@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>History & Genealogy | Mark Sky Voltaire</title>
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <!-- Updated font to more readable cursive -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
     <style>
         /* =======================
            Scroll / Parchment Styling
@@ -17,7 +20,7 @@
             margin: 50px auto;
             padding: 60px 50px;
             background: #fdf3d9;
-            font-family: 'Great Vibes', cursive;
+            font-family: 'Dancing Script', cursive; /* updated font */
             color: #3b2f2f;
             line-height: 1.8;
             border-radius: 50px;
@@ -83,10 +86,10 @@
         /* =======================
            Family Tree Image
         ======================== */
-        .family-image {
+        .ancestor-intro .family-image {
             display: block;
             max-width: 90%;
-            margin: 40px auto;
+            margin: 0 auto 30px; /* moved to top of intro */
             border: 5px solid #8b5e3c;
             border-radius: 20px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.5);
@@ -143,6 +146,9 @@
 
     <!-- Introduction Section -->
     <section class="ancestor-intro fade-in">
+        <!-- Family Tree Image at top -->
+        <img src="assets/familytree1.png" alt="Voltaire Family Tree" class="family-image">
+
         <h1>I came here looking for ghosts...</h1>
         <h2>I Was Never “From” One Place</h2>
 
@@ -246,9 +252,6 @@
         <p class="mystery-note">
             There is speculation about a connection to **Jean-Baptiste Voltaire**, a soldier in Guadeloupe in the late 1700s. No confirmed link — but we’re searching.
         </p>
-
-        <!-- Family Tree Image -->
-        <img src="assets/familytree1.png" alt="Voltaire Family Tree" class="family-image">
     </section>
 
     <hr class="divider">
