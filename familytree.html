@@ -26,16 +26,13 @@
 <div id="tree"></div>
 
 <script>
-// ===========================
-//   FAMILY TREE DATA
-// ===========================
+// ===== FULL FAMILY TREE DATA =====
 const nodes = [
     { id: "@I1@", name: "Mark Voltaire", gender: "male", fid: "@I2@", mid: "@I3@" },
+    { id: "@I4@", name: "Mikael Voltaire", gender: "male", fid: "@I2@", mid: "@I3@" },
 
     { id: "@I2@", name: "Karl Voltaire", gender: "male", fid: "@I7@", mid: "@I8@" },
     { id: "@I3@", name: "Claire Abgrall", gender: "female", fid: "@I5@", mid: "@I6@" },
-
-    { id: "@I4@", name: "Mikael Voltaire", gender: "male", fid: "@I2@", mid: "@I3@" },
 
     { id: "@I5@", name: "Jean Abgrall", gender: "male", fid: "@I27@", mid: "@I28@" },
     { id: "@I6@", name: "Monique Drouaire", gender: "female", fid: "@I17@", mid: "@I18@" },
@@ -65,17 +62,15 @@ const nodes = [
     { id: "@I28@", name: "Francoise Le Roy", gender: "female" }
 ];
 
-// ===========================
-//   RENDER TREE PROPERLY
-// ===========================
+// ===== INITIALIZE FAMILY TREE =====
 new FamilyTree(document.getElementById("tree"), {
     nodes: nodes,
-    root: "@I1@",                 // ← THIS FIXES THE EMPTY TREE
+    root: "@I1@",                   // Start with Mark Voltaire at center
     template: "hugo",
     enableSearch: true,
     mouseScroll: FamilyTree.scroll.zoom,
     nodeBinding: {
-        field_0: "name"           // ← SHOW NAMES ON BOXES
+        field_0: "name"             // Show name on boxes
     }
 });
 </script>
