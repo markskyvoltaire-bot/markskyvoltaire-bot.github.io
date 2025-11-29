@@ -1,4 +1,4 @@
-// ===== FULL FAMILY TREE JS =====
+// ===== FULL FAMILY TREE JS (UPDATED) =====
 const ftNodes = [];
 const ftMarriages = [];
 const personMap = {};
@@ -8,7 +8,47 @@ nodes.forEach(p => {
     personMap[p.id] = p;
 });
 
-// Process nodes
+// Ensure unknown parents exist for nodes missing one parent
+let unknownCounter = 1;
+nodes.forEach(p => {
+    if (!p.fid) {
+        p.fid = `@UNKNOWNF${unknownCounter}@`;
+        // Add unknown father node if not already added
+        if (!personMap[p.fid]) {
+            const unknownFather = {
+                id: p.fid,
+                name: "Unknown Father",
+                gender: "male",
+                birth: null,
+                death: null,
+                pob: null,
+                pod: null
+            };
+            nodes.push(unknownFather);
+            personMap[unknownFather.id] = unknownFather;
+        }
+        unknownCounter++;
+    }
+    if (!p.mid) {
+        p.mid = `@UNKNOWNM${unknownCounter}@`;
+        if (!personMap[p.mid]) {
+            const unknownMother = {
+                id: p.mid,
+                name: "Unknown Mother",
+                gender: "female",
+                birth: null,
+                death: null,
+                pob: null,
+                pod: null
+            };
+            nodes.push(unknownMother);
+            personMap[unknownMother.id] = unknownMother;
+        }
+        unknownCounter++;
+    }
+});
+
+// Build nodes and marriages
 nodes.forEach(p => {
     const parents = [];
     if (p.fid) parents.push(p.fid);
@@ -19,34 +59,31 @@ nodes.forEach(p => {
         const marriageId = `${parents[0]}_${parents[1]}_marriage`;
         let marriage = ftMarriages.find(m => m.id === marriageId);
         if (!marriage) {
-            marriage = {
-                id: marriageId,
-                spouses: parents,
-                children: []
-            };
+            marriage = { id: marriageId, spouses: parents, children: [] };
             ftMarriages.push(marriage);
         }
         marriage.children.push(p.id);
-        ftNodes.push({
-            id: p.id,
-            name: p.name,
-            gender: p.gender
-            // No pid because marriage handles layout
-        });
-    } else if (parents.length === 1) {
-        // Single parent → assign pid
+
         ftNodes.push({
             id: p.id,
             name: p.name,
             gender: p.gender,
-            pid: parents[0]
+            birth: p.birth,
+            death: p.death,
+            pob: p.pob,
+            pod: p.pod
+            // pid not needed because marriage handles layout
         });
     } else {
-        // No parents → root node
+        // Safety fallback (shouldn't happen) → root node
         ftNodes.push({
             id: p.id,
             name: p.name,
-            gender: p.gender
+            gender: p.gender,
+            birth: p.birth,
+            death: p.death,
+            pob: p.pob,
+            pod: p.pod
         });
     }
 });
