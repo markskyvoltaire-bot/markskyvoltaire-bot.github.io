@@ -25,21 +25,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================
     const galleryImages = document.querySelectorAll('.gallery-grid img');
     const lightboxOverlay = document.getElementById('lightbox-overlay');
-    const lightboxImg = lightboxOverlay.querySelector('img');
 
-    galleryImages.forEach(img => {
-        img.addEventListener('click', () => {
-            lightboxImg.src = img.getAttribute('src');
-            lightboxOverlay.classList.add('show');
-            lightboxOverlay.style.display = 'flex';
+    // Only proceed if the overlay exists
+    if (lightboxOverlay) {
+        const lightboxImg = lightboxOverlay.querySelector('img');
+
+        galleryImages.forEach(img => {
+            img.addEventListener('click', () => {
+                if (lightboxImg) {
+                    lightboxImg.src = img.getAttribute('src');
+                    lightboxOverlay.classList.add('show');
+                    lightboxOverlay.style.display = 'flex';
+                }
+            });
         });
-    });
 
-    lightboxOverlay.addEventListener('click', () => {
-        lightboxOverlay.classList.remove('show');
-        setTimeout(() => {
-            lightboxOverlay.style.display = 'none';
-            lightboxImg.src = '';
-        }, 400);
-    });
+        lightboxOverlay.addEventListener('click', () => {
+            lightboxOverlay.classList.remove('show');
+            setTimeout(() => {
+                lightboxOverlay.style.display = 'none';
+                if (lightboxImg) lightboxImg.src = '';
+            }, 400);
+        });
+    }
 });
