@@ -70,9 +70,49 @@
         </ul>
 
         <p style="margin-top: 1.5rem; font-style: italic;">
-            *This isn’t the past. It’s the beginning.*
+            *This isn’t the past. It’s the beginning.* 
         </p>
     </section>
+
+    <!-- Audio Indicator + Player -->
+    <div id="audioIndicator">🎵</div>
+
+    <audio id="pageAudio" loop>
+        <source src="assets/Copy of secret in the stones.mp3" type="audio/mpeg">
+        <source src="assets/Copy of secret in the stones.ogg" type="audio/ogg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+    // Audio
+    document.addEventListener("DOMContentLoaded", function() {
+        const audio = document.getElementById("pageAudio");
+        const indicator = document.getElementById("audioIndicator");
+        let volume = 0;
+        audio.volume = volume;
+        audio.play().catch(() => console.log("Autoplay blocked. Click indicator to play."));
+        const fadeInAudio = setInterval(() => {
+            if (volume < 0.5) { volume += 0.01; audio.volume = volume; }
+            else clearInterval(fadeInAudio);
+        }, 100);
+
+        function updateIndicator() {
+            if (!audio.paused) { indicator.classList.add("playing"); indicator.textContent = "🎵"; }
+            else { indicator.classList.remove("playing"); indicator.textContent = "🔇"; }
+        }
+
+        indicator.addEventListener("click", function() {
+            if (audio.paused) audio.play();
+            else audio.pause();
+            updateIndicator();
+        });
+
+        updateIndicator();
+        document.addEventListener("click", function() {
+            if (audio.paused) { audio.play(); updateIndicator(); }
+        }, { once: true });
+    });
+    </script>
 
     <script src="js/script.js"></script>
 </body>
