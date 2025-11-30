@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ancestors | Mark Sky Voltaire</title>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/ancestor.css" />
 </head>
 <body class="mythology-bg">
 
-    <!-- Optional Overlay (Make sure it's NOT blocking content) -->
+    <!-- Optional Overlay -->
     <div class="overlay"></div>
 
     <!-- Navigation -->
@@ -60,7 +61,7 @@
             </div>
         </div>
 
-        <!-- Placeholders -->
+        <!-- Placeholder Ancestors -->
         <div class="ancestor-card placeholder-card fade-in">Ancestor 2 - Coming Soon</div>
         <div class="ancestor-card placeholder-card fade-in">Ancestor 3 - Coming Soon</div>
         <div class="ancestor-card placeholder-card fade-in">Ancestor 4 - Coming Soon</div>
@@ -88,7 +89,7 @@
             }, appearOptions);
             faders.forEach(fader => appearOnScroll.observe(fader));
 
-            // Smooth scroll
+            // Smooth scroll for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener("click", e => {
                     e.preventDefault();
