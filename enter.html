@@ -25,17 +25,38 @@
     opacity: 1;
 }
 
-/* Audio Indicator */
+/* Audio Indicator Neon Glow (Contact page style) */
 #audioIndicator {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    font-size: 2rem;
+    bottom: 25px;
+    right: 25px;
+    width: 55px;
+    height: 55px;
+    background: rgba(0, 200, 0, 0.25);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
-    z-index: 999;
+    box-shadow: 0 0 12px rgba(0, 200, 0, 0.5);
+    z-index: 1000;
+    font-size: 24px;
+    color: #fff;
+    user-select: none;
+    transition: background 0.3s, color 0.3s, transform 0.2s, box-shadow 0.3s;
 }
 
-/* Keep your existing CSS unchanged */
+#audioIndicator.playing {
+    animation: pulseGlow 1.5s infinite ease-in-out;
+    background: rgba(0, 200, 0, 0.35);
+    box-shadow: 0 0 20px rgba(0, 200, 0, 0.8);
+}
+
+@keyframes pulseGlow {
+    0% { transform: scale(1); box-shadow: 0 0 12px rgba(0, 200, 0, 0.5); }
+    50% { transform: scale(1.15); box-shadow: 0 0 28px rgba(0, 200, 0, 0.9); }
+    100% { transform: scale(1); box-shadow: 0 0 12px rgba(0, 200, 0, 0.5); }
+}
 </style>
 </head>
 <body class="world-bg">
@@ -147,29 +168,74 @@ document.addEventListener("DOMContentLoaded", function() {
     }, { threshold: 0.3 });
     faders.forEach(fader => observer.observe(fader));
 
-    // Audio
+    // Audio setup (Contact page style)
     const audio = document.getElementById("pageAudio");
     const indicator = document.getElementById("audioIndicator");
+    let volume = 0;
+    const maxVolume = 0.5;
+    audio.volume = volume;
+
+    // Try autoplay
+    audio.play().catch(() => {
+        console.log("Autoplay blocked. Click indicator to play audio.");
+    });
+
+    // Smooth fade-in on load
+    const fadeInAudio = setInterval(() => {
+        if (volume < maxVolume) {
+            volume += 0.005;
+            audio.volume = volume;
+        } else {
+            clearInterval(fadeInAudio);
+        }
+    }, 100);
 
     function updateIndicator() {
-        indicator.textContent = audio.paused || audio.muted ? "🔇" : "🎵";
+        if (!audio.paused) {
+            indicator.classList.add("playing");
+            indicator.textContent = "🎵";
+        } else {
+            indicator.classList.remove("playing");
+            indicator.textContent = "🔇";
+        }
     }
 
-    // Attempt autoplay
-    audio.play().catch(() => console.log("Autoplay blocked, waiting for user interaction."));
+    // Smooth fade function
+    function fadeAudio(targetVolume, duration = 1800) {
+        const steps = 40;
+        const stepTime = duration / steps;
+        const volumeDiff = targetVolume - audio.volume;
+        let i = 0;
+        const fadeInterval = setInterval(() => {
+            i++;
+            audio.volume += volumeDiff / steps;
+            if (i >= steps) clearInterval(fadeInterval);
+        }, stepTime);
+    }
 
-    indicator.addEventListener("click", () => {
-        if(audio.paused || audio.muted){
-            audio.muted = false;
+    // Toggle audio on indicator click with smooth fade
+    indicator.addEventListener("click", function() {
+        if (audio.paused) {
             audio.play();
+            fadeAudio(maxVolume);
         } else {
-            audio.muted = true;
-            audio.pause();
+            fadeAudio(0);
+            setTimeout(() => audio.pause(), 1800);
         }
         updateIndicator();
     });
 
+    // Initial indicator state
     updateIndicator();
+
+    // Start audio on first click anywhere if autoplay blocked
+    document.addEventListener("click", function() {
+        if (audio.paused) {
+            audio.play();
+            fadeAudio(maxVolume);
+            updateIndicator();
+        }
+    }, { once: true });
 
     // Highlight nav
     const navLinks = document.querySelectorAll(".world-nav a");
