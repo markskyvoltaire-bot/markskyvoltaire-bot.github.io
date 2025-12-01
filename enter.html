@@ -1,143 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mark Sky Voltaire | Artist</title>
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mark Sky Voltaire | Enter My World</title>
+<link rel="stylesheet" href="css/style.css">
+<link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
+<style>
+/* Example fade-in CSS */
+.fade-in {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+.fade-in.show {
+    opacity: 1;
+}
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/assets/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
-    <link rel="shortcut icon" href="/assets/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="Sky Voltaire" />
-    <link rel="manifest" href="/assets/site.webmanifest" />
+/* Audio Indicator */
+#audioIndicator {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 999;
+}
 
-    <style>
-        /* Audio Indicator Neon Glow */
-        #audioIndicator {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 55px;
-            height: 55px;
-            background: rgba(0, 200, 0, 0.25);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: 0 0 12px rgba(0, 200, 0, 0.5);
-            z-index: 1000;
-            font-size: 24px;
-            color: #fff;
-            user-select: none;
-            transition: background 0.3s, color 0.3s, transform 0.2s, box-shadow 0.3s;
-        }
-
-        #audioIndicator.playing {
-            animation: pulseGlow 1.5s infinite ease-in-out;
-            background: rgba(0, 200, 0, 0.35);
-            box-shadow: 0 0 20px rgba(0, 200, 0, 0.8);
-        }
-
-        @keyframes pulseGlow {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 0 12px rgba(0, 200, 0, 0.5);
-            }
-            50% {
-                transform: scale(1.15);
-                box-shadow: 0 0 28px rgba(0, 200, 0, 0.9);
-            }
-            100% {
-                transform: scale(1);
-                box-shadow: 0 0 12px rgba(0, 200, 0, 0.5);
-            }
-        }
-    </style>
+/* Keep your existing CSS unchanged */
+</style>
 </head>
-<body class="home-bg">
+<body class="world-bg">
 
-    <!-- Hero Section -->
-    <div class="hero-text fade-in">
-        <a href="enter.html" class="btn">
-            Enter My World
-        </a>
+<nav class="world-nav fade-in">
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About</a>
+    <a href="music.html">Music</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="mythology.html">Mythology</a>
+    <a href="history.html">History & Genealogy</a>
+    <a href="merch.html">Merch</a>
+    <a href="contact.html">Contact</a>
+</nav>
+
+<section class="hero-world fade-in">
+    <h1>Welcome to My World</h1>
+    <p>Fragments, Frequencies & Storylines</p>
+    <div class="hero-image-container">
+        <img src="https://i.imgur.com/6f38or4.png" alt="Welcome to My World">
     </div>
+    <a href="music.html" class="btn">Explore Music</a>
+</section>
 
-    <!-- Audio Indicator -->
-    <div id="audioIndicator">🎵</div>
+<section class="section music-section fade-in">
+    <h2>Latest Tracks</h2>
+    <div class="music-container">
+        <iframe src="https://www.youtube.com/embed/SzVb79Q6KEA?si=bus-IBfXyVmKA5U4" title="YouTube video player" allowfullscreen></iframe>
+        <div class="track-title">"The Other Side - Haezl/Mark Sky Voltaire"</div>
+    </div>
+</section>
 
-    <!-- Background Audio -->
-    <audio id="pageAudio" loop>
-        <source src="assets/Copy of Bap.mp3" type="audio/mpeg">
-        <source src="assets/Copy of Bap.ogg" type="audio/ogg">
-        Your browser does not support the audio element.
-    </audio>
+<section class="section gallery-section fade-in">
+    <h2>Gallery</h2>
+    <div class="gallery-grid">
+        <div><img src="https://i.imgur.com/rYRkE1Y.jpeg" alt="The crew in Toronto"><div class="gallery-caption">The crew in Toronto</div></div>
+        <div><img src="https://i.imgur.com/kHRW4Jb.jpeg" alt="The Other Side"><div class="gallery-caption">The Other Side</div></div>
+        <div><img src="https://i.imgur.com/CjLlY2F.jpeg" alt="Flying the millenium falcon"><div class="gallery-caption">Flying the millenium falcon</div></div>
+        <div><img src="https://i.imgur.com/ykdzxfG.jpeg" alt="U Street"><div class="gallery-caption">U Street</div></div>
+        <div><img src="https://i.imgur.com/Q4LJGJo.jpeg" alt="NorthStar International"><div class="gallery-caption">NorthStar International</div></div>
+    </div>
+    <a href="gallery.html" class="btn">See Gallery</a>
+</section>
 
-    <!-- Scripts -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const faders = document.querySelectorAll(".fade-in");
-            const appearOptions = { threshold: 0.3, rootMargin: "0px 0px -50px 0px" };
-            const appearOnScroll = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting) return;
-                    entry.target.classList.add("show");
-                    observer.unobserve(entry.target);
-                });
-            }, appearOptions);
-            faders.forEach(fader => appearOnScroll.observe(fader));
+<section class="section mythology-section fade-in">
+    <h2>Mythology</h2>
+    <p>Explore the symbols, stories, and frequencies that shape my world...</p>
+    <div class="mythology-image-container">
+        <img src="https://i.imgur.com/UlYwv34.png" alt="Mythology Visual">
+    </div>
+    <a href="mythology.html" class="btn">Discover Mythology</a>
+</section>
 
-            const audio = document.getElementById("pageAudio");
-            const indicator = document.getElementById("audioIndicator");
-            let volume = 0;
-            audio.volume = volume;
+<section class="section history-section fade-in">
+    <h2>History & Genealogy</h2>
+    <img src="assets/familytree1.png" alt="Family Tree">
+    <p>I Was Never “From” One Place. People always want a place. Where are you from?<br>
+       But my family doesn’t trace in straight lines. We web out — across Port-au-Prince, Paris, Guadeloupe, Brittany, and Naples.<br>
+       We show up in Ellis Island logs. In faded French censuses.</p>
+    <a href="history.html" class="btn">Learn History & Genealogy</a>
+</section>
 
-            audio.play().catch(() => {
-                console.log("Autoplay blocked. Click indicator to play audio.");
-            });
+<section class="section about-section fade-in">
+    <h2>About Me</h2>
+    <img src="https://i.imgur.com/Ws4e47I.jpeg" alt="Mark Sky Voltaire" class="about-image">
+    <p>Raised between Haiti, France, and Washington D.C., my music is fragments, frequencies, and storylines from the worlds I’ve been through...</p>
+    <a href="about.html" class="btn">About Me</a>
+</section>
 
-            const fadeInAudio = setInterval(() => {
-                if (volume < 0.5) {
-                    volume += 0.01;
-                    audio.volume = volume;
-                } else {
-                    clearInterval(fadeInAudio);
-                }
-            }, 100);
+<section class="section contact-section fade-in">
+    <h2>Contact & Connect</h2>
+    <p>Email: mark@markskyvoltaire.com or markskyvoltaire@gmail.com</p>
+    <div id="mc_embed_signup">
+        <form action="https://markskyvoltaire.us14.list-manage.com/subscribe/post?u=7eb7b436c405498be6f8164fc&amp;id=ba6249fcea&amp;f_id=00e9bbe5f0" method="post" target="_blank" class="validate">
+            <h2>Subscribe Now!</h2>
+            <div class="mc-field-group">
+                <label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label>
+                <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required>
+            </div>
+            <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                <input type="text" name="b_7eb7b436c405498be6f8164fc_ba6249fcea" tabindex="-1" value="">
+            </div>
+            <div class="clear foot">
+                <input type="submit" name="subscribe" class="button" value="Subscribe">
+            </div>
+        </form>
+    </div>
+</section>
 
-            function updateIndicator() {
-                if (!audio.paused) {
-                    indicator.classList.add("playing");
-                    indicator.textContent = "🎵";
-                } else {
-                    indicator.classList.remove("playing");
-                    indicator.textContent = "🔇";
-                }
+<!-- AUDIO ELEMENT -->
+<div id="audioIndicator" title="Toggle music">🔇</div>
+<audio id="pageAudio" loop>
+    <source src="assets/Copy of i can feel your vibe.mp3" type="audio/mpeg">
+    <source src="assets/Copy of i can feel your vibe.ogg" type="audio/ogg">
+    Your browser does not support the audio element.
+</audio>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Fade-in
+    const faders = document.querySelectorAll(".fade-in");
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                entry.target.classList.add("show");
+                obs.unobserve(entry.target);
             }
-
-            indicator.addEventListener("click", function() {
-                if (audio.paused) {
-                    audio.play();
-                } else {
-                    audio.pause();
-                }
-                updateIndicator();
-            });
-
-            updateIndicator();
-
-            document.addEventListener("click", function() {
-                if (audio.paused) {
-                    audio.play();
-                    updateIndicator();
-                }
-            }, { once: true });
         });
-    </script>
+    }, { threshold: 0.3 });
+    faders.forEach(fader => observer.observe(fader));
+
+    // Audio
+    const audio = document.getElementById("pageAudio");
+    const indicator = document.getElementById("audioIndicator");
+
+    function updateIndicator() {
+        indicator.textContent = audio.paused || audio.muted ? "🔇" : "🎵";
+    }
+
+    // Attempt autoplay
+    audio.play().catch(() => console.log("Autoplay blocked, waiting for user interaction."));
+
+    indicator.addEventListener("click", () => {
+        if(audio.paused || audio.muted){
+            audio.muted = false;
+            audio.play();
+        } else {
+            audio.muted = true;
+            audio.pause();
+        }
+        updateIndicator();
+    });
+
+    updateIndicator();
+
+    // Highlight nav
+    const navLinks = document.querySelectorAll(".world-nav a");
+    const currentPage = window.location.pathname.split("/").pop();
+    navLinks.forEach(link => {
+        link.classList.toggle("active", link.getAttribute("href") === currentPage);
+    });
+});
+</script>
 
 </body>
 </html>
